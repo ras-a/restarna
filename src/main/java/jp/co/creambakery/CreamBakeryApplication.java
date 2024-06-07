@@ -1,13 +1,13 @@
-package jp.co.creambakery.restarna;
+package jp.co.creambakery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestarnaApplication {
+public class CreamBakeryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestarnaApplication.class, args);
+		SpringApplication.run(CreamBakeryApplication.class, args);
 	}
 
 }
