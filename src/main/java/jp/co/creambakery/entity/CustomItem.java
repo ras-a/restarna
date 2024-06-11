@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
- * custrom_itemテーブルのエンティティ
+ * custom_itemテーブルのエンティティ
  * CREATE TABLE custom_item (
  * item INTEGER PRIMARY KEY REFERENCES item(id) NOT NULL,
  * creator INTEGER REFERENCES customer(id) NOT NULL,

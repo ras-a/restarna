@@ -29,10 +29,8 @@ import jakarta.persistence.Table;
 public class Bread 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType. SEQUENCE,
-    generator = "seq_bread_gen")
-    @SequenceGenerator(name = "seq_bread_gen", 
-    sequenceName = "bread_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType. SEQUENCE,generator = "seq_bread_gen")
+    @SequenceGenerator(name = "seq_bread_gen", sequenceName = "bread_seq", allocationSize = 1)
     private Integer id;
 
     @Column(nullable = false)
@@ -53,7 +51,7 @@ public class Bread
     @Column(nullable = false)
     private Date dateCreated;
 
-    @Column(nullable = false, columnDefinition = "Integer default 0")
+    @Column(nullable = false, columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
 
 

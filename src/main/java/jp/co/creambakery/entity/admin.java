@@ -40,13 +40,13 @@ public class Admin
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, columnDefinition = "CURRENT_DATE")
+    @Column(nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date dateCreated;
 
-    @Column(nullable = false, columnDefinition = "Integer default 0")
+    @Column(nullable = false, columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
 
-    @Column(nullable = false, columnDefinition = "Integer default 0")
+    @Column(nullable = false, columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer system;
 
     
