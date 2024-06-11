@@ -51,8 +51,9 @@ public class Bread
     @Column(nullable = false)
     private Date dateCreated;
 
-    @Column(nullable = false, columnDefinition = "integer default 0")
+    @Column(nullable = false, columnDefinition = "Integer default 0")
     private Integer deleted;
+
 
     public Integer getId() 
     {

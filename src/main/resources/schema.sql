@@ -137,7 +137,7 @@ CREATE SEQUENCE order_seq NOCACHE;
 -- 注文の商品項目
 CREATE TABLE product_order_item (
 	product_order INTEGER REFERENCES product_order(id) NOT NULL,
-	item INTEGER REFERENCES item(id) NOT NULl,
+	item INTEGER REFERENCES item(id) NOT NULL,
 	amount INTEGER CHECK (amount > 0),
 	CONSTRAINT pk PRIMARY KEY (product_order, item)
 );

@@ -23,25 +23,25 @@ public class StoreItem
 
 @ManyToOne
 @JoinColumn(name = "item", referencedColumnName = "id")
-private Item storeIt;
+private Item item;
 
-@Column
+@Column(nullable = false)
 private String image;
 
-public Item getStoreIt() {
-    return storeIt;
-}
+    public Item getItem() {
+        return item;
+    }
 
-public String getImage() {
-    return image;
-}
+    public String getImage() {
+        return image;
+    }
 
-public void setStoreIt(Item storeIt) {
-    this.storeIt = storeIt;
-}
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
-public void setImage(String image) {
-    this.image = image;
-}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 }

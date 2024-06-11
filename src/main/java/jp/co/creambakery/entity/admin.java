@@ -40,15 +40,16 @@ public class Admin
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "CURRENT_DATE")
     private Date dateCreated;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "Integer default 0")
     private Integer deleted;
 
-    @Column(nullable = false, columnDefinition = "integer default 0")
+    @Column(nullable = false, columnDefinition = "Integer default 0")
     private Integer system;
 
+    
     public Integer getId()
     {
         return id;
