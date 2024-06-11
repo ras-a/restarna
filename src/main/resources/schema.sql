@@ -2,10 +2,10 @@ CREATE TABLE customer (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
 	reading VARCHAR2(64 CHAR) NOT NULL,
-	password VARCHAR2(128 BYTE) NOT NULL,
+	password VARCHAR2(128) NOT NULL,
 	email VARCHAR2(64 CHAR) NOT NULL,
 	date_created DATE NOT NULL,
-	deleted NUMBER(1) NOT NULL DEFAULT 0
+	deleted NUMBER(1) DEFAULT 0
 );
 
 CREATE SEQUENCE customer_seq NOCACHE;
@@ -14,9 +14,9 @@ CREATE TABLE address_profile (
 	id INTEGER PRIMARY KEY,
 	customer INTEGER REFERENCES customer(id) NOT NULL,
 	name VARCHAR2(32 CHAR) NOT NULL,
-	post_code VARCHAR2(8 BYTE) NOT NULL,
+	post_code VARCHAR2(8) NOT NULL,
 	address VARCHAR2(128 CHAR) NOT NULL,
-	phone_number VARCHAR(11 BYTE),
+	phone_number VARCHAR(11),
 	email VARCHAR2(64 CHAR),
 	addressee_name VARCHAR2(32 CHAR) NOT NULL,
 	addressee_reading VARCHAR(64 CHAR) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE address_profile (
 
 CREATE SEQUENCE address_seq NOCACHE;
 
-ALTER TABLE customer ADD main_address INTEGER REFERENCES address_profile(id) DEFAULT NULL;
+ALTER TABLE customer ADD main_address INTEGER DEFAULT NULL REFERENCES address_profile(id);
 
 CREATE TABLE bread (
 	id INTEGER PRIMARY KEY,
@@ -65,7 +65,6 @@ CREATE TABLE item (
 
 CREATE SEQUENCE item_seq NOCACHE;
 
-DROP TABLE item_cream;
 CREATE TABLE item_cream (
 	item INTEGER REFERENCES item(id),
 	cream INTEGER REFERENCES cream(id),
@@ -84,17 +83,17 @@ CREATE TABLE custom_item (
 );
 
 CREATE TABLE favorite (
-	owner REFERENCES customer(id),
-	item REFERENCES item(id),
+	owner INTEGER REFERENCES customer(id),
+	item INTEGER REFERENCES item(id),
 	CONSTRAINT pk_fav PRIMARY KEY (owner, item)
 );
 
 CREATE TABLE credit_card (
 	owner INTEGER REFERENCES customer(id) NOT NULL,
 	name VARCHAR2(32 CHAR) NOT NULL,
-	holder_name VARCHAR2(64 BYTE) NOT NULL,
-	no VARCHAR2(16 BYTE) NOT NULL,
-	cvc VARCHAR2(3 BYTE) NOT NULL,
+	holder_name VARCHAR2(64) NOT NULL,
+	no VARCHAR2(16) NOT NULL,
+	cvc VARCHAR2(3) NOT NULL,
 	CONSTRAINT pk_cc PRIMARY KEY (owner, name)
 );
 
@@ -123,7 +122,7 @@ CREATE TABLE product_order_item (
 CREATE TABLE admin (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(16 CHAR),
-	password VARCHAR2(32 BYTE),
+	password VARCHAR2(32),
 	date_created DATE NOT NULL,
 	deleted NUMBER(1) DEFAULT 0,
 	system NUMBER(1) DEFAULT 0
