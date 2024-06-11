@@ -29,8 +29,10 @@ import jakarta.persistence.Table;
 public class Bread 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "seq_bread_gen")
-    @SequenceGenerator(name = "seq_bread_gen", sequenceName = "bread_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType. SEQUENCE,
+    generator = "seq_bread_gen")
+    @SequenceGenerator(name = "seq_bread_gen", 
+    sequenceName = "bread_seq", allocationSize = 1)
     private Integer id;
 
     @Column(nullable = false)
