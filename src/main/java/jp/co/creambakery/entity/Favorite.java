@@ -1,6 +1,7 @@
 package jp.co.creambakery.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -20,10 +21,12 @@ import jakarta.persistence.Table;
 @Table(name = "favorite")
 public class Favorite {
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "customer", referencedColumnName = "id")
     private Customer owner;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "item", referencedColumnName = "id")
     private Item item;
