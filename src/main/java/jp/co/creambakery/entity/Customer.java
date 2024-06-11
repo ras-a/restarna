@@ -15,13 +15,14 @@ import jakarta.persistence.Table;
  * CREATE TABLE customer (
  * id INTEGER PRIMARY KEY,
  * name VARCHAR2(32 CHAR) NOT NULL,
+ * -- 読み仮名
  * reading VARCHAR2(64 CHAR) NOT NULL,
- * password VARCHAR2(128 BYTE) NOT NULL,
+ * password VARCHAR2(128) NOT NULL,
  * email VARCHAR2(64 CHAR) NOT NULL,
- * date_created DATE NOT NULL,
- * deleted NUMBER(1) NOT NULL DEFAULT 0
+ * date_created DATE DEFAULT CURRENT_DATE,
+ * deleted NUMBER(1) DEFAULT 0
  * );
- * 
+ *
  * CREATE SEQUENCE customer_seq NOCACHE;
  */
 
@@ -46,7 +47,7 @@ public class Customer {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date date_created;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")

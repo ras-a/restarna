@@ -17,14 +17,14 @@ import jakarta.persistence.Table;
  * CREATE TABLE address_profile (
  * id INTEGER PRIMARY KEY,
  * customer INTEGER REFERENCES customer(id) NOT NULL,
- * name VARCHAR2(32 CHAR) NOT NULL,
+ * name VARCHAR2(32 CHAR) UNIQUE NOT NULL,
  * post_code VARCHAR2(8 BYTE) NOT NULL,
  * address VARCHAR2(128 CHAR) NOT NULL,
  * phone_number VARCHAR(11 BYTE),
  * email VARCHAR2(64 CHAR),
  * addressee_name VARCHAR2(32 CHAR) NOT NULL,
- * addressee_reading VARCHAR(64 CHAR) NOT NULL,
- * date_created DATE NOT NULL,
+ * addressee_reading VARCHAR2(64 CHAR) NOT NULL,
+ * date_created DATE DEFAULT CURRENT_DATE,
  * deleted NUMBER(1) DEFAULT 0
  * );
  * 
@@ -44,7 +44,7 @@ public class AddressProfile {
     @JoinColumn(name = "customer", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
@@ -65,7 +65,7 @@ public class AddressProfile {
     @Column(nullable = false)
     private String addressReading;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date dateCreated;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")

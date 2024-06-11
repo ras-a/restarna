@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
  * price INTEGER NOT NULL,
  * description VARCHAR2(128 CHAR) NOT NULL,
  * image VARCHAR2(64 CHAR) NOT NULL,
- * date_created DATE NOT NULL,
+ * date_created DATE DEFAULT CURRENT_DATE,
  * deleted NUMBER(1) DEFAULT 0
  * );
  * CREATE SEQUENCE cream_seq NOCACHE;
@@ -49,7 +49,7 @@ public class Cream {
     @Column(nullable = false)
     private String image;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date date_created;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
