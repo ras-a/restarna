@@ -10,17 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-/**
+/**-- パン生地の種類
 *CREATE TABLE bread (
 *	id INTEGER PRIMARY KEY,
 *	name VARCHAR2(32 CHAR) NOT NULL,
+*	-- 読み仮名
 *	reading VARCHAR2(64 CHAR) NOT NULL,
 *	price INTEGER NOT NULL,
 *	description VARCHAR2(128 CHAR) NOT NULL,
 *	image VARCHAR2(64 CHAR) NOT NULL,
-*	date_created DATE NOT NULL,
+*	date_created DATE DEFAULT CURRENT_DATE,
 *	deleted NUMBER(1) DEFAULT 0
-*   );
+*);
 */
 
 @Entity

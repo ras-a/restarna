@@ -11,11 +11,13 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 /**
+*-- 管理者
 *CREATE TABLE admin (
 *	id INTEGER PRIMARY KEY,
 *	name VARCHAR2(16 CHAR),
-*	password VARCHAR2(32 BYTE),
-*	date_created DATE NOT NULL,
+*	password VARCHAR2(32),
+*	date_created DATE DEFAULT CURRENT_DATE,
+*	deleted NUMBER(1) DEFAULT 0,
 *	system NUMBER(1) DEFAULT 0
 *);
 */
@@ -41,10 +43,14 @@ public class Admin
     @Column(nullable = false)
     private Date dateCreated;
 
+    @Column(nullable = false)
+    private Integer deleted;
+
     @Column(nullable = false, columnDefinition = "integer default 0")
     private Integer system;
 
-    public Integer getId(){
+    public Integer getId()
+    {
         return id;
     }
 
@@ -68,33 +74,49 @@ public class Admin
         return dateCreated;
     }
 
+    public Integer getDeleted() 
+    {
+        return deleted;
+    }
+    
     public Integer getSystem() 
     {
         return system;
     }
 
 
-    public void setId(Integer id) {
+    public void setId(Integer id) 
+    {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(String name) 
+    {
         this.name = name;
     }
 
-    public void setReading(String reading) {
+    public void setReading(String reading) 
+    {
         this.reading = reading;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) 
+    {
         this.password = password;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(Date dateCreated) 
+    {
         this.dateCreated = dateCreated;
     }
 
-    public void setSystem(Integer system) {
+    public void setDeleted(Integer deleted) 
+    {
+        this.deleted = deleted;
+    }
+
+    public void setSystem(Integer system) 
+    {
         this.system = system;
     }
 
