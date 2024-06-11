@@ -1,6 +1,8 @@
+-- 会員
 CREATE TABLE customer (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
+	-- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	password VARCHAR2(128) NOT NULL,
 	email VARCHAR2(64 CHAR) NOT NULL,
@@ -10,15 +12,20 @@ CREATE TABLE customer (
 
 CREATE SEQUENCE customer_seq NOCACHE;
 
+-- 会員が登録した宛先住所
+-- 複数登録可能
 CREATE TABLE address_profile (
 	id INTEGER PRIMARY KEY,
 	customer INTEGER REFERENCES customer(id) NOT NULL,
+	-- 宛先名
 	name VARCHAR2(32 CHAR) UNIQUE NOT NULL,
 	post_code VARCHAR2(8) NOT NULL,
 	address VARCHAR2(128 CHAR) NOT NULL,
 	phone_number VARCHAR(11),
 	email VARCHAR2(64 CHAR),
+	-- 宛先名
 	addressee_name VARCHAR2(32 CHAR) NOT NULL,
+	-- 宛先名読み仮名
 	addressee_reading VARCHAR(64 CHAR) NOT NULL,
 	date_created DATE DEFAULT CURRENT_DATE,
 	deleted NUMBER(1) DEFAULT 0
@@ -26,11 +33,16 @@ CREATE TABLE address_profile (
 
 CREATE SEQUENCE address_seq NOCACHE;
 
+-- 会員の標準宛先
+-- address_profileが存在しないままでは作れないので、
+-- その作成後に外部参照を追加
 ALTER TABLE customer ADD main_address INTEGER DEFAULT NULL REFERENCES address_profile(id);
 
+-- パン生地の種類
 CREATE TABLE bread (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
+	-- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	price INTEGER NOT NULL,
 	description VARCHAR2(128 CHAR) NOT NULL,
@@ -41,9 +53,11 @@ CREATE TABLE bread (
 
 CREATE SEQUENCE bread_seq NOCACHE;
 
+-- クリームの種類
 CREATE TABLE cream (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
+	-- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	price INTEGER NOT NULL,
 	description VARCHAR2(128 CHAR) NOT NULL,
@@ -54,9 +68,11 @@ CREATE TABLE cream (
 
 CREATE SEQUENCE cream_seq NOCACHE;
 
+-- 商品
 CREATE TABLE item (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
+	-- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	bread INTEGER REFERENCES bread(id) NOT NULL,
 	description VARCHAR2(512 CHAR) NOT NULL,
@@ -65,29 +81,35 @@ CREATE TABLE item (
 
 CREATE SEQUENCE item_seq NOCACHE;
 
+-- 商品とクリームの関係性
 CREATE TABLE item_cream (
 	item INTEGER REFERENCES item(id),
 	cream INTEGER REFERENCES cream(id),
 	CONSTRAINT pk_ic PRIMARY KEY (item, cream)
 );
 
+-- 既存の(店の)商品
 CREATE TABLE store_item (
 	item INTEGER PRIMARY KEY REFERENCES item(id),
 	image VARCHAR2(64 CHAR) NOT NULL
 );
 
+-- 会員のカスタムで作成した商品
 CREATE TABLE custom_item (
 	item INTEGER PRIMARY KEY REFERENCES item(id) NOT NULL,
 	creator INTEGER REFERENCES customer(id) NOT NULL,
+	-- 公開済か否か
 	is_public NUMBER(1) DEFAULT 0
 );
 
+-- 会員のお気に入り登録
 CREATE TABLE favorite (
 	owner INTEGER REFERENCES customer(id),
 	item INTEGER REFERENCES item(id),
 	CONSTRAINT pk_fav PRIMARY KEY (owner, item)
 );
 
+-- クレカ情報の登録
 CREATE TABLE credit_card (
 	id INTEGER PRIMARY KEY,
 	owner INTEGER REFERENCES customer(id) NOT NULL,
@@ -97,6 +119,7 @@ CREATE TABLE credit_card (
 	cvc VARCHAR2(3) NOT NULL
 );
 
+-- 注文
 CREATE TABLE product_order (
 	id INTEGER PRIMARY KEY,
 	customer INTEGER REFERENCES customer(id),
@@ -111,6 +134,7 @@ CREATE TABLE product_order (
 
 CREATE SEQUENCE order_seq NOCACHE;
 
+-- 注文の商品項目
 CREATE TABLE product_order_item (
 	product_order INTEGER REFERENCES product_order(id) NOT NULL,
 	item INTEGER REFERENCES item(id) NOT NULl,
@@ -118,6 +142,7 @@ CREATE TABLE product_order_item (
 	CONSTRAINT pk PRIMARY KEY (product_order, item)
 );
 
+-- 管理者
 CREATE TABLE admin (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(16 CHAR),
