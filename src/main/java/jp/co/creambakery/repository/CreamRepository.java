@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import jp.co.creambakery.entity.Cream;
 
 
-public interface CreamRepository extends JpaRepository<Cream, Integer>{
-List<Cream>findAllByOrderByDateCreatedAsc();
-
+public interface CreamRepository extends JpaRepository<Cream, Integer>
+{
+	List<Cream>findAllByOrderByDateCreatedAsc();
 }

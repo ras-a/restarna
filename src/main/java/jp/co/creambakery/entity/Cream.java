@@ -21,7 +21,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cream")
-public class Cream {
+public class Cream
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cream_gen")
@@ -44,7 +45,7 @@ public class Cream {
     private String image;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date date_created;
+    private Date dateCreated;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
@@ -97,12 +98,12 @@ public class Cream {
         this.image = image;
     }
 
-    public Date getDate_created() {
-        return date_created;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate_created(Date date_created) {
-        this.date_created = date_created;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public Integer getDeleted() {

@@ -1,6 +1,6 @@
 package jp.co.creambakery.entity;
 
-import java.util.List;
+import java.util.*;
 
 import jakarta.persistence.*;
 
@@ -19,7 +19,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "item")
-public class Item {
+public class Item
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_gen")
@@ -41,6 +42,9 @@ public class Item {
         joinColumns = @JoinColumn(name = "item"),
         inverseJoinColumns = @JoinColumn(name = "cream"))
     private List<Cream> creams;
+
+    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    private Date dateCreated;
 
     @Column(nullable = false)
     private String description;
@@ -97,5 +101,21 @@ public class Item {
 
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
+    }
+    
+    public List<Cream> getCreams() {
+        return creams;
+    }
+
+    public void setCreams(List<Cream> creams) {
+        this.creams = creams;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }

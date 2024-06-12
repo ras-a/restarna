@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import jp.co.creambakery.entity.Bread;
 
 
-public interface BreadRepository extends JpaRepository<Bread, Integer>{
-
-List<Bread>findAllByOrderByDateCreatedAsc();
-
+public interface BreadRepository extends JpaRepository<Bread, Integer>
+{
+	List<Bread>findAllByOrderByDateCreatedAsc();
 }

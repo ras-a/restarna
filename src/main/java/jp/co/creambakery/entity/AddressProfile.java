@@ -25,7 +25,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address_profile")
-public class AddressProfile {
+public class AddressProfile
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_profile_gen")

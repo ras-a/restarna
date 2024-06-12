@@ -14,7 +14,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "custom_item")
-public class CustomItem {
+public class CustomItem
+{
     @Id
     @OneToOne
     @MapsId
