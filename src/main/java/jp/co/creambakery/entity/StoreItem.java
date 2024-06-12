@@ -1,12 +1,6 @@
 package jp.co.creambakery.entity;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /** 
 *-- 既存の(店の)商品
@@ -20,13 +14,12 @@ import jakarta.persistence.Table;
 @Table(name = "store_item")
 public class StoreItem 
 {
+    @Id
+    @OneToOne
+    private Item item;
 
-@ManyToOne
-@JoinColumn(name = "item", referencedColumnName = "id")
-private Item item;
-
-@Column(nullable = false)
-private String image;
+    @Column(nullable = false)
+    private String image;
 
     public Item getItem() {
         return item;
