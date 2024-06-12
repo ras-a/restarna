@@ -138,10 +138,18 @@ CREATE SEQUENCE order_seq NOCACHE;
 
 -- 注文の商品項目
 CREATE TABLE product_order_item (
-	product_order INTEGER REFERENCES product_order(id) NOT NULL,
-	item INTEGER REFERENCES item(id) NOT NULL,
-	amount INTEGER CHECK (amount > 0),
-	CONSTRAINT pk PRIMARY KEY (product_order, item)
+	product_order INTEGER NOT NULL REFERENCES product_order(id) NOT NULL,
+	item INTEGER NOT NULL REFERENCES item(id) NOT NULL,
+	amount INTEGER NOT NULL CHECK (amount > 0),
+	CONSTRAINT pk_oi PRIMARY KEY (product_order, item)
+);
+
+CREATE TABLE review (
+	poster INTEGER NOT NULL REFERENCES customer(id),
+	item INTEGER NOT NULL REFERENCES item(id),
+	description VARCHAR2(1024),
+	score INTEGER CHECK score BETWEEN 1 AND 5,
+	CONSTRAINT pk_review PRIMARY KEY (poster, item)
 );
 
 -- 管理者
