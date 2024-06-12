@@ -1,14 +1,8 @@
 package jp.co.creambakery.entity;
 
-import java.util.Date;
+import java.util.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * customerテーブルのエンティティ
@@ -32,7 +26,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_gen")
-    @SequenceGenerator(name = "costomer_gen", sequenceName = "customer_seq", allocationSize = 1)
+    @SequenceGenerator(name = "customer_gen", sequenceName = "customer_seq", allocationSize = 1)
     private Integer id;
 
     @Column(nullable = false)
@@ -44,8 +38,27 @@ public class Customer {
     @Column(nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "customer")
+    private List<AddressProfile> addresses;
+
+    @OneToMany(mappedBy = "owner")
+    private List<CreditCard> creditCards;
+
+    @OneToOne
+    @JoinColumn(name = "main_address", referencedColumnName = "id")
+    private AddressProfile mainAddress;
+
     @Column(nullable = false)
     private String email;
+
+    @ManyToMany
+    @JoinTable(name = "favorite",
+        joinColumns = @JoinColumn(name = "owner"),
+        inverseJoinColumns = @JoinColumn(name = "item"))
+    private List<Item> favorites;
+
+    // @OneToMany(mappedBy = "poster")
+    // private List<Review> reviews;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date date_created;

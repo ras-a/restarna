@@ -8,6 +8,6 @@ import jp.co.creambakery.entity.Cream;
 
 
 public interface CreamRepository extends JpaRepository<Cream, Integer>{
-List<Cream>findAllByOrderByDate_createdAsc();
+List<Cream>findAllByOrderByDateCreatedAsc();
 
 }

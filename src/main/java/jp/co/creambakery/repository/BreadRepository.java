@@ -9,6 +9,6 @@ import jp.co.creambakery.entity.Bread;
 
 public interface BreadRepository extends JpaRepository<Bread, Integer>{
 
-List<Bread>findAllByOrderByDate_createdAsc();
+List<Bread>findAllByOrderByDateCreatedAsc();
 
 }
