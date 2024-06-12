@@ -2,7 +2,7 @@
 CREATE TABLE customer (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
-	-- 読み仮名
+ -- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	password VARCHAR2(128) NOT NULL,
 	email VARCHAR2(64 CHAR) NOT NULL,
@@ -42,7 +42,7 @@ ALTER TABLE customer ADD main_address INTEGER DEFAULT NULL REFERENCES address_pr
 CREATE TABLE bread (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
-	-- 読み仮名
+ -- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	price INTEGER NOT NULL,
 	description VARCHAR2(128 CHAR) NOT NULL,
@@ -57,7 +57,7 @@ CREATE SEQUENCE bread_seq NOCACHE;
 CREATE TABLE cream (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(32 CHAR) NOT NULL,
-	-- 読み仮名
+ -- 読み仮名
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	price INTEGER NOT NULL,
 	description VARCHAR2(128 CHAR) NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE store_item (
 CREATE TABLE custom_item (
 	item INTEGER PRIMARY KEY REFERENCES item(id) NOT NULL,
 	creator INTEGER REFERENCES customer(id) NOT NULL,
-	-- 公開済か否か
+ -- 公開済か否か
 	is_public NUMBER(1) DEFAULT 0
 );
 
@@ -139,7 +139,7 @@ CREATE SEQUENCE order_seq NOCACHE;
 -- 注文の商品項目
 CREATE TABLE product_order_item (
 	product_order INTEGER REFERENCES product_order(id) NOT NULL,
-	item INTEGER REFERENCES item(id) NOT NULl,
+	item INTEGER REFERENCES item(id) NOT NULL,
 	amount INTEGER CHECK (amount > 0),
 	CONSTRAINT pk PRIMARY KEY (product_order, item)
 );
