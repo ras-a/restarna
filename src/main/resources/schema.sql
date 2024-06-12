@@ -76,6 +76,7 @@ CREATE TABLE item (
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	bread INTEGER REFERENCES bread(id) NOT NULL,
 	description VARCHAR2(512 CHAR) NOT NULL,
+	date_created DATE DEFAULT CURRENT_DATE,
 	deleted NUMBER(1) DEFAULT 0
 );
 
@@ -116,7 +117,8 @@ CREATE TABLE credit_card (
 	name VARCHAR2(32 CHAR) NOT NULL,
 	holder_name VARCHAR2(64) NOT NULL,
 	no VARCHAR2(16) NOT NULL,
-	cvc VARCHAR2(3) NOT NULL
+	cvc VARCHAR2(3) NOT NULL,
+	date_created DATE DEFAULT CURRENT_DATE
 );
 
 -- 注文
@@ -148,7 +150,6 @@ CREATE TABLE admin (
 	name VARCHAR2(16 CHAR),
 	password VARCHAR2(32),
 	date_created DATE DEFAULT CURRENT_DATE,
-	deleted NUMBER(1) DEFAULT 0,
 	system NUMBER(1) DEFAULT 0
 );
 
