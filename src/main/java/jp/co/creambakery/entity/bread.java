@@ -10,29 +10,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-/**-- パン生地の種類
-*CREATE TABLE bread (
-*	id INTEGER PRIMARY KEY,
-*	name VARCHAR2(32 CHAR) NOT NULL,
-*	-- 読み仮名
-*	reading VARCHAR2(64 CHAR) NOT NULL,
-*	price INTEGER NOT NULL,
-*	description VARCHAR2(128 CHAR) NOT NULL,
-*	image VARCHAR2(64 CHAR) NOT NULL,
-*	date_created DATE DEFAULT CURRENT_DATE,
-*	deleted NUMBER(1) DEFAULT 0
-*);
-*/
+/**
+ * 
+   * -- パン生地の種類
+    CREATE TABLE bread (
+    id INTEGER PRIMARY KEY,
+    name V
+    -- 読み仮名
+    reading VARCHAR2(64 CH
+    price INTEGER NOT NULL,
+    description VARCHAR2(128 CHAR) N
+    image VARCHAR2(64 CHAR) NOT NULL,
+    date_created DATE DEFAULT 
+   * 
+  * );
+ */
 
 @Entity
-@Table(name = "bread")
-public class Bread 
-{
+@Table(name = "bre public class Bread {
     @Id
-    @GeneratedValue(strategy = GenerationType. SEQUENCE,
-    generator = "seq_bread_gen")
-    @SequenceGenerator(name = "seq_bread_gen", 
-    sequenceName = "bread_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.EQUENCE, generator = "seq_bread_gen")
+    @SequenceGenerator(name = "seq_bread_gen", sequenceName = "bread_seq", allocationSize = 1)
     private Integer id;
 
     @Column(nullable = false)
@@ -56,85 +54,53 @@ public class Bread
     @Column(nullable = false, columnDefinition = "Integer default 0")
     private Integer deleted;
 
+        return id; }
 
-    public Integer getId() 
-    {
-        return id;
-    }
-
-    public String getName() 
-    {
+    public String getName() {
         return name;
-    }
-
-    public String getReading() 
-    {
+    } 
+    public String getReading() {
         return reading;
     }
-
-    public Integer getPrice() 
-    {
+ public Integer getPrice() {
         return price;
     }
 
-    public String getDescription() 
-    {
-        return description;
+    public String getDescript     return description;
     }
 
-    public String getImage() 
-    {
-        return image;
-    }
+    public String getImage() {
+        return image; }
 
-    public Date getDateCreated() 
-    {
+    public Date getDateCreated() {
         return dateCreated;
-    }
-
-    public Integer getDeleted() 
-    {
+    } 
+    public Integer getDeleted() {
         return deleted;
     }
-
-    
-    public void setId(Integer id) 
-    {
+ public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setName(String name) 
-    {
-        this.name = name;
+    public void setName(String      this.name = name;
     }
 
-    public void setReading(String reading) 
-    {
-        this.reading = reading;
-    }
 
-    public void setPrice(Integer price) 
-    {
+    } 
+    public void setPrice(Integer price) {
         this.price = price;
     }
-
-    public void setDescription(String description) 
-    {
+ public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setImage(String image) 
-    {
-        this.image = image;
+    public void setImage(String image) {     this.image = image;
     }
 
-    public void setDateCreated(Date dateCreated) 
-    {
-        this.dateCreated = dateCreated;
-    }
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated; }
 
-    public void setDeleted(Integer deleted) 
-    {
+    public void setDeleted(Integer deleted) {
         this.deleted = deleted;
-    }
-}
+    } 
+   

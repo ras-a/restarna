@@ -26,7 +26,7 @@ public class CreditCard
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "owner", referencedColumnName = "id")
+    @JoinColumn(name = "owner", referencedColumnName = "id", nullable = false)
     private Customer owner;
 
     @Column(nullable = false)

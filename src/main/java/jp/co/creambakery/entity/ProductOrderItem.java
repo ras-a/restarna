@@ -20,10 +20,11 @@ import jakarta.persistence.Table;
 public class ProductOrderItem 
 {
     @ManyToOne
-    @JoinColumn(name = "product_order", referencedColumnName = "id")
+    @JoinColumn(name = "product_order", referencedColumnName = "id", nullable = false)
     private ProductOrder productOrder;
 
-    @JoinColumn(name = "item", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "item", referencedColumnName = "id", nullable = false)
     private Item item;
 
     @Column(nullable = false)

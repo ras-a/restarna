@@ -135,11 +135,25 @@ CREATE TABLE PRODUCT_ORDER (
 CREATE SEQUENCE ORDER_SEQ NOCACHE;
 
 -- 注文の商品項目
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+CREATE TABLE product_order_item (
+	product_order INTEGER REFERENCES product_order(id) NOT NULL,
+	item INTEGER REFERENCES item(id) NOT NULL,
+	amount INTEGER CHECK (amount > 0),
+	CONSTRAINT pk PRIMARY KEY (product_order, item)
+=======
+>>>>>>> origin/entity_payato
 CREATE TABLE PRODUCT_ORDER_ITEM (
 	PRODUCT_ORDER INTEGER REFERENCES PRODUCT_ORDER(ID) NOT NULL,
 	ITEM INTEGER REFERENCES ITEM(ID) NOT NULL,
 	AMOUNT INTEGER CHECK (AMOUNT > 0),
 	CONSTRAINT PK PRIMARY KEY (PRODUCT_ORDER, ITEM)
+<<<<<<< HEAD
+=======
+>>>>>>> origin/entity_shion
+>>>>>>> origin/entity_payato
 );
 
 -- 管理者
