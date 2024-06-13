@@ -144,6 +144,7 @@ CREATE TABLE product_order_item (
 	CONSTRAINT pk_oi PRIMARY KEY (product_order, item)
 );
 
+-- 口コミ
 CREATE TABLE review (
 	poster INTEGER NOT NULL REFERENCES customer(id),
 	item INTEGER NOT NULL REFERENCES item(id),
