@@ -13,6 +13,9 @@ import jp.co.creambakery.bean.ItemBean;
 import jp.co.creambakery.entity.Item;
 import jp.co.creambakery.repository.ItemRepository;
 
+/**
+ * カート追加・内容を処理するコントローラー
+ */
 @Controller
 @RequestMapping(path = "/cart")
 public class OrderController {
@@ -22,8 +25,9 @@ public class OrderController {
 
     /**
      * 
+     * @param id
      * @param model
-     * @return
+     * @return "cartAdd"
      */
     @GetMapping(path = "/add/{id}")
     public String cartAdd(@PathVariable Integer id, Model model) {
@@ -33,8 +37,9 @@ public class OrderController {
 
     /**
      * 
+     * @param id
      * @param model
-     * @return
+     * @return "cartList"
      */
     @PostMapping(path = "/list/{id}")
     public String cartDetail(@PathVariable Integer id, Model model) {
@@ -42,7 +47,7 @@ public class OrderController {
         item = itemRepository.save(item);
         ItemBean itemBean = new ItemBean();
         BeanUtils.copyProperties(item, itemBean);
-        model.addAttribute("item",itemBean);
+        model.addAttribute("item", itemBean);
         return "cartList";
     }
 
