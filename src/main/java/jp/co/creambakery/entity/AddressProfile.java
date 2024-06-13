@@ -53,10 +53,10 @@ public class AddressProfile
     private String email;
 
     @Column(nullable = false)
-    private String addressName;
+    private String addresseeName;
 
     @Column(nullable = false)
-    private String addressReading;
+    private String addresseeReading;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date dateCreated;
@@ -120,20 +120,20 @@ public class AddressProfile
         this.email = email;
     }
 
-    public String getAddressName() {
-        return addressName;
+    public String getAddresseeName() {
+        return addresseeName;
     }
 
-    public void setAddressName(String addressName) {
-        this.addressName = addressName;
+    public void setAddresseeName(String addresseeName) {
+        this.addresseeName = addresseeName;
     }
 
-    public String getAddressReading() {
-        return addressReading;
+    public String getAddresseeReading() {
+        return addresseeReading;
     }
 
-    public void setAddressReading(String addressReading) {
-        this.addressReading = addressReading;
+    public void setAddresseeReading(String addresseeReading) {
+        this.addresseeReading = addresseeReading;
     }
 
     public Date getDateCreated() {

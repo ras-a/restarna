@@ -58,11 +58,11 @@ public class Customer
         inverseJoinColumns = @JoinColumn(name = "item"))
     private List<Item> favorites;
 
-    // @OneToMany(mappedBy = "poster")
-    // private List<Review> reviews;
+    @OneToMany(mappedBy = "poster")
+    private List<Review> reviews;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date date_created;
+    private Date dateCreated;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
@@ -115,12 +115,12 @@ public class Customer
         this.deleted = deleted;
     }
 
-    public Date getDate_created() {
-        return date_created;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate_created(Date date_created) {
-        this.date_created = date_created;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
 }
