@@ -52,8 +52,8 @@ public class Item
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
 
-    // @OneToMany(mappedBy = "item")
-    // private List<Review> reviews;
+    @OneToMany(mappedBy = "item")
+    private List<Review> reviews;
 
     public Integer getId() {
         return id;
@@ -117,5 +117,13 @@ public class Item
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
