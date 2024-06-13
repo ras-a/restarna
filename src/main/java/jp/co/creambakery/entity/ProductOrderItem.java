@@ -1,8 +1,7 @@
 package jp.co.creambakery.entity;
 
-import java.io.Serializable;
-
 import jakarta.persistence.*;
+import jp.co.creambakery.entity.keys.ProductOrderItemKey;
 
 /**-- 注文の商品項目
 *CREATE TABLE product_order_item (
@@ -57,44 +56,4 @@ public class ProductOrderItem
         this.amount = amount;
     }
 
-}
-
-class ProductOrderItemKey implements Serializable {
-    private ProductOrder productOrder;
-    private Item item;
-
-    public ProductOrder getProductOrder() {
-        return productOrder;
-    }
-
-    public void setProductOrder(ProductOrder productOrder) {
-        this.productOrder = productOrder;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    ProductOrderItemKey(ProductOrder productOrder, Item item) {
-        this.productOrder = productOrder;
-        this.item = item;
-    }
-
-	@Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof ProductOrderItemKey))
-            return false;
-        var other = (ProductOrderItemKey) obj;
-
-        return productOrder.equals(other.productOrder) && item.equals(other.item);
-    }
 }

@@ -1,8 +1,7 @@
 package jp.co.creambakery.entity;
 
-import java.io.Serializable;
-
 import jakarta.persistence.*;
+import jp.co.creambakery.entity.keys.ReviewKey;
 
 @Entity
 @IdClass(ReviewKey.class)
@@ -45,42 +44,5 @@ public class Review
 	}
 	public void setScore(Integer score) {
 		this.score = score;
-	}
-}
-
-class ReviewKey implements Serializable
-{
-	private Customer poster;
-	private Item item;
-
-	ReviewKey(Customer poster, Item item) {
-		this.poster = poster;
-		this.item = item;
-	}
-
-	public Customer getPoster() {
-		return poster;
-	}
-
-	public void setPoster(Customer poster) {
-		this.poster = poster;
-	}
-
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof ReviewKey))
-			return false;
-
-		var other = (ReviewKey) obj;
-
-		return poster.equals(other.poster) && item.equals(other.item);
 	}
 }

@@ -10,5 +10,5 @@ import jp.co.creambakery.entity.Customer;
 
 public interface  CustomerRepository extends JpaRepository<Customer,Integer>
 {
-    List<Customer>findAllByOrderByDateCreatedASC();
+    List<Customer>findAllByOrderByDateCreatedAsc();
 }
