@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>カート内容</title>
+</head>
+
+<body>
+    <p>カート内容</p>
+    <div id="cart">
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>商品名</th>
+            </tr>
+            <tr th:each="i: ${item}">
+                <td th:text="${i.id}"></td>
+                <td th:text="${i.name}"></td>
+            </tr>
+        </table>
+        <a th:href="@{/item/order}">注文画面へ</a>
+        <a th:href="@{/item/all}">戻る</a>
+
+    </div>
+</body>
+
+</html>

@@ -2,13 +2,8 @@ package jp.co.creambakery.bean;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
+import jp.co.creambakery.entity.Bread;
+
 
 public class ItemBean implements Serializable {
 
