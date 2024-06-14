@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import jp.co.creambakery.entity.Bread;
 
-
 public class ItemBean implements Serializable {
 
     private Integer id;
