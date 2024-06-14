@@ -1,14 +1,12 @@
 package jp.co.creambakery.repository;
+import java.util.*;
 
+import org.springframework.data.jpa.repository.*;
 
-
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import jp.co.creambakery.entity.Customer;
+import jp.co.creambakery.entity.*;
 
 public interface  CustomerRepository extends JpaRepository<Customer,Integer>
 {
     List<Customer>findAllByOrderByDateCreatedAsc();
+    Customer findByEmailAndPassword(String email, String password);
 }
