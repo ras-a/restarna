@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+<div th:fragment="user" class="container">
+	<h1 >クリームパン屋ちょいかわ</h1>
+	<div class="user_info">
+		<a th:href="@{/client/user/detail}" th:text="${session.user.name}"></a>さん | <a th:href="@{/logout}" >ログアウト</a>
+	</div>
+</div>
+<div th:fragment="non-user" class="container">
+	<h1 >クリームパン屋ちょいかわ</h1>
+	<div class="user_info">
+		<a th:href="@{/login}" >ログイン</a>
+        <a th:href="@{/client/user/regist/input/init}">新規登録</a>
+	</div>
+</div>
+<div th:fragment="admin" class="container">
+	<h1 >クリームパン屋ちょいかわ</h1>
+	<div class="user_info">
+		<a th:href="@{/admin/user/detail/{id}(id=${session.user.id})}" th:text="${session.user.name}"></a>さん | <a th:href="@{/logout}" >ログアウト</a>
+	</div>
+</div>
+</body>
+</html>
