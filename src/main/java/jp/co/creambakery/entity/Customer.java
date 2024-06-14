@@ -1,20 +1,7 @@
 package jp.co.creambakery.entity;
 
-import java.util.Date;
-import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import java.util.*;
+import jakarta.persistence.*;
 
 /**
  * customerテーブルのエンティティ
@@ -60,46 +47,6 @@ public class Customer
     @OneToOne
     @JoinColumn(name = "main_address", referencedColumnName = "id")
     private AddressProfile mainAddress;
-
-    public List<AddressProfile> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<AddressProfile> addresses) {
-        this.addresses = addresses;
-    }
-
-    public List<CreditCard> getCreditCards() {
-        return creditCards;
-    }
-
-    public void setCreditCards(List<CreditCard> creditCards) {
-        this.creditCards = creditCards;
-    }
-
-    public AddressProfile getMainAddress() {
-        return mainAddress;
-    }
-
-    public void setMainAddress(AddressProfile mainAddress) {
-        this.mainAddress = mainAddress;
-    }
-
-    public List<Item> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Item> favorites) {
-        this.favorites = favorites;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     @Column(nullable = false)
     private String email;
