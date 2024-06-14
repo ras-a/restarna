@@ -1,6 +1,6 @@
 package jp.co.creambakery.entity;
 
-import java.util.Date;
+import java.util.*;
 
 import jakarta.persistence.*;
 
@@ -11,7 +11,6 @@ import jakarta.persistence.*;
 *	name VARCHAR2(16 CHAR),
 *	password VARCHAR2(32),
 *	date_created DATE DEFAULT CURRENT_DATE,
-*	deleted NUMBER(1) DEFAULT 0,
 *	system NUMBER(1) DEFAULT 0
 *);
 */
@@ -29,16 +28,10 @@ public class Admin
     private String name;
 
     @Column(nullable = false)
-    private String reading;
-
-    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date dateCreated;
-
-    @Column(nullable = false, columnDefinition = "NUMBER(1) DEFAULT 0")
-    private Integer deleted;
 
     @Column(nullable = false, columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer system;
@@ -54,11 +47,6 @@ public class Admin
         return name;
     }
 
-    public String getReading() 
-    {
-        return reading;
-    }
-
     public String getPassword() 
     {
         return password;
@@ -69,16 +57,10 @@ public class Admin
         return dateCreated;
     }
 
-    public Integer getDeleted() 
-    {
-        return deleted;
-    }
-    
     public Integer getSystem() 
     {
         return system;
     }
-
 
     public void setId(Integer id) 
     {
@@ -90,11 +72,6 @@ public class Admin
         this.name = name;
     }
 
-    public void setReading(String reading) 
-    {
-        this.reading = reading;
-    }
-
     public void setPassword(String password) 
     {
         this.password = password;
@@ -103,11 +80,6 @@ public class Admin
     public void setDateCreated(Date dateCreated) 
     {
         this.dateCreated = dateCreated;
-    }
-
-    public void setDeleted(Integer deleted) 
-    {
-        this.deleted = deleted;
     }
 
     public void setSystem(Integer system) 
