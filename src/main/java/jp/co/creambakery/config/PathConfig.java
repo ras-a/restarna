@@ -17,7 +17,7 @@ public class PathConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**")
+		registry.addResourceHandler("/static/**")
 		.addResourceLocations("classpath:/static/");
 	}
 }
