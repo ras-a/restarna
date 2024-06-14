@@ -14,4 +14,10 @@ public class PathConfig implements WebMvcConfigurer {
 		configurer.addPathPrefix("/admin", HandlerTypePredicate.forBasePackage("jp.co.creambakery.controller.admin"));
 		configurer.addPathPrefix("/session", HandlerTypePredicate.forBasePackage("jp.co.creambakery.controller.session"));
 	}
+	
+	@Override
+	public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/**")
+		.addResourceLocations("classpath:/static/");
+	}
 }
