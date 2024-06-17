@@ -27,7 +27,7 @@ public class CustomItem
     private Customer creator;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
-    private Integer isPublic;
+    private Integer isPublic = 0;
 
     public Item getItem() {
         return item;

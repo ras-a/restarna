@@ -55,6 +55,12 @@ public class Item
     @OneToMany(mappedBy = "item")
     private List<Review> reviews;
 
+    @OneToOne(mappedBy = "item")
+    private CustomItem custom;
+
+    @OneToOne(mappedBy = "item")
+    private StoreItem store;
+
     public Integer getId() {
         return id;
     }

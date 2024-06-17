@@ -16,6 +16,8 @@ public class StoreItem
 {
     @Id
     @OneToOne
+    @MapsId
+    @JoinColumn(name = "item", referencedColumnName = "id", nullable = false)
     private Item item;
 
     @Column(nullable = false)
