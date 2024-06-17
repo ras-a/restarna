@@ -9,9 +9,9 @@
 <body>
     <div id="cart" th:object="${item}">
         <p>カートに追加</p>
-        <p th:text="*{name}"></p>
-        <a th:href="@{/order/cart}">追加</a>
-        <a th:href="|@{/order/detail/}*{id}|">戻る</a>
+        <p th:text="*{name}"></p>   
+        <a th:href="|@{/item/cart/list/}*{id}|">追加</a>
+        <a th:href="|@{/item/detail/}*{id}|">戻る</a>
     </div>
 </body>
 

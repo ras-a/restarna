@@ -60,6 +60,8 @@ public class Item
 
     @OneToOne(mappedBy = "item")
     private StoreItem store;
+    @OneToMany(mappedBy = "item")
+    private List<Cart> cart;
 
     public Integer getId() {
         return id;
@@ -131,5 +133,13 @@ public class Item
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<Cart> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
     }
 }

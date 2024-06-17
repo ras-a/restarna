@@ -1,6 +1,6 @@
 package jp.co.creambakery.entity.keys;
 
-import java.io.Serializable;
+import java.io.*;
 
 import jp.co.creambakery.entity.*;
 
@@ -40,5 +40,10 @@ public class ReviewKey implements Serializable
 		var other = (ReviewKey) obj;
 
 		return poster.equals(other.poster) && item.equals(other.item);
+	}
+
+	@Override
+	public int hashCode() {
+		 return super.hashCode();
 	}
 }

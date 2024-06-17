@@ -163,3 +163,11 @@ CREATE TABLE admin (
 );
 
 CREATE SEQUENCE admin_seq;
+
+-- カート情報
+CREATE TABLE cart (
+	customer INTEGER NOT NULL REFERENCES customer(id),
+	item INTEGER NOT NULL REFERENCES item(id),
+	quantity INTEGER NOT NULL,
+	CONSTRAINT pk_cart PRIMARY KEY (customer, item)
+);

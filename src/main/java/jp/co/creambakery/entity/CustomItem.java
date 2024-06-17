@@ -23,7 +23,7 @@ public class CustomItem
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name = "customer", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "creator", referencedColumnName = "id", nullable = false)
     private Customer creator;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")

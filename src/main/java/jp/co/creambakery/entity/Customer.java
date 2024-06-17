@@ -21,8 +21,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "customer")
-public class Customer
-{
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_gen")
@@ -52,9 +51,7 @@ public class Customer
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "favorite",
-        joinColumns = @JoinColumn(name = "owner"),
-        inverseJoinColumns = @JoinColumn(name = "item"))
+    @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "owner"), inverseJoinColumns = @JoinColumn(name = "item"))
     private List<Item> favorites;
 
     @OneToMany(mappedBy = "poster")
@@ -65,6 +62,9 @@ public class Customer
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Cart> cart;
 
     public Integer getId() {
         return id;
@@ -122,44 +122,12 @@ public class Customer
         this.dateCreated = dateCreated;
     }
 
-    public List<AddressProfile> getAddresses() {
-        return addresses;
+    public List<Cart> getCart() {
+        return cart;
     }
 
-    public void setAddresses(List<AddressProfile> addresses) {
-        this.addresses = addresses;
-    }
-
-    public List<CreditCard> getCreditCards() {
-        return creditCards;
-    }
-
-    public void setCreditCards(List<CreditCard> creditCards) {
-        this.creditCards = creditCards;
-    }
-
-    public AddressProfile getMainAddress() {
-        return mainAddress;
-    }
-
-    public void setMainAddress(AddressProfile mainAddress) {
-        this.mainAddress = mainAddress;
-    }
-
-    public List<Item> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Item> favorites) {
-        this.favorites = favorites;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
     }
 
 }
