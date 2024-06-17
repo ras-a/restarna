@@ -8,6 +8,7 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.*;
+import jp.co.creambakery.bean.*;
 import jp.co.creambakery.entity.*;
 import jp.co.creambakery.repository.*;
 
@@ -19,7 +20,8 @@ import jp.co.creambakery.repository.*;
 public class OrderController {
 
     @Autowired
-    ItemRepository itemRepository;
+    ItemRepository repository;
+    BeanFactory factory = new BeanFactory();
 
     @Autowired
     CartRepository cartRepository;
@@ -36,7 +38,7 @@ public class OrderController {
      */
     @GetMapping(path = "/add/{id}")
     public String cartAdd(@PathVariable Integer id, Model model) {
-        model.addAttribute("item", itemRepository.getReferenceById(id));
+        model.addAttribute("item", repository.getReferenceById(id));
         return "order/cartAdd";
     }
 
@@ -82,7 +84,7 @@ public class OrderController {
         if (!itemFound) {
             Cart newCartItem = new Cart();
             newCartItem.setCustomer(customerRepository.getReferenceById(customerId));
-            newCartItem.setItem(itemRepository.getReferenceById(itemId));
+            newCartItem.setItem(repository.getReferenceById(itemId));
             newCartItem.setQuantity(1);
             cartRepository.save(newCartItem);
             cart.add(newCartItem); // 新しいカートアイテムをカートリストに追加する

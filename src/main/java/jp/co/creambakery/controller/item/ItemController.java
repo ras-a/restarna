@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import jp.co.creambakery.bean.*;
 import jp.co.creambakery.repository.ItemRepository;
 
 
@@ -12,10 +13,14 @@ import jp.co.creambakery.repository.ItemRepository;
 public class ItemController {
 	@Autowired
 	ItemRepository repository;
+	BeanFactory factory = new BeanFactory();
 
 	@GetMapping("/{id}")
 	public String details(@PathVariable Integer id, Model model) {
-		model.addAttribute("item", repository.getReferenceById(id));
-		return "details";
+		var entity = repository.getReferenceById(id);
+		var item = factory.createBean(entity);
+
+		model.addAttribute("item", item);
+		return "item/test";
 	}
 }
