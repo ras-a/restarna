@@ -8,13 +8,13 @@
 </head>
 
 <body>
-    <h1>user login</h1>
+    <h1>admin login</h1>
     <div>
         <h2>名前とパスワードを入力してください。</h2>
-		<p th:text="${errMessage}"></p>
-        <form th:action="@{login}" method="post" th:object="${userLoginForm}">
+        <p th:text="${errMessage}"></p>
+        <form th:action="@{login}" method="post" th:object="${adminLoginForm}">
             <div>
-                メール:<input type="email" th:field="*{email}"><br>
+                名前:<input type="text" th:field="*{name}"><br>
             </div>
             <div>
                 パスワード:<input type="password" th:field="*{password}"><br>
