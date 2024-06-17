@@ -60,7 +60,6 @@ public class Item
 
     @OneToOne(mappedBy = "item")
     private StoreItem store;
-
     @OneToMany(mappedBy = "item")
     private List<Cart> cart;
 

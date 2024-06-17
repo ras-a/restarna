@@ -41,6 +41,42 @@ public class Customer
     @OneToMany(mappedBy = "customer")
     private List<AddressProfile> addresses;
 
+    public void setAddresses(List<AddressProfile> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<CreditCard> getCreditCards() {
+        return creditCards;
+    }
+
+    public void setCreditCards(List<CreditCard> creditCards) {
+        this.creditCards = creditCards;
+    }
+
+    public AddressProfile getMainAddress() {
+        return mainAddress;
+    }
+
+    public void setMainAddress(AddressProfile mainAddress) {
+        this.mainAddress = mainAddress;
+    }
+
+    public List<Item> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Item> favorites) {
+        this.favorites = favorites;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     @OneToMany(mappedBy = "owner")
     private List<CreditCard> creditCards;
 
@@ -133,42 +169,6 @@ public class Customer
 
     public List<AddressProfile> getAddresses() {
         return addresses;
-    }
-
-    public void setAddresses(List<AddressProfile> addresses) {
-        this.addresses = addresses;
-    }
-
-    public List<CreditCard> getCreditCards() {
-        return creditCards;
-    }
-
-    public void setCreditCards(List<CreditCard> creditCards) {
-        this.creditCards = creditCards;
-    }
-
-    public AddressProfile getMainAddress() {
-        return mainAddress;
-    }
-
-    public void setMainAddress(AddressProfile mainAddress) {
-        this.mainAddress = mainAddress;
-    }
-
-    public List<Item> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Item> favorites) {
-        this.favorites = favorites;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
     }
 
 }
