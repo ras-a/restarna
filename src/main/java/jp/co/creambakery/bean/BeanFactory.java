@@ -98,6 +98,9 @@ public class BeanFactory{
 			bean = new CustomerBean(entity);
 			customers.put(bean.getId(), bean);
 			bean.setAddresses(createAddressList(entity.getAddresses()));
+			bean.setCreditCards(createCreditCardList(entity.getCreditCards()));
+			bean.setFavorites(createItemList(entity.getFavorites()));
+			bean.setReviews(createReviewList(entity.getReviews()));
 		}
 
 		return bean;
@@ -164,5 +167,28 @@ public class BeanFactory{
 	public AdminBean createBean(Admin entity)
 	{
 		return new AdminBean(entity);
+	}
+
+	private HashMap<Integer, CreditCardBean> creditCards = new HashMap<>();
+	public CreditCardBean createBean(CreditCard entity)
+	{
+		var bean = creditCards.get(entity.getId());
+		if (bean == null)
+		{
+			bean = new CreditCardBean(entity);
+			creditCards.put(bean.getId(), bean);
+			bean.setOwner(createBean(entity.getOwner()));
+		}
+
+		return bean;
+	}
+	public List<CreditCardBean> createCreditCardList (List<CreditCard> entities)
+	{
+		List<CreditCardBean> list = new ArrayList<>(entities.size());
+
+		for (var entity : entities)
+			list.add(createBean(entity));
+
+		return list;
 	}
 }
