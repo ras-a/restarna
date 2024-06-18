@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>注文完了 | クリームパン屋ちょいかわ</title>
+  </head>
+  <body>
+    <h2>注文完了</h2>
+      <p>ご注文ありがとうございました！</p>
+      <div th:if="${session.name == null}">
+	      氏名：<span th:text="${inputName}"></span><br>
+	      郵便番号：<span th:text="${inputPostCode}"></span><br>
+        住所：<span th:text="${inputAddress}"></span><br>
+	      メールアドレス：<span th:text="${inputEmail}"></span><br>
+      </div>
+      <div th:if="${session.name != null}">
+        氏名：<span th:text="${session.name}"></span><br>
+        メールアドレス：<span th:text="${session.email}"></span><br>
+        郵便番号：<span th:text="${inputPostCode}"></span><br>
+        住所：<span th:text="${inputAddress}"></span><br>
+      </div>
+  </body>
+</html>

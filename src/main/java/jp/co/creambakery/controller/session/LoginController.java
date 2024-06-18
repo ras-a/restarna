@@ -48,6 +48,7 @@ public class LoginController
         {
             session.setAttribute("id", customer.getId());
             session.setAttribute("name", customer.getName());
+            session.setAttribute("email", customer.getEmail());
             return "redirect:/session/home";
         }else
         {

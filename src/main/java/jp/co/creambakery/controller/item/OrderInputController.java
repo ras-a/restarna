@@ -26,7 +26,7 @@ public class OrderInputController
     @GetMapping("/form")
     public String inputInformationGet(@ModelAttribute OrderForm form)
     {
-        return "item/orderForm";
+        return "order/form";
     }
 
 
@@ -34,20 +34,11 @@ public class OrderInputController
     public String inputInformationPost(@ModelAttribute OrderForm form, Model model)
     {
         model.addAttribute("inputName", form.getName());
-        model.addAttribute("inputHomeAddress", form.getHomeAddress());
-        model.addAttribute("inputPhoneNumber", form.getPhoneNumber());
-        model.addAttribute("inputMailAddress", form.getMailAddress());
+        model.addAttribute("inputPostCode", form.getPostCode());
+        model.addAttribute("inputAddress", form.getAddress());
+        model.addAttribute("inputEmail", form.getEmail());
 
-        return "item/orderComplete";
+        return "order/complete";
     }
-
-    
-    // @GetMapping("/complete")
-    // public String orderFinish(Model model)
-    // {
-        
-    //     return "item/orderComplete";
-    // }
- 
 }
 
