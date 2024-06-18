@@ -6,13 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import jp.co.creambakery.bean.*;
-import jp.co.creambakery.repository.ItemRepository;
+import jp.co.creambakery.repository.*;
 
 
 @Controller
 public class ItemController {
 	@Autowired
 	ItemRepository repository;
+
 	BeanFactory factory = new BeanFactory();
 
 	@GetMapping("/{id}")

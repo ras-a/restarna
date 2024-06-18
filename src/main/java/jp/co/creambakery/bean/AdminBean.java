@@ -2,7 +2,6 @@ package jp.co.creambakery.bean;
 
 import java.util.*;
 
-import jakarta.persistence.*;
 import jp.co.creambakery.entity.*;
 
 public class AdminBean
