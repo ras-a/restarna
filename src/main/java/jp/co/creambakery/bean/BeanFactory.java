@@ -160,4 +160,9 @@ public class BeanFactory{
 
 		return list;
 	}
+	
+	public AdminBean createBean(Admin entity)
+	{
+		return new AdminBean(entity);
+	}
 }
