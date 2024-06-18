@@ -17,7 +17,8 @@ import jp.co.creambakery.repository.*;
  */
 @Controller
 @RequestMapping(path = "/cart")
-public class OrderController {
+public class OrderController 
+{
 
     @Autowired
     ItemRepository repository;
