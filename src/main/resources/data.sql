@@ -81,8 +81,8 @@ INSERT INTO product_order_item VALUES (
 	1
 );
 
--- INSERT INTO cart VALUES (
--- 	1,
--- 	1,
--- 	4
--- );
+INSERT INTO cart VALUES (
+	1,
+	1,
+	4
+);

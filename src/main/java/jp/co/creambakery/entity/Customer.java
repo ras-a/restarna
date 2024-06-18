@@ -21,7 +21,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer 
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_gen")

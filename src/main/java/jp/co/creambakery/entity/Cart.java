@@ -6,7 +6,8 @@ import jp.co.creambakery.entity.keys.*;
 @Entity
 @IdClass(CartKey.class)
 @Table(name = "cart")
-public class Cart {
+public class Cart 
+{
 
     @Id
 	@ManyToOne
