@@ -1,10 +1,11 @@
 INSERT INTO admin VALUES (admin_seq.nextval,'sysadmin','himitsu',CURRENT_DATE,1);
+INSERT INTO admin VALUES (admin_seq.nextval,'sysadmin2','himitsu',CURRENT_DATE,0);
 
-INSERT INTO bread(id, name, reading, price, description, image, date_created) VALUES (bread_seq.nextval, '薄皮生地', 'うすかわきじ', 120, '普通のバンズです', 'bun.jpeg', CURRENT_DATE);
-INSERT INTO cream(id, name, reading, price, description, image, date_created) VALUES (cream_seq.nextval, '餡子', 'あんこ', 130, '国産の小豆で作っています', 'anko_tsubu.png', CURRENT_DATE);
+INSERT INTO bread(id, name, reading, price, description, image) VALUES (bread_seq.nextval, '薄皮生地', 'うすかわきじ', 120, '普通のバンズです', 'bun.jpeg');
+INSERT INTO cream(id, name, reading, price, description, image) VALUES (cream_seq.nextval, '餡子', 'あんこ', 130, '国産の小豆で作っています', 'anko_tsubu.png');
 INSERT INTO item(id, name, reading, bread, description)  VALUES (item_seq.nextval, 'あんパン', 'あんぱん', (SELECT id FROM bread WHERE name = '薄皮生地'), '町のあんパン');
 INSERT INTO store_item VALUES (1, 'img.jpg');
-INSERT INTO cream(id, name, reading, price, description, image, date_created) VALUES (cream_seq.nextval, 'ホイップクリーム', 'ほいっぷくりいむ', 50, '雪印の牛乳から作っています', 'cream.png', CURRENT_DATE);
+INSERT INTO cream(id, name, reading, price, description, image) VALUES (cream_seq.nextval, 'ホイップクリーム', 'ほいっぷくりいむ', 50, '雪印の牛乳から作っています', 'cream.png');
 INSERT INTO item(id, name, reading, bread, description)  VALUES (item_seq.nextval, 'クリームあんパン', 'くりいむあんぱん', (SELECT id FROM bread WHERE name = '薄皮生地'), '町のクリームあんパン');
 INSERT INTO store_item VALUES (2, 'anpan_cream.jpg');
 
@@ -26,7 +27,12 @@ INSERT INTO customer(
 	'e@mail.com'
 );
 
-INSERT INTO review VALUES (
+INSERT INTO review(
+	poster,
+	item,
+	description,
+	score
+) VALUES (
 	1,
 	1,
 	'最高',

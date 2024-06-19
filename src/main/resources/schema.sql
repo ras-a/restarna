@@ -150,6 +150,7 @@ CREATE TABLE review (
 	item INTEGER NOT NULL REFERENCES item(id),
 	description VARCHAR2(1024),
 	score INTEGER CHECK score BETWEEN 1 AND 5,
+	deleted NUMBER(1) DEFAULT 0,
 	CONSTRAINT pk_review PRIMARY KEY (poster, item)
 );
 
