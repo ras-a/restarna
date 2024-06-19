@@ -46,7 +46,7 @@ public class LoginController
 		if (admin != null) 
 		{
 			session.setAttribute("adminId", admin.getId());
-			session.setAttribute("adminName", admin.getName());
+			session.setAttribute("system", admin.getSystem());
 			return "redirect:/admin/";
 		}else
 		{
