@@ -1,7 +1,7 @@
 package jp.co.creambakery.entity;
 
 import jakarta.persistence.*;
-import jp.co.creambakery.entity.keys.ReviewKey;
+import jp.co.creambakery.entity.keys.*;
 
 @Entity
 @IdClass(ReviewKey.class)
@@ -20,6 +20,8 @@ public class Review
 	private String description;
 	@Column
 	private Integer score;
+	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
+    private Integer deleted;
 
 	public Customer getPoster() {
 		return poster;
@@ -45,4 +47,10 @@ public class Review
 	public void setScore(Integer score) {
 		this.score = score;
 	}
+	public Integer getDeleted() {
+        return deleted;
+    }
+	public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
 }
