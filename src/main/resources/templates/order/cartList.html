@@ -18,13 +18,19 @@
             <tr th:each="c : ${cart}">
                 <td th:text="${c.item.id}"></td>
                 <td th:text="${c.item.name}"></td>
-                <td th:text="${c.quantity}"></td>
+                <td>
+                    <form th:action="@{/item/input}" method="post">
+                        <select id="quantity" name="quantity">
+                            <th:block th:each="i : ${#numbers.sequence(1, 100)}">
+                                <option th:value="${i}" th:text="${i}" th:selected="${i==c.quantity}"></option>
+                            </th:block>
+                        </select>
+                </td>
             </tr>
         </table>
-        <a th:href="@{/item/input}">注文画面へ</a>
+        <button type="submit">注文画面へ</button>
+        </form>
         <a th:href="@{/item/all}">戻る</a>
-
     </div>
 </body>
-
 </html>

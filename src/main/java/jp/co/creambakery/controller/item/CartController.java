@@ -17,12 +17,11 @@ import jp.co.creambakery.repository.*;
  */
 @Controller
 @RequestMapping(path = "/cart")
-public class OrderController 
+public class CartController 
 {
 
     @Autowired
-    ItemRepository repository;
-    BeanFactory factory = new BeanFactory();
+    ItemRepository itemRepository;
 
     @Autowired
     CartRepository cartRepository;
@@ -39,7 +38,8 @@ public class OrderController
      */
     @GetMapping(path = "/add/{id}")
     public String cartAdd(@PathVariable Integer id, Model model) {
-        model.addAttribute("item", repository.getReferenceById(id));
+        BeanFactory factory = new BeanFactory();
+        model.addAttribute("item", factory.createBean(itemRepository.getReferenceById(id)));
         return "order/cartAdd";
     }
 
@@ -52,8 +52,8 @@ public class OrderController
      * @param model モデル
      * @return
      */
-    @GetMapping(path = "/list/{id}")
-    public String cartDetail(@PathVariable Integer id, HttpSession session, Model model) {
+    @PostMapping(path = "/list/{id}")
+    public String cartDetail(@PathVariable Integer id, @RequestParam Integer quantity, HttpSession session, Model model) {
 
         // アイテムIDを取得
         Integer itemId = id;
@@ -74,7 +74,7 @@ public class OrderController
         for (Cart cartItem : cart) {
             if (itemId.equals(cartItem.getItem().getId())) {
                 // 同じIDのアイテムが見つかった場合、数量をインクリメントする
-                cartItem.setQuantity(cartItem.getQuantity() + 1);
+                cartItem.setQuantity(cartItem.getQuantity() + quantity);
                 cartRepository.save(cartItem); // 変更をデータベースに保存する
                 itemFound = true;
                 break;
@@ -85,13 +85,14 @@ public class OrderController
         if (!itemFound) {
             Cart newCartItem = new Cart();
             newCartItem.setCustomer(customerRepository.getReferenceById(customerId));
-            newCartItem.setItem(repository.getReferenceById(itemId));
-            newCartItem.setQuantity(1);
+            newCartItem.setItem(itemRepository.getReferenceById(itemId));
+            newCartItem.setQuantity(quantity);
             cartRepository.save(newCartItem);
             cart.add(newCartItem); // 新しいカートアイテムをカートリストに追加する
         }
 
-        model.addAttribute("cart", cart);
+        BeanFactory factory = new BeanFactory();
+        model.addAttribute("cart", factory.createCartList(cart));
 
         return "order/cartList";
     }
