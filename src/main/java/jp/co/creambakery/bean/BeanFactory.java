@@ -190,6 +190,8 @@ public class BeanFactory{
 			list.add(createBean(entity));
 
 		return list;
+	}
+	
 	private HashMap<Long, CartBean> cart = new HashMap<>();
 	public CartBean createBean(Cart entity)
 	{
