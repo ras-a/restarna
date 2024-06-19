@@ -34,6 +34,8 @@ public class BeanFactory
 	}
 	public List<ItemBean> createItemList (List<Item> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<ItemBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -57,6 +59,8 @@ public class BeanFactory
 	}
 	public List<BreadBean> createBreadList (List<Bread> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<BreadBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -80,6 +84,8 @@ public class BeanFactory
 	}
 	public List<CreamBean> createCreamList (List<Cream> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<CreamBean> list = new ArrayList<>(entities.size());
 		for (var entity : entities)
 		{
@@ -108,6 +114,8 @@ public class BeanFactory
 	}
 	public List<CustomerBean> createCustomerList (List<Customer> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<CustomerBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -131,6 +139,8 @@ public class BeanFactory
 	}
 	public List<AddressBean> createAddressList (List<AddressProfile> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<AddressBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -157,6 +167,8 @@ public class BeanFactory
 	}
 	public List<ReviewBean> createReviewList (List<Review> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<ReviewBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -185,6 +197,8 @@ public class BeanFactory
 	}
 	public List<CreditCardBean> createCreditCardList (List<CreditCard> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<CreditCardBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -192,6 +206,7 @@ public class BeanFactory
 
 		return list;
 	}
+
 	private HashMap<Long, CartBean> cart = new HashMap<>();
 	public CartBean createBean(Cart entity)
 	{
@@ -211,6 +226,8 @@ public class BeanFactory
 
 	public List<CartBean> createCartList (List<Cart> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<CartBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
@@ -236,6 +253,8 @@ public class BeanFactory
 	}
 	public List<OrderBean> createOrderList (List<ProductOrder> entities)
 	{
+		if (entities == null)
+			return new ArrayList<>();
 		List<OrderBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)

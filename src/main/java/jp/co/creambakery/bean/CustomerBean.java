@@ -28,6 +28,9 @@ public class CustomerBean implements Serializable
 		name = entity.getName();
 		reading = entity.getReading();
 		password = entity.getPassword();
+		email = entity.getEmail();
+		dateCreated = entity.getDateCreated();
+		deleted = entity.getDeleted() != 0;
 	}
 
 	public Integer getId() {
