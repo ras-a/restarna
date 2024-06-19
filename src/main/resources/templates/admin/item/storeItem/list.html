@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>名前</th>
+                <th>値段</th>
+                <th>説明</th>
+                <th>作成日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${items}">
+                    <td th:text="${item.id}"></td>
+                    <td><a th:href="@{'/admin/store/' + ${item.id}}" th:text="${item.name}"></a></td>
+                    <td th:text="${item.price}"></td>
+                    <td th:text="${item.description}"></td>
+                    <td th:text="${#dates.format(item.bread.dateCreated, 'yyyy/MM/dd')}"></td>
+            </tr>
+        <tbody>
+    </table>
+</body>
+
+</html>

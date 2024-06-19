@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クリーム変更</title>
+</head>
+
+<body>
+    <h1>クリーム変更</h1>
+    <form th:action="@{/admin/cream/update}" method="post" >
+
+        <input type="hidden" th:value="${cream.id}" th:name="id">
+        <input type="hidden" th:value="${cream.deleted}" name="deleted">
+
+        <div>
+            名前:<input type="text" th:value="${cream.name}" name="name"><br>
+        </div>
+        <div>
+            名前:<input type="text" th:value="${cream.reading}" name="reading"><br>
+        </div>
+        <div>
+            読み仮名:<input type="number" th:value="${cream.price}" name="price"><br>
+        </div>
+        <div>
+            説明:<input type="text" th:value="${cream.description}" name="description"><br>
+        </div>
+        <div>
+            <input type="submit" value="変更">
+        </div>
+        
+    </form>
+</body>
+
+</html>

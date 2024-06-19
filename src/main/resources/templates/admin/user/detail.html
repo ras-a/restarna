@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h1 th:text="${customer.name}"></h1>
+    <div th:if="${session.system == 1}">
+        <a th:href="@{/admin/user/update/} + ${customer.id}">更新する</a>
+        <form th:action="@{/admin/user/delete}" method="post">
+            <input type="hidden" th:value="${customer.id}" th:name="id">
+            <input type="submit" value="削除する">
+        </form>
+    </div>
+    <h2>レビュー</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>説明</th>
+                <th>評価</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="review: ${reviews}">        
+                <td th:text="${review.description}"></td>
+                <td th:text="${review.score}"></td>
+                <td>
+                    <form th:action="@{/admin/user/review/delete}" method="post">
+                        <input type="hidden" th:value="${review.item.id}" th:name="itemId">
+                        <input type="hidden" th:value="${review.poster.id}" th:name="posterId">
+                        <input type="submit" value="レビュー削除">
+                    </form>
+                </td>
+            </tr>
+        <tbody>
+    </table>
+
+</body>
+
+</html>
