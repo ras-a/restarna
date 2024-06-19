@@ -192,31 +192,55 @@ public class BeanFactory
 
 		return list;
 	}
-	
 	private HashMap<Long, CartBean> cart = new HashMap<>();
 	public CartBean createBean(Cart entity)
 	{
-    long key = entity.getCustomer().getId()<< 32 + entity.getItem().getId();
+		long key = entity.getCustomer().getId()<< 32 + entity.getItem().getId();
 
-    var bean = cart.get(key);
-    if (bean == null)
-    {
-        bean = new CartBean(entity);
-        cart.put(key, bean);
-        bean.setPoster(createBean(entity.getCustomer()));
-        bean.setItem(createBean(entity.getItem()));
-    }
+		var bean = cart.get(key);
+		if (bean == null)
+		{
+			bean = new CartBean(entity);
+			cart.put(key, bean);
+			bean.setPoster(createBean(entity.getCustomer()));
+			bean.setItem(createBean(entity.getItem()));
+		}
 
-    return bean;
+		return bean;
 	}
 
 	public List<CartBean> createCartList (List<Cart> entities)
 	{
-    List<CartBean> list = new ArrayList<>(entities.size());
+		List<CartBean> list = new ArrayList<>(entities.size());
 
-    for (var entity : entities)
-        list.add(createBean(entity));
+		for (var entity : entities)
+			list.add(createBean(entity));
 
-    return list;
+		return list;
+	}
+	
+	private HashMap<Integer, OrderBean> orders = new HashMap<>();
+	public OrderBean createBean(ProductOrder entity)
+	{
+		var bean = orders.get(entity.getId());
+		if (bean == null)
+		{
+			bean = new OrderBean(entity);
+			orders.put(bean.getId(), bean);
+			bean.setAddress(createBean(entity.getAddress()));
+			bean.setCreditCard(createBean(entity.getCreditCard()));
+			bean.setCustomer(createBean(entity.getCustomer()));
+		}
+
+		return bean;
+	}
+	public List<OrderBean> createOrderList (List<ProductOrder> entities)
+	{
+		List<OrderBean> list = new ArrayList<>(entities.size());
+
+		for (var entity : entities)
+			list.add(createBean(entity));
+
+		return list;
 	}
 }
