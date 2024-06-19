@@ -1,12 +1,13 @@
 package jp.co.creambakery.bean;
 
+import java.io.*;
 import java.util.Date;
 import jp.co.creambakery.entity.*;
 
 /**
  * BreadBean
  */
-public class BreadBean
+public class BreadBean implements Serializable
 {
 	public Integer id;
 	public String name;

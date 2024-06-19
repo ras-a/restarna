@@ -1,10 +1,11 @@
 package jp.co.creambakery.bean;
 
+import java.io.*;
 import java.util.*;
 
 import jp.co.creambakery.entity.*;
 
-public class AdminBean
+public class AdminBean implements Serializable
 {
 	private Integer id;
 	private String name;

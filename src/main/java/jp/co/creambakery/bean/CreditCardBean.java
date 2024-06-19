@@ -1,11 +1,13 @@
 package jp.co.creambakery.bean;
 
+import java.io.*;
+
 import jp.co.creambakery.entity.*;
 
 /**
  * CreditCardBean
  */
-public class CreditCardBean
+public class CreditCardBean implements Serializable
 {
 	private Integer id;
 	private CustomerBean owner;

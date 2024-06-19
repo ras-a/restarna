@@ -2,12 +2,13 @@ package jp.co.creambakery.bean;
 
 import jp.co.creambakery.entity.*;
 
+import java.io.*;
 import java.util.*;
 
 /**
  * CustomerBean
  */
-public class CustomerBean
+public class CustomerBean implements Serializable
 {
 	private Integer id;
 	private String name;

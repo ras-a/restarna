@@ -1,5 +1,6 @@
 package jp.co.creambakery.bean;
 
+import java.io.*;
 import java.util.*;
 
 import jp.co.creambakery.entity.*;
@@ -7,7 +8,7 @@ import jp.co.creambakery.entity.*;
 /**
  * CreamBean
  */
-public class CreamBean
+public class CreamBean implements Serializable
 {
 	private Integer id;
 	private String name;

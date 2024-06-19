@@ -1,11 +1,13 @@
 package jp.co.creambakery.bean;
 
+import java.io.*;
+
 import jp.co.creambakery.entity.*;
 
 /**
  * ReviewBean
  */
-public class ReviewBean
+public class ReviewBean implements Serializable
 {
 	private CustomerBean poster;
 	private ItemBean item;

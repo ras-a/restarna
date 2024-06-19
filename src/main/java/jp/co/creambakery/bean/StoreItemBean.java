@@ -2,8 +2,8 @@ package jp.co.creambakery.bean;
 
 import jp.co.creambakery.entity.*;
 
-public class StoreItemBean extends ItemBean {
-
+public class StoreItemBean extends ItemBean
+{
     private String image;
 
     StoreItemBean(StoreItem entity) {

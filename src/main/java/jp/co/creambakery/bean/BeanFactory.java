@@ -6,7 +6,8 @@ import jp.co.creambakery.entity.*;
 /**
  * ItemBeanFactory
  */
-public class BeanFactory{
+public class BeanFactory
+{
 	private HashMap<Integer, ItemBean> items = new HashMap<>();
 	public ItemBean createBean(Item entity)
 	{
