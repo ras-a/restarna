@@ -1,4 +1,4 @@
-package jp.co.creambakery.controller.session;
+package jp.co.creambakery.controller.user;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;

@@ -12,7 +12,7 @@ public class PathConfig implements WebMvcConfigurer {
 	public void configurePathMatch(@NonNull PathMatchConfigurer configurer) {
 		configurer.addPathPrefix("/item", HandlerTypePredicate.forBasePackage("jp.co.creambakery.controller.item"));
 		configurer.addPathPrefix("/admin", HandlerTypePredicate.forBasePackage("jp.co.creambakery.controller.admin"));
-		configurer.addPathPrefix("/session", HandlerTypePredicate.forBasePackage("jp.co.creambakery.controller.session"));
+		configurer.addPathPrefix("/user", HandlerTypePredicate.forBasePackage("jp.co.creambakery.controller.user"));
 	}
 	
 	@Override
