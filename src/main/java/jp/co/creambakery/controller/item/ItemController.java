@@ -14,14 +14,12 @@ public class ItemController {
 	@Autowired
 	ItemRepository repository;
 
-	BeanFactory factory = new BeanFactory();
-
 	@GetMapping("/{id}")
 	public String details(@PathVariable Integer id, Model model) {
+		var factory = new BeanFactory();
 		var entity = repository.getReferenceById(id);
-		var item = factory.createBean(entity);
 
-		model.addAttribute("item", item);
+		model.addAttribute("item", factory.createBean(entity));
 		return "item/test";
 	}
 }

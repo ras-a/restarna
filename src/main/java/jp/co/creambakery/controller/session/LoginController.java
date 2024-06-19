@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.*;
 import jakarta.validation.*;
+import jp.co.creambakery.bean.*;
 import jp.co.creambakery.form.*;
 import jp.co.creambakery.repository.*;
 
@@ -33,6 +34,7 @@ public class LoginController
 	public String userLogin(@Valid @ModelAttribute("form") UserLoginForm form,
 							BindingResult result, Model model) 
 	{
+		var factory = new BeanFactory();
 		if(result.hasErrors()) 
 		{
 			return "client/login";
@@ -42,7 +44,7 @@ public class LoginController
 
 		if (customer != null)
 		{
-			session.setAttribute("user", customer);
+			session.setAttribute("user", factory.createBean(customer));
 			return "redirect:/session/home";
 		} else
 		{
