@@ -11,6 +11,7 @@ public class ReviewBean
 	private ItemBean item;
 	private String description;
 	private Integer score;
+	private Boolean deleted;
 
 	ReviewBean(Review entity)
 	{
@@ -48,6 +49,14 @@ public class ReviewBean
 
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 }
