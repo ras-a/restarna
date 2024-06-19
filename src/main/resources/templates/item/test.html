@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<title>書籍一覧画面</title>
+	<style>
+		.yellow {
+			color: goldenrod;
+		}
+	</style>
+</head>
+<body th:object="${item}">
+	<!--クリーム一覧--->
+	<table>
+		<tr>
+			<th>商品名</th>
+			<td>[[*{name}]]</td>
+		</tr>
+		<tr>
+			<th>パン生地</th>
+			<td>[[*{bread.name}]]</td>
+		</tr>
+		<tr>
+			<th>中身</th>
+			<td th:each="cream : *{creams}">
+				[[${cream.name}]]
+			</td>
+		</tr>
+		<tr>
+			<th>価格</th>
+			<td>
+				[[*{price}]]円
+			</td>
+		</tr>
+	</table>
+	<img th:replace="~{/common/util::img(*{image}, *{name})}"/>
+
+	<div th:each="review : *{reviews}">
+		<h4>[[${review.poster.name}]]</h4>
+		<span th:each="i: ${#numbers.sequence(1,5,1)}" th:classappend="${i <= review.score}? yellow" class="star">★</span>
+	</div>
+
+	<form th:action="|@{/item/review/add/}*{id}|" method="post">
+		<style>
+			:where(.score_input) {
+				display: flex;
+				flex-flow: row-reverse nowrap;
+				justify-content: start;
+
+				label {
+					color: gray;
+				}
+				:where(&:has(input:checked)) {
+					label {
+						color: black;
+					}
+				}
+			}
+			:where(.elem:hover) {
+				label, ~.elem label {
+					color: color-mix(in oklab, goldenrod 50%, grey);
+				}
+			}
+			.elem:has(:checked) {
+				& label, &~ .elem label {
+					color: goldenrod;
+				}
+			}
+		</style>
+		<div class="score_input">
+			<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
+				<input 
+					type="radio"
+					th:id="|score${i}|"
+					name="score"
+					th:value="${i}"
+					hidden
+					/>
+				<label th:for="|score${i}|">
+					★
+				</label>
+			</div>
+		</div>
+		<textarea name="description" ></textarea>
+		<input type="submit" value="登録">
+	</form>
+	
+</body>
+
+</html>

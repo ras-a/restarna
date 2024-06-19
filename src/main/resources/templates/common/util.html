@@ -1,3 +1,11 @@
 <html>
+	<div th:fragment="stars(score)">
+		<span 
+			th:each="i : ${#numbers.sequence(1,5,1)}"
+			th:classappend="${i} <= ${score} ? yellow"
+			class="star">
+			★
+		</span>
+	</div>
 	<img th:fragment="img(src, alt)" th:src="|@{/static/img/}${src}|" th:alt="${alt}"/>
 </html>
