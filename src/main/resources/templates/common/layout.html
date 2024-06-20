@@ -1,27 +1,116 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:fragment="layout(title,body)">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
-<title th:text="${title}"></title>
-</head>
-<body th:classappend="${session.user} ? user">
-	<!--/* ヘッダー */-->
-	<header >
-		<div th:replace="~{common/header :: non-user}"></div>
-	</header>
+	th:fragment="minimal(title,body)">
+	<head
+		>
+		<meta th:replace="~{common/footer::head}" />
+		<meta th:replace="~{common/header::head}" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}"/>
+		<title th:text="${title}"></title>
+		<th:block th:if="${head}" th:replace="${head}"/>
+	</head>
+	<body th:classappend="${session.user} ? user">
+		<!--/* ヘッダー */-->
+		<header >
+			<div th:replace="~{common/header :: non-user}"></div>
+		</header>
 
-	<!--/* メイン */-->
-	<article class="container content">
-		<div th:replace="${body}"></div>
-	</article>
+		<!--/* メイン */-->
+		<article class="main">
+			<div th:replace="${body}"></div>
+		</article>
 
-	<!--/* フッター */-->
-	<footer>
-		<div th:replace="~{common/footer :: footer}"></div>
-	</footer>
-</body>
+		<!--/* フッター */-->
+		<footer>
+			<div th:replace="~{common/footer :: footer}"></div>
+		</footer>
+	</body>
+</html>
+
+
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+    th:fragment="sidebar(title,body)">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
+		<title  th:text="${title}"></title>
+		<th:block th:if="${head}" th:replace="${head}"/>
+		<meta th:replace="~{common/header::head}">
+		<meta th:replace="~{common/navi::head}">
+		<meta th:replace="~{common/footer::head}">
+		<meta th:replace="~{common/sidebar::head}">
+		<meta th:replace="~{index::head}">
+		<!-- <meta th:replace="~{order/cartList::head}"> -->
+		<!-- <meta th:replace="~{item/list::head}"> -->
+	</head>
+	<body th:classappend="${session.user} ? user">
+		<!--/* ヘッダー */-->
+		<header>
+			<div th:replace="~{common/header :: user}"></div>
+		
+		</header>
+		<!--/* ナビゲーションバー */-->
+		<div th:replace="~{common/navi :: bar}"></div>
+		<div class="horizontal">	
+		<!--/* サイドバー */-->
+			<aside  th:if="${user}" th:replace="~{common/sidebar :: sidebar}"></aside>
+			<!--/* メイン */-->
+			<article class="main">
+				<div th:replace="${body}"></div>
+			</article>
+		</div>
+		<!--/* フッター */-->
+		<footer>
+			<div th:replace="~{common/footer :: footer}"></div>
+		</footer>
+	</body>
+</html>
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+    th:fragment="slideShow(title,body)">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
+		<title  th:text="${title}"></title>
+		<th:block th:if="${head}" th:replace="${head}"/>
+		<meta th:replace="~{common/header::head}">
+		<meta th:replace="~{common/navi::head}">
+		<meta th:replace="~{common/footer::head}">
+		<meta th:replace="~{common/sidebar::head}">
+		<meta th:replace="~{index::head}">
+		<meta th:replace="~{common/slideShow::head}">
+		<meta th:replace="~{item/creamList::head}">
+	</head>
+	<body th:classappend="${session.user} ? user">
+		<!--/* ヘッダー */-->
+		<header>
+			<div th:replace="~{common/header :: user}"></div>
+		
+		</header>
+		<!--/* ナビゲーションバー */-->
+		<div th:replace="~{common/navi :: bar}"></div>
+
+		<!--/* スライドショー */-->
+		<div th:replace="~{common/slideShow :: image}"></div>
+
+		<div class="horizontal">	
+		<!--/* サイドバー */-->
+			<aside  th:if="${user}" th:replace="~{common/sidebar :: sidebar}"></aside>
+			<!--/* メイン */-->
+			<article class="main">
+				<div th:replace="${body}"></div>
+			</article>
+		</div>
+		<!--/* フッター */-->
+		<footer>
+			<div th:replace="~{common/footer :: footer}"></div>
+		</footer>
+	</body>
 </html>
