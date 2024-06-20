@@ -99,3 +99,8 @@ INSERT INTO cart VALUES (
 	1,
 	4
 );
+
+INSERT INTO favorite VALUES (
+	1,
+	1
+);

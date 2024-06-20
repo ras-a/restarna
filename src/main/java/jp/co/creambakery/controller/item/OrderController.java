@@ -1,31 +1,43 @@
 package jp.co.creambakery.controller.item;
 
-import java.util.*;
-
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.ui.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.*;
-import jp.co.creambakery.bean.*;
-import jp.co.creambakery.entity.*;
-import jp.co.creambakery.repository.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import jp.co.creambakery.form.*;
+import jp.co.creambakery.repository.ItemRepository;
+
 
 
 /**
- * カート追加・内容を処理するコントローラー
+ *注文情報入力＆完了コントローラー 
  */
+
 @Controller
-@RequestMapping(path = "/order")
+@RequestMapping("/order")
 public class OrderController 
 {
-	@GetMapping
-	public String getMethodName(@RequestParam String param) {
-		
-		return new String();
-	}
-	
+    @Autowired
+    ItemRepository repository;
+
+
+    @GetMapping("/form")
+    public String inputInformationGet(@ModelAttribute OrderForm form)
+    {
+        return "order/form";
+    }
+
+
+    @PostMapping("/form")
+    public String inputInformationPost(@ModelAttribute OrderForm form, Model model)
+    {
+        model.addAttribute("inputName", form.getName());
+        model.addAttribute("inputPostCode", form.getPostCode());
+        model.addAttribute("inputAddress", form.getAddress());
+        model.addAttribute("inputEmail", form.getEmail());
+
+        return "order/complete";
+    }
 }
+

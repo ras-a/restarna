@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>お気に入り</title>
+</head>
+<body>
+    <h2>あなたのお気に入り商品</h2>
+
+    <table border="1">
+        <tr>
+            <th>商品名</th>
+        </tr>
+        <tr th:each="favorite : ${favorites}">
+            <td th:text="${favorite.item.name}"></td>
+        </tr>
+    </table>
+    <a th:href="@{/homepage}">戻る</a>
+
+</body>
+</html>

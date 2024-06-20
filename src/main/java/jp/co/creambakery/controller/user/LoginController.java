@@ -45,7 +45,7 @@ public class LoginController
 		if (customer != null)
 		{
 			session.setAttribute("user", factory.createBean(customer));
-			return "redirect:/session/home";
+			return "index";
 		} else
 		{
 			model.addAttribute("errMessage", "メールアドレス、またはパスワードが間違っています。");
