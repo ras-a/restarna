@@ -11,7 +11,7 @@ public class Favorite {
     @Id
 	@ManyToOne
 	@JoinColumn(name = "owner", referencedColumnName = "id")
-	private Customer owner;
+	private User owner;
 
 	@Id
 	@ManyToOne
@@ -19,11 +19,11 @@ public class Favorite {
 	private Item item;
 
     
-    public Customer getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(Customer owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

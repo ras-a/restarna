@@ -24,6 +24,9 @@ public class CartController
     ItemRepository itemRepository;
 
     @Autowired
+    CartRepository cartRepository;
+
+    @Autowired
     UserRepository userRepository;
 
     /**
@@ -62,7 +65,7 @@ public class CartController
         Integer customerId = (Integer) session.getAttribute("id");
 
         // 顧客IDを使ってカートを取得する
-        List<Cart> cart = cartRepository.findAllByCustomer_Id(customerId);   
+        List<Cart> cart = cartRepository.findAllByUserId(customerId);   
 
         // カートの中にそのアイテムがあるかどうかの判定結果を保存する
         boolean itemFound = false;
@@ -81,7 +84,6 @@ public class CartController
         // itemIdに対応するカートアイテムが見つからなかった場合、新しいカートアイテムを作成する
         if (!itemFound) {
             Cart newCartItem = new Cart();
-            newCartItem.setCustomer(customerRepository.getReferenceById(customerId));
             newCartItem.setItem(itemRepository.getReferenceById(itemId));
             newCartItem.setQuantity(quantity);
             cartRepository.save(newCartItem);

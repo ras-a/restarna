@@ -6,12 +6,12 @@ import jp.co.creambakery.entity.*;
 
 public class FavoriteKey implements Serializable
 {
-	private Customer owner;
+	private User owner;
 	private Item item;
 
     public FavoriteKey() {}
 
-	public FavoriteKey(Customer owner, Item item) {
+	public FavoriteKey(User owner, Item item) {
 		this.owner = owner;
 		this.item = item;
 	}
@@ -32,11 +32,11 @@ public class FavoriteKey implements Serializable
 		 return super.hashCode();
 	}
 
-    public Customer getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(Customer owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

@@ -28,7 +28,7 @@ public class FavoriteController
     @GetMapping("/favorite")
     public String showFavorite(HttpSession session, Model model) 
     {
-        var customer = (CustomerBean) session.getAttribute("user");
+        var customer = (UserBean) session.getAttribute("user");
         model.addAttribute("favorites", repository.findAllByOwnerId(customer.getId()));
         return "client/favorite";
     }
