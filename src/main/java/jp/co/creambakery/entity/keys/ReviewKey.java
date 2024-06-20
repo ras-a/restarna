@@ -6,21 +6,21 @@ import jp.co.creambakery.entity.*;
 
 public class ReviewKey implements Serializable
 {
-	private Customer poster;
+	private User poster;
 	private Item item;
 
 	public ReviewKey() {}
 
-	public ReviewKey(Customer poster, Item item) {
+	public ReviewKey(User poster, Item item) {
 		this.poster = poster;
 		this.item = item;
 	}
 
-	public Customer getPoster() {
+	public User getPoster() {
 		return poster;
 	}
 
-	public void setPoster(Customer poster) {
+	public void setPoster(User poster) {
 		this.poster = poster;
 	}
 

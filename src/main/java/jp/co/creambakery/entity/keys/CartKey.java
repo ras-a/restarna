@@ -6,23 +6,23 @@ import jp.co.creambakery.entity.*;
 
 public class CartKey implements Serializable
 {
-	private Customer customer;
+	private User user;
 	private Item item;
 
     public CartKey() {}
 
-	public CartKey(Customer customer, Item item) {
-		this.customer = customer;
+	public CartKey(User user, Item item) {
+		this.user = user;
 		this.item = item;
 	}
 
     
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Item getItem() {
@@ -40,7 +40,7 @@ public class CartKey implements Serializable
          
         var other = (CartKey) obj;
     
-        return customer.equals(other.customer) && item.equals(other.item);
+        return user.equals(other.user) && item.equals(other.item);
     }
     
 	@Override

@@ -22,7 +22,7 @@ public class CreditCard
 
     @ManyToOne
     @JoinColumn(name = "owner", referencedColumnName = "id", nullable = false)
-    private Customer owner;
+    private User owner;
 
     @Column(nullable = false)
     private String name;
@@ -41,7 +41,7 @@ public class CreditCard
         return id;
     }
 
-    public Customer getOwner() {
+    public User getOwner() {
         return owner;
     }
 
@@ -66,7 +66,7 @@ public class CreditCard
         this.id = id;
     }
 
-    public void setOwner(Customer owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

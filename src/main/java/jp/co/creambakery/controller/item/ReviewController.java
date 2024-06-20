@@ -16,7 +16,7 @@ import jp.co.creambakery.repository.*;
 @RequestMapping("/review")
 public class ReviewController {
 	@Autowired
-	CustomerRepository customerRepository;
+	UserRepository userRepository;
 	@Autowired
 	ItemRepository itemRepository;
 	@Autowired
@@ -27,7 +27,7 @@ public class ReviewController {
 	@GetMapping("/from/{userId}/{itemId}")
 	public String details(@PathVariable Integer userId, @PathVariable Integer itemId, Model model) {
 		var factory = new BeanFactory();
-		var user = customerRepository.getReferenceById(userId);
+		var user = userRepository.getReferenceById(userId);
 		for (var entity: user.getReviews())
 		{
 			if (entity.getItem().getId() == itemId)
@@ -42,7 +42,7 @@ public class ReviewController {
 	@GetMapping("/from/{userId}")
 	public String byUser(@PathVariable Integer userId, Model model) {
 		var factory = new BeanFactory();
-		var entity = customerRepository.getReferenceById(userId);
+		var entity = userRepository.getReferenceById(userId);
 
 		model.addAttribute("poster", factory.createBean(entity));
 
@@ -61,23 +61,23 @@ public class ReviewController {
 	@GetMapping("/own/{itemId}")
 	public String details (@PathVariable Integer itemId, Model model)
 	{
-		var user = (CustomerBean) session.getAttribute("user");
+		var user = (UserBean) session.getAttribute("user");
 		return details(user.getId(), itemId, model);
 	}
 
 	@GetMapping("/own")
 	public String details (Model model)
 	{
-		var user = (CustomerBean) session.getAttribute("user");
+		var user = (UserBean) session.getAttribute("user");
 		return byUser(user.getId(), model);
 	}
 
 	@PostMapping("/add/{itemId}")
 	public String add(@PathVariable Integer itemId, Integer score, String description, Model model) {
-		var userBean = (CustomerBean)session.getAttribute("user");
+		var userBean = (UserBean)session.getAttribute("user");
 
 		
-		var poster = customerRepository.getReferenceById(userBean.getId());
+		var poster = userRepository.getReferenceById(userBean.getId());
 		var item = itemRepository.getReferenceById(itemId);
 		// var alr = reviewRepository.getReferenceById(new ReviewKey(poster, item));
 		// if (alr != null)
@@ -102,9 +102,9 @@ public class ReviewController {
 
 	@PostMapping("/edit/{itemId}")
 	public String edit(@PathVariable Integer itemId, Integer score, String description, Model model) {
-		var userBean = (CustomerBean)session.getAttribute("user");
+		var userBean = (UserBean)session.getAttribute("user");
 
-		var poster = customerRepository.getReferenceById(userBean.getId());
+		var poster = userRepository.getReferenceById(userBean.getId());
 		var item = itemRepository.getReferenceById(itemId);
 
 		var review = reviewRepository.getReferenceById(new ReviewKey(poster, item));

@@ -24,7 +24,7 @@ public class CustomItem
 
     @ManyToOne
     @JoinColumn(name = "creator", referencedColumnName = "id", nullable = false)
-    private Customer creator;
+    private User creator;
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer isPublic = 0;
@@ -37,11 +37,11 @@ public class CustomItem
         this.item = item;
     }
 
-    public Customer getCreator() {
+    public User getCreator() {
         return creator;
     }
 
-    public void setCreator(Customer creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 

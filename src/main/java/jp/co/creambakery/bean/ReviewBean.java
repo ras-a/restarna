@@ -9,7 +9,7 @@ import jp.co.creambakery.entity.*;
  */
 public class ReviewBean implements Serializable
 {
-	private CustomerBean poster;
+	private UserBean poster;
 	private ItemBean item;
 	private String description;
 	private Integer score;
@@ -21,11 +21,11 @@ public class ReviewBean implements Serializable
 		score = entity.getScore();
 	}
 
-	public CustomerBean getPoster() {
+	public UserBean getPoster() {
 		return poster;
 	}
 
-	public void setPoster(CustomerBean poster) {
+	public void setPoster(UserBean poster) {
 		this.poster = poster;
 	}
 

@@ -31,7 +31,7 @@ public class ProductOrder {
 
     @ManyToOne
     @JoinColumn(name = "customer", referencedColumnName = "id")
-    private Customer customer;
+    private User user;
 
     @Column(nullable = false)
     private Integer paymentMethod;
@@ -64,12 +64,12 @@ public class ProductOrder {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getPaymentMethod() {

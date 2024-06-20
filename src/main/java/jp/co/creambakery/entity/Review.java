@@ -11,7 +11,7 @@ public class Review
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "poster", referencedColumnName = "id")
-	private Customer poster;
+	private User poster;
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "item", referencedColumnName = "id")
@@ -23,10 +23,10 @@ public class Review
 	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
 
-	public Customer getPoster() {
+	public User getPoster() {
 		return poster;
 	}
-	public void setPoster(Customer poster) {
+	public void setPoster(User poster) {
 		this.poster = poster;
 	}
 	public Item getItem() {

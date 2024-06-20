@@ -1,13 +1,14 @@
 package jp.co.creambakery.controller.item;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
-import jp.co.creambakery.form.*;
-import jp.co.creambakery.repository.ItemRepository;
-
+import jakarta.servlet.http.*;
+import jp.co.creambakery.bean.*;
+import jp.co.creambakery.entity.*;
+import jp.co.creambakery.repository.*;
 
 
 /**
@@ -18,26 +19,45 @@ import jp.co.creambakery.repository.ItemRepository;
 @RequestMapping("/order")
 public class OrderController 
 {
-    @Autowired
-    ItemRepository repository;
+	@Autowired
+	OrderRepository orderRepository;
+	@Autowired
+	HttpSession session;
+
+	@GetMapping("/list")
+	public String order(Model model)
+	{
+		var user = new User();
+		user.setId(getUser().getId());
+		var orders = orderRepository.findAllByUser(user);
+
+		model.addAttribute("orders", orders);
+		return "order/list";
+	}
+
+	@GetMapping("/{orderId}")
+	public String details()
+	{
+		return "order/details";
+	}
+
+	@PostMapping("/confirm")
+	public String confirm()
+	{
+		var user = getUser();
 
 
-    @GetMapping("/form")
-    public String inputInformationGet(@ModelAttribute OrderForm form)
-    {
-        return "order/form";
-    }
+		return "order/details";
+	}
 
+	private UserBean getUser()
+	{
+		var user = (UserBean) session.getAttribute("user");
 
-    @PostMapping("/form")
-    public String inputInformationPost(@ModelAttribute OrderForm form, Model model)
-    {
-        model.addAttribute("inputName", form.getName());
-        model.addAttribute("inputPostCode", form.getPostCode());
-        model.addAttribute("inputAddress", form.getAddress());
-        model.addAttribute("inputEmail", form.getEmail());
+		if (user == null)
+			throw new IllegalStateException("ログインされていない");
 
-        return "order/complete";
-    }
+		return user;
+	}
 }
 

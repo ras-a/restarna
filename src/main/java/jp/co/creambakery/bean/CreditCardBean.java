@@ -10,7 +10,7 @@ import jp.co.creambakery.entity.*;
 public class CreditCardBean implements Serializable
 {
 	private Integer id;
-	private CustomerBean owner;
+	private UserBean owner;
 	private String name;
 	private String holderName;
 	private String number;
@@ -33,11 +33,11 @@ public class CreditCardBean implements Serializable
 		this.id = id;
 	}
 
-	public CustomerBean getOwner() {
+	public UserBean getOwner() {
 		return owner;
 	}
 
-	public void setOwner(CustomerBean owner) {
+	public void setOwner(UserBean owner) {
 		this.owner = owner;
 	}
 

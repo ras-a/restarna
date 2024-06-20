@@ -8,7 +8,7 @@ import jp.co.creambakery.entity.*;
 public class OrderBean implements Serializable
 {
 	private Integer id;
-	private CustomerBean customer;
+	private UserBean user;
 	private Integer paymentMethod;
 	private CreditCardBean creditCard;
 	private Date dateCreated;
@@ -37,12 +37,12 @@ public class OrderBean implements Serializable
 		this.id = id;
 	}
 
-	public CustomerBean getCustomer() {
-		return customer;
+	public UserBean getUser() {
+		return user;
 	}
 
-	public void setCustomer(CustomerBean customer) {
-		this.customer = customer;
+	public void setUser(UserBean user) {
+		this.user = user;
 	}
 
 	public Integer getPaymentMethod() {

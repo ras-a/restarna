@@ -35,7 +35,7 @@ public class AddressProfile
 
     @ManyToOne
     @JoinColumn(name = "customer", referencedColumnName = "id", nullable = false)
-    private Customer customer;
+    private User user;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -72,12 +72,12 @@ public class AddressProfile
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {

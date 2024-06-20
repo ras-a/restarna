@@ -12,7 +12,7 @@ public class Cart
     @Id
 	@ManyToOne
 	@JoinColumn(name = "customer", referencedColumnName = "id")
-	private Customer customer;
+	private User user;
 
 	@Id
 	@ManyToOne
@@ -22,12 +22,12 @@ public class Cart
 	@Column
 	private Integer quantity;
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Item getItem() {

@@ -96,27 +96,28 @@ public class BeanFactory
 		return list;
 	}
 
-	private HashMap<Integer, CustomerBean> customers = new HashMap<>();
-	public CustomerBean createBean(Customer entity)
+	private HashMap<Integer, UserBean> users = new HashMap<>();
+	public UserBean createBean(User entity)
 	{
-		var bean = customers.get(entity.getId());
+		var bean = users.get(entity.getId());
 		if (bean == null)
 		{
-			bean = new CustomerBean(entity);
-			customers.put(bean.getId(), bean);
+			bean = new UserBean(entity);
+			users.put(bean.getId(), bean);
 			bean.setAddresses(createAddressList(entity.getAddresses()));
 			bean.setCreditCards(createCreditCardList(entity.getCreditCards()));
 			bean.setFavorites(createItemList(entity.getFavorites()));
 			bean.setReviews(createReviewList(entity.getReviews()));
+			bean.setCart(createCartList(entity.getCart()));
 		}
 
 		return bean;
 	}
-	public List<CustomerBean> createCustomerList (List<Customer> entities)
+	public List<UserBean> createUserList (List<User> entities)
 	{
 		if (entities == null)
 			return new ArrayList<>();
-		List<CustomerBean> list = new ArrayList<>(entities.size());
+		List<UserBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
 			list.add(createBean(entity));
@@ -132,7 +133,7 @@ public class BeanFactory
 		{
 			bean = new AddressBean(entity);
 			addressProfiles.put(bean.getId(), bean);
-			bean.setCustomer(createBean(entity.getCustomer()));
+			bean.setUser(createBean(entity.getUser()));
 		}
 
 		return bean;
@@ -210,14 +211,13 @@ public class BeanFactory
 	private HashMap<Long, CartBean> cart = new HashMap<>();
 	public CartBean createBean(Cart entity)
 	{
-		long key = entity.getCustomer().getId()<< 32 + entity.getItem().getId();
+		long key = entity.getUser().getId()<< 32 + entity.getItem().getId();
 
 		var bean = cart.get(key);
 		if (bean == null)
 		{
 			bean = new CartBean(entity);
 			cart.put(key, bean);
-			bean.setPoster(createBean(entity.getCustomer()));
 			bean.setItem(createBean(entity.getItem()));
 		}
 
@@ -246,7 +246,7 @@ public class BeanFactory
 			orders.put(bean.getId(), bean);
 			bean.setAddress(createBean(entity.getAddress()));
 			bean.setCreditCard(createBean(entity.getCreditCard()));
-			bean.setCustomer(createBean(entity.getCustomer()));
+			bean.setUser(createBean(entity.getUser()));
 		}
 
 		return bean;

@@ -14,24 +14,23 @@ import jp.co.creambakery.repository.*;
 
 @Controller
 @Component("Userlogin")
-@RequestMapping("/login")
 public class LoginController
 {
 	@Autowired
-	private CustomerRepository repository;
+	private UserRepository repository;
 	@Autowired
 	HttpSession session;
 
-	@GetMapping
-	public String userLogin(@ModelAttribute("form") UserLoginForm form, Model model)
+	@GetMapping("/login")
+	public String login(@ModelAttribute("form") UserLoginForm form, Model model)
 	{
 		session.invalidate();
 		model.addAttribute("form", form);
 		return "client/login";
 	}
 
-	@PostMapping
-	public String userLogin(@Valid @ModelAttribute("form") UserLoginForm form,
+	@PostMapping("/login")
+	public String login(@Valid @ModelAttribute("form") UserLoginForm form,
 							BindingResult result, Model model) 
 	{
 		var factory = new BeanFactory();
@@ -40,16 +39,23 @@ public class LoginController
 			return "client/login";
 		}
 
-		var customer = repository.findByEmailAndPassword(form.getEmail(), form.getPassword());
+		var user = repository.findByEmailAndPassword(form.getEmail(), form.getPassword());
 
-		if (customer != null)
+		if (user != null)
 		{
-			session.setAttribute("user", factory.createBean(customer));
-			return "index";
+			session.setAttribute("user", factory.createBean(user));
+			return "redirect:/user/home";
 		} else
 		{
 			model.addAttribute("errMessage", "メールアドレス、またはパスワードが間違っています。");
 			return "client/login";
 		}
+	}
+
+	@RequestMapping("/logout")
+	public String logout()
+	{
+		session.invalidate();
+		return "redirect:/";
 	}
 }

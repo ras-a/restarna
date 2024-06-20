@@ -24,10 +24,7 @@ public class CartController
     ItemRepository itemRepository;
 
     @Autowired
-    CartRepository cartRepository;
-
-    @Autowired
-    CustomerRepository customerRepository;
+    UserRepository userRepository;
 
     /**
      * 商品を選択後、選んだ商品を表示し、カートに追加または戻る

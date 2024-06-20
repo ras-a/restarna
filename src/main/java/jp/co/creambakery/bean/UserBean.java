@@ -6,9 +6,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- * CustomerBean
+ * UserBean
  */
-public class CustomerBean implements Serializable
+public class UserBean implements Serializable
 {
 	private Integer id;
 	private String name;
@@ -22,8 +22,9 @@ public class CustomerBean implements Serializable
 	private List<ReviewBean> reviews;
 	private Date dateCreated;
 	private Boolean deleted;
+	private List<CartBean> cart;
 
-	public CustomerBean(Customer entity) {
+	public UserBean(User entity) {
 		id = entity.getId();
 		name = entity.getName();
 		reading = entity.getReading();
@@ -128,5 +129,12 @@ public class CustomerBean implements Serializable
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
-	
+
+	public List<CartBean> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<CartBean> cart) {
+		this.cart = cart;
+	}
 }

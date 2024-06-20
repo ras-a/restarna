@@ -21,7 +21,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "customer")
-public class Customer 
+public class User 
 {
 
     @Id
@@ -38,7 +38,7 @@ public class Customer
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "user")
     private List<AddressProfile> addresses;
 
     public void setAddresses(List<AddressProfile> addresses) {
@@ -100,7 +100,7 @@ public class Customer
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "user")
     private List<Cart> cart;
 
     public Integer getId() {

@@ -11,7 +11,7 @@ import jp.co.creambakery.entity.*;
 public class AddressBean implements Serializable
 {
 	private Integer id;
-	private CustomerBean customer;
+	private UserBean user;
 	private String name;
 	private String postCode;
 	private String address;
@@ -41,11 +41,11 @@ public class AddressBean implements Serializable
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public CustomerBean getCustomer() {
-		return customer;
+	public UserBean getUser() {
+		return user;
 	}
-	public void setCustomer(CustomerBean customer) {
-		this.customer = customer;
+	public void setUser(UserBean user) {
+		this.user = user;
 	}
 	public String getName() {
 		return name;
