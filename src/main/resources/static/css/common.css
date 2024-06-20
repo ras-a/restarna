@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* ---- 共通 ---- */
+/* スキルアップテクニック1-1
+ * html要素に対しmin-heightプロパティを付けることで、
+ * 最小でも表示領域が画面の高さを持つことになります。
+ * これにより画面の一番下まで表示領域を拡大し、
+ * footerを画面下に配置することができます。
+ * positionプロパティは絶対位置表示を可能にし、
+ * 値relativeを設定することで子要素(今回はfooter要素)の配置基準になります。
+ */
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+/* スキルアップテクニック1-2
+ * 下方向にmarginの余白を設定することでfooterの表示領域を確保します。
+ * paddingプロパティの値0は、body要素が持つ枠の領域を取り消します。
+ */
+body {
+	margin: 0 0 0 0px;
+	padding: 0;
+}
+
+.main{
+    display: flex;
+	flex-flow: row nowrap;
+    background-color: rgb(231, 37, 37);
+	width: 76%;
+	min-height: 400px;
+	display: flex;
+	height: auto;
+}
+
+.user_info{
+    text-align: right;
+    
+}
+
+ /* .description{
+    text-align: center;
+}  */
+
+a {
+	text-decoration: none;
+	/* background-color: antiquewhite; */
+	/* border: 1px solid darkgray; */
+	border-radius: 3px;
+
+	&:hover {
+		font-size: 120%;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+
+
+.horizontal {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+	color: aqua;
+	height: auto;
+}
