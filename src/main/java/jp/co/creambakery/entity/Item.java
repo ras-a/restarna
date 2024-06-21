@@ -3,6 +3,7 @@ package jp.co.creambakery.entity;
 import java.util.*;
 
 import jakarta.persistence.*;
+import jp.co.creambakery.form.*;
 
 /**
  * itemテーブルのエンティティ
@@ -55,13 +56,27 @@ public class Item
     @OneToMany(mappedBy = "item")
     private List<Review> reviews;
 
-    @OneToOne(mappedBy = "item")
+    @OneToOne(mappedBy = "item", cascade = CascadeType.PERSIST)
     private CustomItem custom;
 
-    @OneToOne(mappedBy = "item")
+    @OneToOne(mappedBy = "item", cascade = CascadeType.PERSIST)
     private StoreItem store;
-    @OneToMany(mappedBy = "item")
-    private List<Cart> cart;
+
+    public Item() {
+        dateCreated = new Date();
+        deleted = 0;
+    }
+
+    public Item(User user, Bread bread, List<Cream> creams, CustomItemForm form) {
+        this();
+        custom = new CustomItem(user, this);
+        this.bread = bread;
+        this.creams = creams;
+        name = form.getName();
+        reading = form.getReading();
+        description = form.getDescription();
+        reviews = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;
@@ -133,14 +148,6 @@ public class Item
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
-    }
-
-    public List<Cart> getCart() {
-        return cart;
-    }
-
-    public void setCart(List<Cart> cart) {
-        this.cart = cart;
     }
 
     public StoreItem getStore() {

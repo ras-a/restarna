@@ -1,6 +1,7 @@
 package jp.co.creambakery.entity;
 
 import java.util.*;
+
 import jakarta.persistence.*;
 
 /**
@@ -43,6 +44,9 @@ public class User
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<CreditCard> creditCards;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
+    private List<CustomItem> createdItems;
 
     @OneToOne
     @JoinColumn(name = "main_address", referencedColumnName = "id")
@@ -207,6 +211,14 @@ public class User
 
     public void setOrders(List<ProductOrder> orders) {
         this.orders = orders;
+    }
+
+    public List<CustomItem> getCreatedItems() {
+        return createdItems;
+    }
+
+    public void setCreatedItems(List<CustomItem> createdItems) {
+        this.createdItems = createdItems;
     }
 
 }

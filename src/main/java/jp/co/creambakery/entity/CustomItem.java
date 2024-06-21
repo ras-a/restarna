@@ -17,8 +17,7 @@ import jakarta.persistence.*;
 public class CustomItem
 {
     @Id
-    @OneToOne
-    @MapsId
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item", referencedColumnName = "id", nullable = false)
     private Item item;
 
@@ -28,6 +27,15 @@ public class CustomItem
 
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer isPublic = 0;
+
+    public CustomItem() {
+        isPublic = 0;
+    }
+
+    public CustomItem(User user, Item item) {
+        creator = user;
+        this.item = item;
+    }
 
     public Item getItem() {
         return item;
