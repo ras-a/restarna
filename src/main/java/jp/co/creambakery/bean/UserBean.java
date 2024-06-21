@@ -71,12 +71,40 @@ public class UserBean implements Serializable
 		return addresses;
 	}
 
+	public AddressBean getAddress(Integer id)
+	{
+		AddressBean out = null;
+		for (var address: addresses)
+		{
+			if (address.getId() == id)
+			{
+				out = address;
+			}
+		}
+
+		return out;
+	}
+
 	public void setAddresses(List<AddressBean> addresses) {
 		this.addresses = addresses;
 	}
 
 	public List<CreditCardBean> getCreditCards() {
 		return creditCards;
+	}
+
+	public CreditCardBean getCreditCard(Integer id)
+	{
+		CreditCardBean out = null;
+		for (var card: creditCards)
+		{
+			if (card.getId() == id)
+			{
+				out = card;
+			}
+		}
+
+		return out;
 	}
 
 	public void setCreditCards(List<CreditCardBean> creditCards) {
