@@ -9,11 +9,11 @@
 
 <body>
     <h1>ユーザ登録が完了しました</h1>
-    <p>ID：<span th:text="${customer.id}"></span></p>
-    <p>名前：<span th:text="${customer.name}"></span></p>
-    <p>よみかた：<span th:text="${customer.reading}"></span></p>
+    <p>ID：<span th:text="${user.id}"></span></p>
+    <p>名前：<span th:text="${user.name}"></span></p>
+    <p>よみかた：<span th:text="${user.reading}"></span></p>
     <p>パスワード：***********</p>
-    <p>メールアドレス：<span th:text="${customer.email}"></span></p>
+    <p>メールアドレス：<span th:text="${user.email}"></span></p>
     <a th:href="@{/session/login}">ログイン画面へ戻る</a>
 </body>
 

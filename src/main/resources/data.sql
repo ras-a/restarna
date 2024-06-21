@@ -49,7 +49,7 @@ INSERT INTO address_profile(
 	addressee_name,
 	addressee_reading
 ) VALUES (
-	1,
+	address_seq.nextval,
 	1,
 	'main',
 	'000-000',
@@ -66,7 +66,7 @@ INSERT INTO credit_card(
 	no,
 	cvc
 ) VALUES (
-	1,
+	credit_card_seq.nextval,
 	1,
 	'card',
 	'CREAM TARO',

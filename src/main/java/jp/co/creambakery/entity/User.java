@@ -38,8 +38,37 @@ public class User
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<AddressProfile> addresses;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<CreditCard> creditCards;
+
+    @OneToOne
+    @JoinColumn(name = "main_address", referencedColumnName = "id")
+    private AddressProfile mainAddress;
+
+    @Column(nullable = false)
+    private String email;
+
+    @ManyToMany
+    @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "owner"), inverseJoinColumns = @JoinColumn(name = "item"))
+    private List<Item> favorites;
+
+    @OneToMany(mappedBy = "poster", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
+    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    private Date dateCreated;
+
+    @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
+    private Integer deleted;
+
+    @OneToMany(mappedBy = "user")
+    private List<Cart> cart;
+
+    @OneToMany(mappedBy = "user")
+    private List<ProductOrder> orders;
 
     public void setAddresses(List<AddressProfile> addresses) {
         this.addresses = addresses;
@@ -76,32 +105,6 @@ public class User
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
-
-    @OneToMany(mappedBy = "owner")
-    private List<CreditCard> creditCards;
-
-    @OneToOne
-    @JoinColumn(name = "main_address", referencedColumnName = "id")
-    private AddressProfile mainAddress;
-
-    @Column(nullable = false)
-    private String email;
-
-    @ManyToMany
-    @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "owner"), inverseJoinColumns = @JoinColumn(name = "item"))
-    private List<Item> favorites;
-
-    @OneToMany(mappedBy = "poster")
-    private List<Review> reviews;
-
-    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date dateCreated;
-
-    @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
-    private Integer deleted;
-
-    @OneToMany(mappedBy = "user")
-    private List<Cart> cart;
 
     public Integer getId() {
         return id;
@@ -169,6 +172,14 @@ public class User
 
     public List<AddressProfile> getAddresses() {
         return addresses;
+    }
+
+    public List<ProductOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<ProductOrder> orders) {
+        this.orders = orders;
     }
 
 }

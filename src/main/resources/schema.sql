@@ -121,6 +121,8 @@ CREATE TABLE credit_card (
 	date_created DATE DEFAULT CURRENT_DATE
 );
 
+CREATE SEQUENCE credit_card_seq NOCACHE;
+
 -- 注文
 CREATE TABLE product_order (
 	id INTEGER PRIMARY KEY,

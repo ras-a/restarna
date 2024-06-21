@@ -30,6 +30,13 @@ public class ProductOrderItem
     @Column(nullable = false)
     private Integer amount;
     
+    public ProductOrderItem() {}
+
+    public ProductOrderItem (ProductOrder order, Cart entry)
+    {
+        item = entry.getItem();
+        amount = entry.getQuantity();
+    }
 
     public ProductOrder getProductOrder() {
         return productOrder;

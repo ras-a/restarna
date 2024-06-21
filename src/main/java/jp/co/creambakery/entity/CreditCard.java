@@ -1,6 +1,7 @@
 package jp.co.creambakery.entity;
 
 import jakarta.persistence.*;
+import jp.co.creambakery.form.*;
 
 /**-- クレカ情報の登録
 *CREATE TABLE credit_card (
@@ -17,73 +18,86 @@ import jakarta.persistence.*;
 @Table(name = "credit_card")
 public class CreditCard 
 {
-    @Id
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "credit_card_gen")
+	@SequenceGenerator(name = "credit_card_gen", sequenceName = "credit_card_seq", allocationSize = 1)
+	private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "owner", referencedColumnName = "id", nullable = false)
-    private User owner;
+	@ManyToOne
+	@JoinColumn(name = "owner", referencedColumnName = "id", nullable = false)
+	private User owner;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+	private String name;
 
-    @Column(nullable = false)
-    private String holderName;
+	@Column(nullable = false)
+	private String holderName;
 
-    @Column(nullable = false)
-    private String no;
+	@Column(nullable = false)
+	private String no;
 
-    @Column(nullable = false)
-    private String cvc;
+	@Column(nullable = false)
+	private String cvc;
+
+	public CreditCard() {}
+
+	public CreditCard (User owner, CreditCardForm form)
+	{
+		this();
+		this.owner = owner;
+		name = form.getName();
+		holderName = form.getHolderName();
+		no = form.getNo();
+		cvc = form.getCvc();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getHolderName() {
+		return holderName;
+	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public String getCvc() {
+		return cvc;
+	}
 
 
-    public Integer getId() {
-        return id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public User getOwner() {
-        return owner;
-    }
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getHolderName() {
-        return holderName;
-    }
+	public void setHolderName(String holderName) {
+		this.holderName = holderName;
+	}
 
-    public String getNo() {
-        return no;
-    }
+	public void setNo(String no) {
+		this.no = no;
+	}
 
-    public String getCvc() {
-        return cvc;
-    }
-
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setHolderName(String holderName) {
-        this.holderName = holderName;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
-    }
-
-    public void setCvc(String cvc) {
-        this.cvc = cvc;
-    }
+	public void setCvc(String cvc) {
+		this.cvc = cvc;
+	}
 
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>宛先登録</title>
+</head>
+<body>
+	<form th:object="${form}" method="post">
+		<table>
+			<tr>
+				<th>
+					宛先プロフィール名
+				</th>
+				<td>
+					<input type="text" th:field="*{name}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					郵便番号
+				</th>
+				<td>
+					<input type="text" th:field="*{postCode}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					住所
+				</th>
+				<td>
+					<input type="text" th:field="*{address}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					電話番号
+				</th>
+				<td>
+					<input type="text" th:field="*{phoneNumber}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					メールアドレス
+				</th>
+				<td>
+					<input type="email" th:field="*{email}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					宛先名
+				</th>
+				<td>
+					<input type="text" th:field="*{addresseeName}">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					宛先フリガナ
+				</th>
+				<td>
+					<input type="text" th:field="*{addresseeReading}">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="登録">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

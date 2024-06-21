@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>カード追加</title>
+</head>
+<body>
+	<form method="post" th:object="${form}">
+		<table>
+			<tr>
+				<th>カード呼名</th>
+				<td>
+					<input type="text" th:field="*{name}">
+				</td>
+			</tr>
+			<tr>
+				<th>カード名義</th>
+				<td>
+					<input type="text" th:field="*{holderName}">
+				</td>
+			</tr>
+			<tr>
+				<th>カード番号</th>
+				<td>
+					<input type="text" th:field="*{no}">
+				</td>
+			</tr>
+			<tr>
+				<th>CVC</th>
+				<td>
+					<input type="password" th:field="*{cvc}">
+				</td>
+			</tr>
+			<tr><td colspan="2">
+				<input type="submit" value="登録">
+			</td></tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -23,6 +23,7 @@ public class UserBean implements Serializable
 	private Date dateCreated;
 	private Boolean deleted;
 	private List<CartBean> cart;
+	private List<OrderBean> orders;
 
 	public UserBean(User entity) {
 		id = entity.getId();
@@ -136,5 +137,13 @@ public class UserBean implements Serializable
 
 	public void setCart(List<CartBean> cart) {
 		this.cart = cart;
+	}
+
+	public List<OrderBean> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderBean> orders) {
+		this.orders = orders;
 	}
 }

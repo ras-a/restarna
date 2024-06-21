@@ -109,6 +109,7 @@ public class BeanFactory
 			bean.setFavorites(createItemList(entity.getFavorites()));
 			bean.setReviews(createReviewList(entity.getReviews()));
 			bean.setCart(createCartList(entity.getCart()));
+			bean.setOrders(createOrderList(entity.getOrders()));
 		}
 
 		return bean;

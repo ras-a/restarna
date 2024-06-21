@@ -1,8 +1,9 @@
 package jp.co.creambakery.entity;
 
-import java.util.Date;
+import java.util.*;
 
 import jakarta.persistence.*;
+import jp.co.creambakery.form.*;
 
 /**
  * product_orderテーブルのエンティティ
@@ -27,6 +28,8 @@ import jakarta.persistence.*;
 public class ProductOrder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_gen")
+    @SequenceGenerator(name = "order_gen", sequenceName = "order_seq", allocationSize = 1)
     private Integer id;
 
     @ManyToOne
@@ -37,7 +40,7 @@ public class ProductOrder {
     private Integer paymentMethod;
 
     @ManyToOne
-    @JoinColumn(name = "creditcard", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "credit_card", referencedColumnName = "id", nullable = true)
     private CreditCard creditCard;
 
     @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
@@ -50,11 +53,28 @@ public class ProductOrder {
     @JoinColumn(name = "address", nullable = false, referencedColumnName = "id")
     private AddressProfile address;
 
+    @OneToMany(mappedBy = "productOrder")
+    List<ProductOrderItem> items;
+
     @Column
     private String optionalDetails;
 
     @Column
     private Date completed;
+
+    public ProductOrder()
+    {
+        dateCreated = new Date();
+        completed = null;
+    }
+    
+    public ProductOrder(User user, OrderForm form)
+    {
+        this();
+        this.user = user;
+        paymentMethod = form.getPaymentMethod();
+        optionalDetails = form.getOptionalDetails();
+    }
 
     public Integer getId() {
         return id;
@@ -126,6 +146,14 @@ public class ProductOrder {
 
     public void setCompleted(Date completed) {
         this.completed = completed;
+    }
+
+    public List<ProductOrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ProductOrderItem> items) {
+        this.items = items;
     }
 
 }

@@ -3,6 +3,7 @@ package jp.co.creambakery.entity;
 import java.util.Date;
 
 import jakarta.persistence.*;
+import jp.co.creambakery.form.*;
 
 /**
  * address_profileテーブルのエンティティ
@@ -28,127 +29,145 @@ import jakarta.persistence.*;
 public class AddressProfile
 {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_profile_gen")
-    @SequenceGenerator(name = "address_profile_gen", sequenceName = "address_profile_seq", allocationSize = 1)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_gen")
+	@SequenceGenerator(name = "address_gen", sequenceName = "address_seq", allocationSize = 1)
+	private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "customer", referencedColumnName = "id", nullable = false)
-    private User user;
+	@ManyToOne
+	@JoinColumn(name = "customer", referencedColumnName = "id", nullable = false)
+	private User user;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+	@Column(nullable = false, unique = true)
+	private String name;
 
-    @Column(nullable = false)
-    private String postCode;
+	@Column(nullable = false)
+	private String postCode;
 
-    @Column(nullable = false)
-    private String address;
+	@Column(nullable = false)
+	private String address;
 
-    @Column
-    private String phoneNumber;
+	@Column
+	private String phoneNumber;
 
-    @Column
-    private String email;
+	@Column
+	private String email;
 
-    @Column(nullable = false)
-    private String addresseeName;
+	@Column(nullable = false)
+	private String addresseeName;
 
-    @Column(nullable = false)
-    private String addresseeReading;
+	@Column(nullable = false)
+	private String addresseeReading;
 
-    @Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date dateCreated;
+	@Column(columnDefinition = "DATE DEFAULT CURRENT_DATE")
+	private Date dateCreated;
 
-    @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
-    private Integer deleted;
+	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
+	private Integer deleted = 0;
 
-    public Integer getId() {
-        return id;
-    }
+	public AddressProfile() {}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public AddressProfile (User user, AddressForm form)
+	{
+		this.user = user;
+		setName(form.getName());
+		setPostCode(form.getPostCode());
+		setAddress(form.getAddress());
+		setPhoneNumber(form.getPhoneNumber());
+		setEmail(form.getEmail());
+		setAddresseeName(form.getAddresseeName());
+		setAddresseeReading(form.getAddresseeReading());
+		setDateCreated(new Date());
 
-    public User getUser() {
-        return user;
-    }
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public String getPostCode() {
-        return postCode;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public String getPostCode() {
+		return postCode;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getAddresseeName() {
-        return addresseeName;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber
+			.replace(" ", "")
+			.replace("-", "");
+	}
 
-    public void setAddresseeName(String addresseeName) {
-        this.addresseeName = addresseeName;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getAddresseeReading() {
-        return addresseeReading;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setAddresseeReading(String addresseeReading) {
-        this.addresseeReading = addresseeReading;
-    }
+	public String getAddresseeName() {
+		return addresseeName;
+	}
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+	public void setAddresseeName(String addresseeName) {
+		this.addresseeName = addresseeName;
+	}
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+	public String getAddresseeReading() {
+		return addresseeReading;
+	}
 
-    public Integer getDeleted() {
-        return deleted;
-    }
+	public void setAddresseeReading(String addresseeReading) {
+		this.addresseeReading = addresseeReading;
+	}
 
-    public void setDeleted(Integer deleted) {
-        this.deleted = deleted;
-    }
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
 }
