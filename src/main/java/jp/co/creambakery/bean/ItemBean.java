@@ -1,6 +1,6 @@
 package jp.co.creambakery.bean;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 import jp.co.creambakery.entity.*;
@@ -15,7 +15,17 @@ public class ItemBean implements Serializable
     private Date dateCreated;
     private String description;
     private Boolean deleted;
-    private List<ReviewBean> reviews;
+	private CustomItemBean customItem;
+	
+    public CustomItemBean getCustomItem() {
+		return customItem;
+	}
+
+	public void setCustomItem(CustomItemBean customItem) {
+		this.customItem = customItem;
+	}
+
+	private List<ReviewBean> reviews;
 
     ItemBean(Item entity) {
         id = entity.getId();
@@ -24,6 +34,7 @@ public class ItemBean implements Serializable
 		  dateCreated = entity.getDateCreated();
 		  description = entity.getDescription();
         deleted = entity.getDeleted() != 0;
+		description = entity.getDescription();
     }
 
 	public Integer getId() {

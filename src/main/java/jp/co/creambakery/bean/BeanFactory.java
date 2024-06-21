@@ -1,6 +1,7 @@
 package jp.co.creambakery.bean;
 
 import java.util.*;
+
 import jp.co.creambakery.entity.*;
 
 /**
@@ -40,6 +41,17 @@ public class BeanFactory
 
 		for (var entity : entities)
 			list.add(createBean(entity));
+
+		return list;
+	}
+	public List<CustomItemBean> createCustomItemList (List<Item> entities)
+	{
+		if (entities == null)
+			return new ArrayList<>();
+		List<CustomItemBean> list = new ArrayList<>(entities.size());
+
+		for (var entity : entities)
+			list.add((CustomItemBean)createBean(entity));
 
 		return list;
 	}
@@ -110,6 +122,13 @@ public class BeanFactory
 			bean.setReviews(createReviewList(entity.getReviews()));
 			bean.setCart(createCartList(entity.getCart()));
 			bean.setOrders(createOrderList(entity.getOrders()));
+			
+			List<Item> created = new ArrayList<>();
+			for (var entry: entity.getCreatedItems())
+			{
+				created.add(entry.getItem());
+			}
+			bean.setCreatedItems(createCustomItemList(created));
 		}
 
 		return bean;

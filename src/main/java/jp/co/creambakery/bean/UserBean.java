@@ -1,9 +1,9 @@
 package jp.co.creambakery.bean;
 
-import jp.co.creambakery.entity.*;
-
 import java.io.*;
 import java.util.*;
+
+import jp.co.creambakery.entity.*;
 
 /**
  * UserBean
@@ -24,6 +24,7 @@ public class UserBean implements Serializable
 	private Boolean deleted;
 	private List<CartBean> cart;
 	private List<OrderBean> orders;
+	private List<CustomItemBean> createdItems;
 
 	public UserBean(User entity) {
 		id = entity.getId();
@@ -173,5 +174,12 @@ public class UserBean implements Serializable
 
 	public void setOrders(List<OrderBean> orders) {
 		this.orders = orders;
+	}
+	public List<CustomItemBean> getCreatedItems() {
+		return createdItems;
+	}
+
+	public void setCreatedItems(List<CustomItemBean> createdItems) {
+		this.createdItems = createdItems;
 	}
 }

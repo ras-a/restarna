@@ -4,18 +4,18 @@ import jp.co.creambakery.entity.*;
 
 public class CustomItemBean extends ItemBean  {
 
-    private String creator;
+    private UserBean creator;
     private Boolean isPublic;
 
     CustomItemBean(CustomItem entity) {
         super(entity.getItem());
     }
 
-    public String getCreator() {
+    public UserBean getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(UserBean creator) {
         this.creator = creator;
     }
 
