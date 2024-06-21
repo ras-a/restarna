@@ -1,0 +1,39 @@
+.navi_menu{
+    /* width: 960px; */
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 50px;
+    font-size: 20px;
+    background-color: rgb(63, 63, 63);
+    color: aliceblue;
+    /* display: grid; */
+    /* 3列を均等に配置します */
+    /* grid-template-columns: repeat(4, 1fr);  */
+     /* グリッドの間隔を設定します */
+    /* gap: 10px; */
+    
+}
+
+.navi_menu li{
+    
+    display:inline-block;
+    justify-content: space-between;
+    width: 24%;
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    border-radius: 8%;
+    color: aliceblue;
+    
+
+}
+
+.navi_menu a{
+    text-align: center;
+    width: 100%;
+    line-height: 2.5em;
+    color: aliceblue;
+
+    
+}

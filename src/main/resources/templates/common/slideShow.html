@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/common/slideShow.css}" />
+</head>
+
+<body>
+	<div th:fragment="image" th:class="slideGroup">
+        <!-- 画像は自由に入れ替えてください -->
+    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></div>
+    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></div>
+    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"></div>
+
+    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></div>
+    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></div>
+    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"></div>
+
+    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></div>
+    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></div>
+    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"></div>
+	</div>
+</body>
+
+</html>

@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
+<head th:fragment="head">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/common/header.css}" />
 </head>
 <body>
-<div th:fragment="user" class="container">
-	<h1 >クリームパン屋ちょいかわ</h1>
+<th:block th:if="${session.user != null}"  th:fragment="user">
+<div class="horizontal">	
+<h1 ><a th:href="@{/item/test2}"><img th:src="@{/static/images/title.png}" alt="" width="300px"></a></h1>
 	<div class="user_info">
-		<a th:href="@{/client/user/detail}" th:text="${session.user.name}"></a>さん | <a th:href="@{/logout}" >ログアウト</a>
+		<div class="name">
+		<a th:href="@{/client/user/detail}" th:text="${session.user.name}"></a>さん 
+		</div>
+		<div class="2">
+		| <a href="">favorite</a>
+		| <a href="">MyCustom</a>
+		| <a th:href="@{/user/logout}" >Logout</a>
+		</div>
 	</div>
 </div>
-<div th:fragment="non-user" class="container">
-	<h1 >クリームパン屋ちょいかわ</h1>
+	<!-- <nav class="navi_area">
+		<div th:replace="~{common/navi :: bar}"></div>
+	</nav>  -->
+</th:block>
+<th:block th:if="${session.user == null}" th:fragment="non-user">
+	<div class="horizontal">
+	<h1 ><a th:href="@{/item/test2}"><img th:src="@{/static/images/title.png}" alt="" width="300px"></a></h1>
 	<div class="user_info">
 		<a th:href="@{/login}" >ログイン</a>
         <a th:href="@{/client/user/regist/input/init}">新規登録</a>
 	</div>
-</div>
-<div th:fragment="admin" class="container">
+	</div>
+</th:block>
+<th:block th:fragment="admin">
 	<h1 >クリームパン屋ちょいかわ</h1>
 	<div class="user_info">
 		<a th:href="@{/admin/user/detail/{id}(id=${session.user.id})}" th:text="${session.user.name}"></a>さん | <a th:href="@{/logout}" >ログアウト</a>
 	</div>
-</div>
+</th:block>
+
+<!--/* 検索メニュー(非会員、一般会員用) */-->
 </body>
 </html>
