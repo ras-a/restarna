@@ -31,6 +31,7 @@
             <tr th:each="review: ${reviews}">        
                 <td th:text="${review.description}"></td>
                 <td th:text="${review.score}"></td>
+                <div th:if="${session.system == 1}">
                 <td>
                     <form th:action="@{/admin/user/review/delete}" method="post">
                         <input type="hidden" th:value="${review.item.id}" th:name="itemId">
@@ -38,6 +39,7 @@
                         <input type="submit" value="レビュー削除">
                     </form>
                 </td>
+                </div>
             </tr>
         <tbody>
     </table>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>カスタムリスト</title>
+</head>
+<body>
+  <form th:action="@{/item/custom/input}" method="post" th:object="${customItemForm}">
+    パンを選んでください<br>
+    <select th:field="*{bread}">
+      <option th:each="bread: ${breads}" th:value="${bread.id}" th:text="${bread.name}"></option>
+    </select><br>
+クリームを選んでください<br>
+<div th:each="cream : ${creams}">
+  <input type="checkbox" th:value="${cream.id}" th:field="*{creams}">
+  <label th:for="|creams${cream.id}|">[[${cream.name}]]</label><br/>
+</div>
+名前<br>
+<input type="text" maxlength="10" placeholder="１０文字以内で入力" th:field="*{name}"><br>
+読み<br>
+<input type="text" maxlength="10" placeholder="１０文字以内で入力" th:field="*{reading}"><br>
+説明<br>
+<input type="text" maxlength="10" placeholder="１０文字以内で入力" th:field="*{description}"><br>
+<input type="submit" value="登録">
+  </form>
+ 
+</body>
+</html>

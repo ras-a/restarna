@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カスタム登録完了</title>
+</head>
+
+<body>
+    <h1>カスタム登録完了</h1>
+    <p th:text="'生地：' +${item.bread.name}"></p>
+    クリーム：
+    <span th:each="cream:${item.creams}">
+        <p th:text="${cream.name}"></p>
+    </span>
+    <p th:text="'商品名：' + ${item.name}"></p>
+    <p th:text="'読み仮名：' + ${item.reading}"></p>
+    <p th:text="'説明：' + ${item.description}"></p>
+    <a th:href="@{/user/home}">ホームに戻る</a>
+</body>
+
+</html>

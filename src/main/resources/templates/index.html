@@ -13,6 +13,9 @@
         <a th:href="@{/item/bread/list}">パン一覧</a>
         <a th:href="@{/item/item/list}">カスタムパン一覧</a>
         <a th:href="@{/user/favorite}">お気に入り</a>
+        <a th:href="@{/item/custom/input}">カスタム追加</a>
+        <a th:href="@{'/item/custom/' + ${session.user.id}}">マイカスタム</a>
+
     </div>
 </body>
 
