@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.*;
 
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.NotBlank;
+import jp.co.creambakery.bean.*;
+import jp.co.creambakery.entity.*;
 
 public class CreditCardForm
 {
@@ -20,6 +22,24 @@ public class CreditCardForm
 	@NotNull
 	@Pattern(regexp = "\\d{3}")
 	private String cvc;
+
+	public void populateWith(CreditCardBean bean) {
+		name = bean.getName();
+		holderName = bean.getHolderName();
+		no = bean.getNumber();
+		cvc = bean.getCvc();
+	}
+	
+	public void populate(CreditCard entity) {
+		if (name != null)
+			entity.setName(name);
+		if (holderName != null)
+			entity.setHolderName(holderName);
+		if (no != null)
+			entity.setNo(no);
+		if (cvc != null)
+			entity.setCvc(cvc);
+	}
 
 	public String getName() {
 		return name;

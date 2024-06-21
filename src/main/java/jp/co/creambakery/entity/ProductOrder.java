@@ -149,6 +149,9 @@ public class ProductOrder {
     }
 
     public List<ProductOrderItem> getItems() {
+        if (items == null)
+            return new ArrayList<>();
+
         return items;
     }
 

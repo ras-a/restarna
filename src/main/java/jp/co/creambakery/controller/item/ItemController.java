@@ -20,6 +20,6 @@ public class ItemController {
 		var entity = repository.getReferenceById(id);
 
 		model.addAttribute("item", factory.createBean(entity));
-		return "item/test";
+		return "item/details";
 	}
 }

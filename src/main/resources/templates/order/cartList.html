@@ -15,7 +15,7 @@
                 <th>商品名</th>
                 <th>個数</th>
             </tr>
-            <tr th:each="c : ${cart}">
+            <tr th:each="c : ${session.user.cart}">
                 <td th:text="${c.item.id}"></td>
                 <td th:text="${c.item.name}"></td>
                 <td>

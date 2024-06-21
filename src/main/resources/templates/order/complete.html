@@ -7,17 +7,27 @@
   <body>
     <h2>注文完了</h2>
       <p>ご注文ありがとうございました！</p>
-      <div th:if="${session.name == null}">
-	      氏名：<span th:text="${inputName}"></span><br>
-	      郵便番号：<span th:text="${inputPostCode}"></span><br>
-        住所：<span th:text="${inputAddress}"></span><br>
-	      メールアドレス：<span th:text="${inputEmail}"></span><br>
-      </div>
-      <div th:if="${session.name != null}">
-        氏名：<span th:text="${session.name}"></span><br>
-        メールアドレス：<span th:text="${session.email}"></span><br>
-        郵便番号：<span th:text="${inputPostCode}"></span><br>
-        住所：<span th:text="${inputAddress}"></span><br>
-      </div>
+      <table th:object="${order}">
+	      <tr>
+          <th>宛先</th>
+          <td>[[*{address.addresseeName}]]</td>
+        </tr>
+	      <tr>
+          <td/>
+          <td>[[*{address.address}]]</td>
+        </tr>
+	      <tr>
+          <th>支払方法</th>
+          <td>[[*{paymentMethod}]]</td>
+        </tr>
+	      <tr th:if="*{paymentMethod} == 0">
+          <th/>
+          <td>[[*{creditCard.name}]] ...[[*{#strings.substring(creditCard.number, 12)}]]</td>
+        </tr>
+	      <tr>
+          <th>備考</th>
+          <td>[[*{optionalDetails}]]</td>
+        </tr>
+      </table>
   </body>
 </html>

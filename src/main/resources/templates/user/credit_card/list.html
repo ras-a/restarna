@@ -6,11 +6,13 @@
 </head>
 <body>
 	<table>
+		<a th:href="@{/user/credit_card/add}">追加</a>
 		<tr th:each="card : ${session.user.creditCards}">
 			<td>[[${card.name}]]</td>
 			<td>[[${card.holderName}]]</td>
 			<td>[[${card.number}]]</td>
 			<td>[[${card.cvc}]]</td>
+			<td><a th:href="|@{/user/credit_card/edit/}${card.id}|"></a></td>
 		</tr>
 	</table>
 </body>

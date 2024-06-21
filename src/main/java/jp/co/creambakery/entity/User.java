@@ -70,42 +70,6 @@ public class User
     @OneToMany(mappedBy = "user")
     private List<ProductOrder> orders;
 
-    public void setAddresses(List<AddressProfile> addresses) {
-        this.addresses = addresses;
-    }
-
-    public List<CreditCard> getCreditCards() {
-        return creditCards;
-    }
-
-    public void setCreditCards(List<CreditCard> creditCards) {
-        this.creditCards = creditCards;
-    }
-
-    public AddressProfile getMainAddress() {
-        return mainAddress;
-    }
-
-    public void setMainAddress(AddressProfile mainAddress) {
-        this.mainAddress = mainAddress;
-    }
-
-    public List<Item> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Item> favorites) {
-        this.favorites = favorites;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -138,6 +102,57 @@ public class User
         this.password = password;
     }
 
+    public List<AddressProfile> getAddresses() {
+        return addresses;
+    }
+
+    public AddressProfile getAddress(Integer id) {
+        AddressProfile out = null;
+		for (var address: addresses)
+		{
+			if (address.getId() == id)
+			{
+				out = address;
+			}
+		}
+
+		return out;
+    }
+
+    public void setAddresses(List<AddressProfile> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<CreditCard> getCreditCards() {
+        return creditCards;
+    }
+    
+	public CreditCard getCreditCard(Integer id)
+	{
+		CreditCard out = null;
+		for (var card: creditCards)
+		{
+			if (card.getId() == id)
+			{
+				out = card;
+			}
+		}
+
+		return out;
+	}
+
+    public void setCreditCards(List<CreditCard> creditCards) {
+        this.creditCards = creditCards;
+    }
+
+    public AddressProfile getMainAddress() {
+        return mainAddress;
+    }
+
+    public void setMainAddress(AddressProfile mainAddress) {
+        this.mainAddress = mainAddress;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -146,12 +161,20 @@ public class User
         this.email = email;
     }
 
-    public Integer getDeleted() {
-        return deleted;
+    public List<Item> getFavorites() {
+        return favorites;
     }
 
-    public void setDeleted(Integer deleted) {
-        this.deleted = deleted;
+    public void setFavorites(List<Item> favorites) {
+        this.favorites = favorites;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public Date getDateCreated() {
@@ -162,16 +185,20 @@ public class User
         this.dateCreated = dateCreated;
     }
 
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
+
     public List<Cart> getCart() {
         return cart;
     }
 
     public void setCart(List<Cart> cart) {
         this.cart = cart;
-    }
-
-    public List<AddressProfile> getAddresses() {
-        return addresses;
     }
 
     public List<ProductOrder> getOrders() {

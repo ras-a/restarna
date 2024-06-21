@@ -21,6 +21,11 @@ public class CreditCardController {
 	UserRepository repository;
 	@Autowired
 	HttpSession session;
+	
+	@GetMapping
+	public String listCards() {
+		return "user/credit_card/list";
+	}
 
 	private User getUser()
 	{
@@ -28,29 +33,52 @@ public class CreditCardController {
 		return repository.getReferenceById(bean.getId());
 	}
 
-	@GetMapping("/address")
-	public String listAddresses() {
-		return "user/address/list";
+	@GetMapping("/add")
+	public String addCard(@ModelAttribute("form") CreditCardForm form) {
+		return "user/credit_card/add";
 	}
-	
-	@GetMapping("/address/add")
-	public String addAddress(@ModelAttribute("form") AddressForm form) {
-		return "user/address/add";
-	}
-	
-	@PostMapping("/address/add")
-	public String addAddress(@Valid @ModelAttribute("form") AddressForm form, BindingResult result) {
+
+	@PostMapping("/add")
+	public String addCard(@Valid @ModelAttribute("form") CreditCardForm form,
+	                      BindingResult result) {
 		if (result.hasErrors())
-			return "user/address/add";
+			return "user/credit_card/add";
 		
 		var factory = new BeanFactory();
-		
+
 		var user = getUser();
-		user.getAddresses().add(new AddressProfile(user, form));
+
+		user.getCreditCards().add(new CreditCard(user, form));
 		user = repository.save(user);
 
-		session.setAttribute("user", factory.createBean(user));
+		var bean = factory.createBean(user);
 
-		return "user/address/list";
+		session.setAttribute("user", bean);
+
+		return "user/credit_card/list";
+	}
+	
+	@GetMapping("/edit/{cardId}")
+	public String getMethodName(@ModelAttribute("form") CreditCardForm form,
+	                            @PathVariable Integer cardId) {
+		var user = (UserBean)session.getAttribute("user");
+
+		form.populateWith(user.getCreditCard(cardId));
+
+		return "user/credit_card/edit";
+	}
+	
+	@PostMapping("/edit/{cardId}")
+	public String edit(@Valid @ModelAttribute("form") CreditCardForm form,
+	                            BindingResult result, @PathVariable Integer cardId) {
+		var user = getUser();
+
+		var card = user.getCreditCard(cardId);
+
+		form.populate(card);
+		
+		repository.save(user);
+		
+		return "user/address/edit/complete";
 	}
 }

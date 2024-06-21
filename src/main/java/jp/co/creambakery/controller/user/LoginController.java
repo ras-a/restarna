@@ -26,7 +26,7 @@ public class LoginController
 	{
 		session.invalidate();
 		model.addAttribute("form", form);
-		return "client/login";
+		return "user/login";
 	}
 
 	@PostMapping("/login")
@@ -36,7 +36,7 @@ public class LoginController
 		var factory = new BeanFactory();
 		if(result.hasErrors()) 
 		{
-			return "client/login";
+			return "user/login";
 		}
 
 		var user = repository.findByEmailAndPassword(form.getEmail(), form.getPassword());
@@ -48,7 +48,7 @@ public class LoginController
 		} else
 		{
 			model.addAttribute("errMessage", "メールアドレス、またはパスワードが間違っています。");
-			return "client/login";
+			return "user/login";
 		}
 	}
 

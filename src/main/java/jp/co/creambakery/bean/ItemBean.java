@@ -21,6 +21,8 @@ public class ItemBean implements Serializable
         id = entity.getId();
         name = entity.getName();
         reading = entity.getReading();
+		  dateCreated = entity.getDateCreated();
+		  description = entity.getDescription();
         deleted = entity.getDeleted() != 0;
     }
 

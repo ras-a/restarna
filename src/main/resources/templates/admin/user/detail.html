@@ -10,11 +10,11 @@
 <body>
 
 
-    <h1 th:text="${customer.name}"></h1>
+    <h1 th:text="${user.name}"></h1>
     <div th:if="${session.system == 1}">
-        <a th:href="@{/admin/user/update/} + ${customer.id}">更新する</a>
+        <a th:href="@{/admin/user/update/} + ${user.id}">更新する</a>
         <form th:action="@{/admin/user/delete}" method="post">
-            <input type="hidden" th:value="${customer.id}" th:name="id">
+            <input type="hidden" th:value="${user.id}" th:name="id">
             <input type="submit" value="削除する">
         </form>
     </div>

@@ -6,8 +6,10 @@
 	<title>宛先一覧</title>
 </head>
 <body>
+	<a th:href="@{/user/address/add}">追加</a>
 	<p th:each="address : ${session.user.addresses}">
-		[[${address.name}]]
+		[[${address.name}]], [[${address.address}]] <br>
+		<a th:href="|@{/user/address/edit/}${address.id}|">編集</a>
 	</p>
 </body>
 </html>

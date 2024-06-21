@@ -1,6 +1,8 @@
 package jp.co.creambakery.form;
 
 import jakarta.validation.constraints.*;
+import jp.co.creambakery.bean.*;
+import jp.co.creambakery.entity.*;
 
 public class AddressForm {
 
@@ -25,6 +27,35 @@ public class AddressForm {
 	@NotBlank
 	@Pattern(regexp = "[ア-ン]+")
 	private String addresseeReading;
+
+	public void populateWith(AddressBean bean)
+	{
+		name = bean.getName();
+		postCode = bean.getPostCode();
+		address = bean.getAddress();
+		phoneNumber = bean.getPhoneNumber();
+		email = bean.getEmail();
+		addresseeName = bean.getAddresseeName();
+		addresseeReading = bean.getAddresseeReading();
+	}
+
+	public void populate(AddressProfile entity)
+	{
+		if (name != null)
+			entity.setName(name);
+		if (postCode != null)
+			entity.setPostCode(postCode);
+		if (address != null)
+			entity.setAddress(address);
+		if (phoneNumber != null)
+			entity.setPhoneNumber(phoneNumber);
+		if (email != null)
+			entity.setEmail(email);
+		if (addresseeName != null)
+			entity.setAddresseeName(addresseeName);
+		if (addresseeReading != null)
+			entity.setAddresseeReading(addresseeReading);
+	}
 
 	public String getName() {
 		return name;

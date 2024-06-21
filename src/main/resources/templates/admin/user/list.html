@@ -17,12 +17,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="customer: ${customers}">
-                <td th:text="${customer.id}"></td>
-                <td><a th:href="@{'/admin/user/' + ${customer.id}}" th:text="${customer.name}"></a></td>
-                <td th:text="${customer.password}"></td>
-                <td th:text="${customer.email}"></td>
-                <td th:text="${#dates.format(customer.dateCreated, 'yyyy/MM/dd')}"></td>         
+            <tr th:each="user: ${users}">
+                <td th:text="${user.id}"></td>
+                <td><a th:href="@{'/admin/user/' + ${user.id}}" th:text="${user.name}"></a></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${#dates.format(user.dateCreated, 'yyyy/MM/dd')}"></td>         
             </tr>
         <tbody>
     </table>

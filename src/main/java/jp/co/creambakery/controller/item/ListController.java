@@ -5,7 +5,6 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import jp.co.creambakery.bean.*;
-import jp.co.creambakery.entity.*;
 import jp.co.creambakery.repository.*;
 import java.util.*;
 

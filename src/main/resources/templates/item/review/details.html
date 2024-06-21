@@ -13,8 +13,9 @@
 	</style>
 </head>
 <body th:object="${review}">
-	<h3>[[*{poster.name}]]</h3>
-	<h4>[[*{item.name}]]</h4>
+	<h3>[[*{item.name}]]</h3>
+	<h4>[[*{poster.name}]]</h4>
+	<h6>[[*{#dates.format(dateCreated, 'yyyy/MM/dd')}]]</h6>
 	<img th:replace="~{/common/util::img(*{item.image}, *{item.name})}">
 	<div th:replace="~{/common/util::stars(*{score})}"/>
 	<p th:each="line: *{#strings.arraySplit(description, '&#10;')}">[[${line}]]</p>

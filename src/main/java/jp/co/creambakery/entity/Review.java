@@ -1,5 +1,7 @@
 package jp.co.creambakery.entity;
 
+import java.util.*;
+
 import jakarta.persistence.*;
 import jp.co.creambakery.entity.keys.*;
 
@@ -20,8 +22,26 @@ public class Review
 	private String description;
 	@Column
 	private Integer score;
+
 	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
-    private Integer deleted;
+	private Integer deleted;
+
+	@Column(nullable = false)
+	private Date dateCreated;
+
+	public Review()
+	{
+		dateCreated = new Date();
+	}
+
+	public Review(Item item, User poster, Integer score, String description)
+	{
+		this();
+		this.item = item;
+		this.poster = poster;
+		this.score = score;
+		this.description = description;
+	}
 
 	public User getPoster() {
 		return poster;
@@ -48,9 +68,15 @@ public class Review
 		this.score = score;
 	}
 	public Integer getDeleted() {
-        return deleted;
-    }
+		return deleted;
+	}
 	public void setDeleted(Integer deleted) {
-        this.deleted = deleted;
-    }
+		this.deleted = deleted;
+	}
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 }

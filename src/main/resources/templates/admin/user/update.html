@@ -11,17 +11,17 @@
     <h1>クリーム変更</h1>
     <form th:action="@{/admin/user/update}" method="post" >
 
-        <input type="hidden" th:value="${customer.id}" th:name="id">
-        <input type="hidden" th:value="${customer.deleted}" name="deleted">
+        <input type="hidden" th:value="${user.id}" th:name="id">
+        <input type="hidden" th:value="${user.deleted}" name="deleted">
 
         <div>
-            名前:<input type="text" th:value="${customer.name}" name="name"><br>
+            名前:<input type="text" th:value="${user.name}" name="name"><br>
         </div>
         <div>
-            名前:<input type="text" th:value="${customer.reading}" name="reading"><br>
+            名前:<input type="text" th:value="${user.reading}" name="reading"><br>
         </div>
         <div>
-            読み仮名:<input type="number" th:value="${customer.price}" name="price"><br>
+            読み仮名:<input type="number" th:value="${user.price}" name="price"><br>
         </div>
         <div>
             説明:<input type="text" th:value="${cream.description}" name="description"><br>

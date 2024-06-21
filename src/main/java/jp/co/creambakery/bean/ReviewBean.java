@@ -1,6 +1,7 @@
 package jp.co.creambakery.bean;
 
 import java.io.*;
+import java.util.*;
 
 import jp.co.creambakery.entity.*;
 
@@ -14,11 +15,13 @@ public class ReviewBean implements Serializable
 	private String description;
 	private Integer score;
 	private Boolean deleted;
+	private Date dateCreated;
 
-	ReviewBean(Review entity)
+	public ReviewBean(Review entity)
 	{
 		description = entity.getDescription();
 		score = entity.getScore();
+		dateCreated = entity.getDateCreated();
 	}
 
 	public UserBean getPoster() {
@@ -59,6 +62,14 @@ public class ReviewBean implements Serializable
 
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 }

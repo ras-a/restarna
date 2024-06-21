@@ -6,7 +6,7 @@ CREATE TABLE customer (
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	password VARCHAR2(128) NOT NULL,
 	email VARCHAR2(64 CHAR) NOT NULL,
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	deleted NUMBER(1) DEFAULT 0
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE address_profile (
 	addressee_name VARCHAR2(32 CHAR) NOT NULL,
 	-- 宛先名読み仮名
 	addressee_reading VARCHAR2(64 CHAR) NOT NULL,
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	deleted NUMBER(1) DEFAULT 0
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE bread (
 	price INTEGER NOT NULL,
 	description VARCHAR2(128 CHAR) NOT NULL,
 	image VARCHAR2(64 CHAR) NOT NULL,
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	deleted NUMBER(1) DEFAULT 0
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE cream (
 	price INTEGER NOT NULL,
 	description VARCHAR2(128 CHAR) NOT NULL,
 	image VARCHAR2(64 CHAR) NOT NULL,
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	deleted NUMBER(1) DEFAULT 0
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE item (
 	reading VARCHAR2(64 CHAR) NOT NULL,
 	bread INTEGER REFERENCES bread(id) NOT NULL,
 	description VARCHAR2(512 CHAR) NOT NULL,
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	deleted NUMBER(1) DEFAULT 0
 );
 
@@ -118,7 +118,7 @@ CREATE TABLE credit_card (
 	holder_name VARCHAR2(64) NOT NULL,
 	no VARCHAR2(16) NOT NULL,
 	cvc VARCHAR2(3) NOT NULL,
-	date_created DATE DEFAULT CURRENT_DATE
+	date_created DATE NOT NULL
 );
 
 CREATE SEQUENCE credit_card_seq NOCACHE;
@@ -129,7 +129,7 @@ CREATE TABLE product_order (
 	customer INTEGER REFERENCES customer(id),
 	payment_method NUMBER(1) NOT NULL CHECK (payment_method BETWEEN 0 AND 4),
 	credit_card INTEGER CHECK ((payment_method = 0 AND credit_card IS NOT NULL) OR payment_method <> 0) REFERENCES credit_card(id),
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	cancelled NUMBER(1) DEFAULT 0,
 	address INTEGER REFERENCES address_profile(id) NOT NULL,
 	optional_details VARCHAR2(512),
@@ -153,6 +153,7 @@ CREATE TABLE review (
 	description VARCHAR2(1024),
 	score INTEGER CHECK score BETWEEN 1 AND 5,
 	deleted NUMBER(1) DEFAULT 0,
+	date_created DATE NOT NULL,
 	CONSTRAINT pk_review PRIMARY KEY (poster, item)
 );
 
@@ -161,7 +162,7 @@ CREATE TABLE admin (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR2(16 CHAR),
 	password VARCHAR2(32),
-	date_created DATE DEFAULT CURRENT_DATE,
+	date_created DATE NOT NULL,
 	system NUMBER(1) DEFAULT 0
 );
 
