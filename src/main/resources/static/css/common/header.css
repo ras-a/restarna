@@ -3,7 +3,7 @@
 header {
     box-sizing: border-box;
     overflow: auto;
-    background-image:url("/static/images/header.png");
+    background-image:url("/static/img/view/header.png");
     background-size: cover;
     justify-content: space-around;
     align-items: center;

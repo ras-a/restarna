@@ -7,12 +7,10 @@
 
 <body>
 	<ul th:fragment="bar" th:class="navi_menu">
-		<li><a th:href="@{/item/test2}" th:text="トップ"></a></li>
 		<li><a th:href="@{/item/list}" th:text="商品一覧"></a></li>
 		<li><a th:href="@{/item/cart/cartList}" th:text="買い物かご"></a></li>
-		<!-- <th:block th:if="${session.user != null}"> -->
-			<li><a  th:text="検索"></a></li>
-		<!-- </th:block> -->
+		<li><a  th:text="検索"></a></li>
+		<li><a  th:text="カスタム追加"></a></li>
 	</ul>
 </body>
 

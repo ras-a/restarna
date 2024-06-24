@@ -6,27 +6,24 @@
 <body>
 <th:block th:if="${session.user != null}"  th:fragment="user">
 <div class="horizontal">	
-<h1 ><a th:href="@{/item/test2}"><img th:src="@{/static/images/title.png}" alt="" width="300px"></a></h1>
+<h1 ><a th:href="@{/user/home}"><img th:src="@{/static/img/view/title.png}" alt="" width="300px"></a></h1>
 	<div class="user_info">
 		<div class="name">
 		<a th:href="@{/client/user/detail}" th:text="${session.user.name}"></a>さん 
 		</div>
 		<div class="2">
-		| <a href="">favorite</a>
-		| <a href="">MyCustom</a>
+		| <a th:href="@{/user/favorite}">favorite</a>
+		| <a href="@{'/item/custom/' + ${session.user.id}}">MyCustom</a>
 		| <a th:href="@{/user/logout}" >Logout</a>
 		</div>
 	</div>
 </div>
-	<!-- <nav class="navi_area">
-		<div th:replace="~{common/navi :: bar}"></div>
-	</nav>  -->
 </th:block>
 <th:block th:if="${session.user == null}" th:fragment="non-user">
 	<div class="horizontal">
-	<h1 ><a th:href="@{/item/test2}"><img th:src="@{/static/images/title.png}" alt="" width="300px"></a></h1>
+	<h1 ><a th:href="@{/user/home}"><img th:src="@{/static/img/view/title.png}" alt="" width="300px"></a></h1>
 	<div class="user_info">
-		<a th:href="@{/login}" >ログイン</a>
+		<a th:href="@{/user/login}" >ログイン</a>
         <a th:href="@{/client/user/regist/input/init}">新規登録</a>
 	</div>
 	</div>

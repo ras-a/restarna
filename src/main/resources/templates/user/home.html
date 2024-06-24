@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: slideShow(title='カート追加', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}" />
+</head>
+
+<body>
+    <div id="home">
+        <p>モドリッチのクリームパン屋</p>
+        <a th:href="@{/item/creamList}">クリーム一覧</a>
+        <a th:href="@{/item/breadList}">パン一覧</a>
+        <a th:href="@{/item/itemList}">カスタムパン一覧</a>
+    </div>
+</body>
+
+</html>

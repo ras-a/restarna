@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/item/list.css}" />
+</head>
+
+<body class="breadList">
+	<div id="itemTable">
+		<h1>生地一覧</h1>
+		<p>※画像はイメージです。実際の商品とは異なる場合がございます。</p>
+		<table cellspacing="0" cellpadding="0">
+			<thead>
+			<tr>
+				<th></th>
+				<th>商品名</th>
+				<th>値段</th>
+				<th>画像</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="bread:${breads}">
+				<td ><img th:src="@{'/static/img/' + ${bread.image}}" class="icon"></td>
+				<td th:text="${bread.name}"></td>
+				<td th:text="${bread.price}"></td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

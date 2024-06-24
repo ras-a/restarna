@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/item/list.css}" />
+</head>
+
+<body class="creamList">
+<div id="itemTable">
+	<h1>クリーム一覧</h1>
+	<p>※画像はイメージです。実際の商品とは異なる場合がございます。</p>
+	<table>
+	<thead>
+<tr>
+	<th></th>
+	<th>商品名</th>
+	<th>値段</th>
+	<th>追加日</th>
+</tr>
+	</thead>
+	<tbody>
+<tr th:each="cream:${creams}">
+	<td ><img th:src="@{'/static/img/' + ${cream.image}}" class="icon"></td>
+	<td th:text="${cream.name}"></td>
+	<td th:text="${cream.price}"></td>
+	<td></td>
+</tr>
+	</tbody>
+</table>
+</div>
+
+</body>
+
+</html>

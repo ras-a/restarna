@@ -11,10 +11,10 @@
 		<title th:text="${title}"></title>
 		<th:block th:if="${head}" th:replace="${head}"/>
 	</head>
-	<body th:classappend="${session.user} ? user">
+	<body th:classappend="${session.user} ? non-user">
 		<!--/* ヘッダー */-->
 		<header >
-			<div th:replace="~{common/header :: non-user}"></div>
+			<div th:replace="~{common/header ::  non-user}"></div>
 		</header>
 
 		<!--/* メイン */-->
@@ -31,7 +31,7 @@
 
 
 
-
+<!-- サイドバー  -->
 <html xmlns:th="http://www.thymeleaf.org"
     th:fragment="sidebar(title,body)">
 	<head>
@@ -45,13 +45,13 @@
 		<meta th:replace="~{common/footer::head}">
 		<meta th:replace="~{common/sidebar::head}">
 		<meta th:replace="~{user/home::head}">
-		<!-- <meta th:replace="~{order/cartList::head}"> -->
+		<meta th:replace="~{item/creamList::head}">
 		<!-- <meta th:replace="~{item/list::head}"> -->
 	</head>
 	<body th:classappend="${session.user} ? user">
 		<!--/* ヘッダー */-->
 		<header>
-			<div th:replace="~{common/header :: user}"></div>
+			<div th:replace="~{common/header ::  ${session.user}? user: non-user}"></div>
 		
 		</header>
 		<!--/* ナビゲーションバー */-->
@@ -71,7 +71,7 @@
 	</body>
 </html>
 
-
+<!-- スライドショー -->
 <html xmlns:th="http://www.thymeleaf.org"
     th:fragment="slideShow(title,body)">
 	<head>
@@ -91,7 +91,7 @@
 	<body th:classappend="${session.user} ? user">
 		<!--/* ヘッダー */-->
 		<header>
-			<div th:replace="~{common/header :: user}"></div>
+			<div th:replace="~{common/header ::   ${session.user}? user: non-user}"></div>
 		
 		</header>
 		<!--/* ナビゲーションバー */-->
@@ -114,3 +114,5 @@
 		</footer>
 	</body>
 </html>
+
+

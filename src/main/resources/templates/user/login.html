@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout :: minimal(title='ログイン', body=~{::body/content()}, head=~{:: head/content()})}"
+	>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/login.css}" />
 </head>
 
-<body>
-    <h1>user login</h1>
-    <div>
-        <h2>名前とパスワードを入力してください。</h2>
-		<p th:text="${errMessage}"></p>
-        <form th:action="@{login}" method="post" th:object="${form}">
-            <div>
-                メール:<input type="email" th:field="*{email}"><br>
-            </div>
-            <div>
-                パスワード:<input type="password" th:field="*{password}"><br>
-            </div>
-            <div>
-                <input type="submit" value="ログイン">
-            </div>
-        </form>
+<body class="user_login">
+	<div class="user_container">
+		<h2 th:class="page_title">ログイン</h2>
+		<!-- メールアドレスとパスワードを入力してください<br> -->
+			
+			<form th:action="@{login}" method="post" class="login_form" th:object="${form}">
+				<!-- <th:block th:if="${#fields.hasErrors()}">
+				<div class="error_list">
+					<ul>
+						<li th:each="err:${#fields.detailedErrors()}" th:text="${err.message}"></li>
+					</ul>
+					<br />v class="login_content">
+			
+				</div>
+				</th:block> -->
+				<table>
+					<tbody>
+						<tr>
+							<th th:class="label" >メールアドレス</th>
+							<td class="input"><input type="text" th:field="*{email}"/></td>
+						</tr>
+						<tr>
+							<th th:class="label" >パスワード</th>
+							<td class="input"><input type="password" th:field="*{password}"/></td>
+						</tr>
+						<tr>
+							<th class="label"></th>
+							<td class="inputButton"><input type="submit" th:value="ログイン" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
+		</div>
+	
+	<!-- <p class="complete_link">
+		<a th:href="@{/}" >トップへ戻る</a>
+	</p> -->
+
 </body>
 
 </html>

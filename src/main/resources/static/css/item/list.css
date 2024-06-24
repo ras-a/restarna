@@ -1,0 +1,86 @@
+
+
+div #itemTable{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(214, 223, 227);
+  border-radius: 10px;
+  margin-bottom: 100px;
+  
+}
+
+.icon{
+  width: 150px;
+  background-position: left 5px center;
+  background-repeat: no-repeat;
+}
+
+
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.25;
+}
+
+#itemTable h1{
+  margin: 20px 0px 5px 0px;
+  text-align: center;
+  font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', '游明朝','Yu Mincho', '游明朝体', 'YuMincho','ＭＳ Ｐ明朝', 'MS PMincho', serif;
+}
+
+#itemTable table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 750px;
+      box-shadow: 0 0 15px -6px #00000073;
+  margin-bottom: 40px;
+}
+#itemTable table tr {
+  background-color: #fff;
+  font-size: 30px;
+}
+#itemTable table tbody tr:hover{
+  background-color: #d4f0fd;
+  
+}
+#itemTable table tbody td{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#itemTable table th,
+#itemTable table td {
+  padding: .15em 1em;
+  border-bottom: 1px solid #eee;
+}
+#itemTable table thead th {
+    font-size: .85em;
+    padding: 1em;
+    font-family: serif;
+}
+#itemTable table thead tr{
+  background-color: #2f7e91;
+  color:#fff;
+}
+
+
+#itemTable table tbody a{
+  display: block;
+  width: 100%;
+height: 100%;
+  text-decoration: none;
+  color: black;
+  
+  
+}
+@media screen and (max-width: 600px) {
+  table{width: 100%;}
+}
+
+#itemTable p{
+  text-align: end;
+  font-size: 10px;
+  margin-bottom: 30px;
+}
+
+
+

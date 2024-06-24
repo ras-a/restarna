@@ -26,35 +26,19 @@ body {
 .main{
     display: flex;
 	flex-flow: row nowrap;
-    background-color: rgb(231, 37, 37);
-	width: 76%;
-	min-height: 400px;
+
+	background-color: rgb(234, 233, 230);
+	width: 100%;
+	min-height: 438px;
 	display: flex;
 	height: auto;
+	padding: 10px;
 }
 
 .user_info{
     text-align: right;
     
 }
-
- /* .description{
-    text-align: center;
-}  */
-
-a {
-	text-decoration: none;
-	/* background-color: antiquewhite; */
-	/* border: 1px solid darkgray; */
-	border-radius: 3px;
-
-	&:hover {
-		font-size: 120%;
-		margin: 0;
-		padding: 0;
-	}
-}
-
 
 
 .horizontal {
@@ -63,4 +47,14 @@ a {
 	width: 100%;
 	color: aqua;
 	height: auto;
+}
+
+div{
+    color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
+}
+
+p{
+	cursor: default;
 }

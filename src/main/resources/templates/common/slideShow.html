@@ -3,23 +3,40 @@
 
 <head th:fragment="head">
 	<link rel="stylesheet" type="text/css" th:href="@{/static/css/common/slideShow.css}" />
+
+
+
 </head>
 
-<body>
-	<div th:fragment="image" th:class="slideGroup">
+<body  th:fragment="image">
+
+    <div class="loopSlide">
+        <ul>
+        <li><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></li>
+        <li><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></li>
+        <li><img th:src="@{/static/img/img.jpg}" alt="" class="image"></li>
+        </ul>
+        <ul>
+            <li><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></li>
+            <li><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></li>
+            <li><img th:src="@{/static/img/img.jpg}" alt="" class="image"></li>
+            </ul>
+    </div>
+    <p id="message">ちょっとかわいいパン屋さん「ちょいかわ」</p>
+
+
+
+
+	<!-- <div th:fragment="image" th:class="slideGroup"> -->
         <!-- 画像は自由に入れ替えてください -->
-    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></div>
-    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></div>
-    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"></div>
+    <!-- <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"><br>餃子</div>
+    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"><br>クリームパン</div>
+    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"><br>あんぱん</div>
 
-    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></div>
-    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></div>
-    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"></div>
-
-    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"></div>
-    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"></div>
-    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"></div>
-	</div>
+    <div class="slide"><img th:src="@{/static/img/anko_tsubu.png}" alt="" class="image"><br>餃子</div>
+    <div class="slide"><img th:src="@{/static/img/anpan_cream.jpg}" alt="" class="image"><br>クリームパン</div>
+    <div class="slide"><img th:src="@{/static/img/img.jpg}" alt="" class="image"><br>あんぱん</div>
+	</div> -->
 </body>
 
 </html>

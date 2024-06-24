@@ -7,21 +7,97 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     padding-top: 10px;
-    background-color: rgb(234, 233, 230);
+    background-color: rgb(214, 223, 227);
 }
 
 .slide{
     flex: 0 0 auto;
-    max-width: 180px;
+    max-width: 250px;
     height: 100%;
     margin-right: 20px;
-    background-color: rgb(234, 233, 230);
+    background-color: rgb(214, 223, 227);
+    text-align: center;
+    font-weight: bold;
 }
 
-.image{
+/* .image{
     width: 100%;
     height: 240px;
     object-fit: cover;
     border-radius: 20px;
-    background-color: rgb(234, 233, 230);
+    background-color: rgb(255, 255, 255);
+} */
+
+
+
+#message {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-500%);
+    padding:0;
+    margin:0;
+    font-size:30px;
+    color: red;
+    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
+
+.loopSlide {
+    position: relative;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+opacity: 0.7;
+    ul {
+        padding: 0;
+        width: 100vw;
+        display: flex;
+        flex-shrink: 0;
+        margin: 0;
+
+        &:first-child {
+            animation: slide1 80s -40s linear infinite;
+        }
+        &:last-child {
+            animation: slide2 80s linear infinite;
+        }
+
+        li {
+            display: inline-block;
+            width: 100%;
+            min-width: 150px;
+            margin-right: 20px;
+            list-style: none;
+            text-align: center;
+
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+@keyframes slide1 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide2 {
+    0% {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-200%);
+    }
+}
+

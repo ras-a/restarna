@@ -7,6 +7,8 @@
     font-size: 20px;
     background-color: rgb(63, 63, 63);
     color: aliceblue;
+    
+
     /* display: grid; */
     /* 3列を均等に配置します */
     /* grid-template-columns: repeat(4, 1fr);  */
@@ -34,6 +36,10 @@
     width: 100%;
     line-height: 2.5em;
     color: aliceblue;
+    padding: 4px 18px 4px 18px;
+    border: 1px solid honeydew;
+    text-decoration: none;
+    font-family: serif;
 
     
 }
