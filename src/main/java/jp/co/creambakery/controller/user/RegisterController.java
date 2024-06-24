@@ -1,27 +1,32 @@
 package jp.co.creambakery.controller.user;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.servlet.http.*;
 import jakarta.validation.*;
+import jp.co.creambakery.bean.*;
 import jp.co.creambakery.entity.*;
 import jp.co.creambakery.form.*;
 import jp.co.creambakery.repository.*;
-import jp.co.creambakery.bean.*;
 
 
 /**
  * ユーザ登録するためのコントローラー
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping
 public class RegisterController 
 {
 
     @Autowired
     private UserRepository repository;
+    @Autowired
+	HttpSession session;
 
     /**
      * 入力画面へ遷移
@@ -30,7 +35,7 @@ public class RegisterController
      */
     @GetMapping(path = "/input")
     public String input(@Valid @ModelAttribute RegisterForm form) {
-        return "client/input";
+        return "user/register/input";
     }
 
     /**
@@ -46,9 +51,12 @@ public class RegisterController
         user.setReading(form.getReading());
         user.setPassword(form.getPassword());
         user.setEmail(form.getEmail());
+        user.setDateCreated(new Date());
+        user.setDeleted(0);
         repository.save(user);
         BeanFactory factory = new BeanFactory();
+        session.setAttribute("user", factory.createBean(user));
         model.addAttribute("user", factory.createBean(user));
-        return "client/complete";
+        return "user/register/complete";
     }
 }

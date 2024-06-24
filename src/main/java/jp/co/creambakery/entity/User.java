@@ -22,8 +22,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "customer")
-public class User 
-{
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_gen")
@@ -107,20 +106,20 @@ public class User
     }
 
     public List<AddressProfile> getAddresses() {
+        if (addresses == null)
+            return new ArrayList<>();
         return addresses;
     }
 
     public AddressProfile getAddress(Integer id) {
         AddressProfile out = null;
-		for (var address: addresses)
-		{
-			if (address.getId() == id)
-			{
-				out = address;
-			}
-		}
+        for (var address : addresses) {
+            if (address.getId() == id) {
+                out = address;
+            }
+        }
 
-		return out;
+        return out;
     }
 
     public void setAddresses(List<AddressProfile> addresses) {
@@ -128,22 +127,21 @@ public class User
     }
 
     public List<CreditCard> getCreditCards() {
+        if (creditCards == null)
+            return new ArrayList<>();
         return creditCards;
     }
-    
-	public CreditCard getCreditCard(Integer id)
-	{
-		CreditCard out = null;
-		for (var card: creditCards)
-		{
-			if (card.getId() == id)
-			{
-				out = card;
-			}
-		}
 
-		return out;
-	}
+    public CreditCard getCreditCard(Integer id) {
+        CreditCard out = null;
+        for (var card : creditCards) {
+            if (card.getId() == id) {
+                out = card;
+            }
+        }
+
+        return out;
+    }
 
     public void setCreditCards(List<CreditCard> creditCards) {
         this.creditCards = creditCards;
@@ -166,6 +164,8 @@ public class User
     }
 
     public List<Item> getFavorites() {
+        if (favorites == null)
+            return new ArrayList<>();
         return favorites;
     }
 
@@ -198,6 +198,8 @@ public class User
     }
 
     public List<Cart> getCart() {
+        if (cart == null)
+            return new ArrayList<>();
         return cart;
     }
 
@@ -206,6 +208,8 @@ public class User
     }
 
     public List<ProductOrder> getOrders() {
+        if (orders == null)
+            return new ArrayList<>();
         return orders;
     }
 
@@ -214,6 +218,8 @@ public class User
     }
 
     public List<CustomItem> getCreatedItems() {
+        if (createdItems == null)
+            return new ArrayList<>();
         return createdItems;
     }
 
