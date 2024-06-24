@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>パン変更</h1>
+    <h1>生地変更</h1>
     <form th:action="@{/admin/bread/update}" method="post" >
         <input type="hidden" th:value="${bread.id}" name="id">
         <input type="hidden" th:value="${bread.deleted}" name="deleted">
