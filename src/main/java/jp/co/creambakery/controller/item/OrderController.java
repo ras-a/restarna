@@ -26,11 +26,13 @@ public class OrderController
 	UserRepository userRepository;
 	@Autowired
 	CartRepository cartRepository;
+	@Autowired
+	HttpSession session;
 
 	@GetMapping("/list")
 	public String order(HttpSession session, Model model)
 	{
-		var orders = orderRepository.findAllByUser(getUser(session));
+		var orders = orderRepository.findAllByUser(getUser());
 
 		model.addAttribute("orders", orders);
 		return "order/list";
@@ -52,14 +54,14 @@ public class OrderController
 			;
 			
 		var factory = new BeanFactory();
-		var user = getUser(session);
+		var user = getUser();
 		var order = new ProductOrder(user, form);
 
 		if (form.getPaymentMethod() == 0)
 		{
 			for (var card: user.getCreditCards())
 			{
-				if (card.getId() == form.getCreditCard())
+				if (card == form.getCreditCard())
 					order.setCreditCard(card);
 			}
 			if (order.getCreditCard() == null)
@@ -68,7 +70,7 @@ public class OrderController
 		
 		for (var address: user.getAddresses())
 		{
-			if (address.getId() == form.getAddress())
+			if (address == form.getAddress())
 				order.setAddress(address);
 		}
 		if (order.getAddress() == null)
@@ -89,28 +91,23 @@ public class OrderController
 	}
 	
 	@GetMapping("/form")
-	public String getMethodName(HttpSession session, @ModelAttribute("form") OrderForm form, Model model) {
-		{
+	public String getMethodName(@ModelAttribute("form") OrderForm form, Model model) {
 		var factory = new BeanFactory();
-		session.setAttribute("user", factory.createBean(userRepository.getReferenceById(1)));
-		}
-		var factory = new BeanFactory();
-		var bean = getUser(session);
-		var user = userRepository.getReferenceById(bean.getId());
-		user = userRepository.save(user);
+		var user = getUser();
 	
 		Integer totalPrice = 0;
 		for (var item : factory.createBean(user).getCart()) {
 			totalPrice = totalPrice + item.getItem().getPrice() * item.getQuantity();
 		}
-	
-		session.setAttribute("user", factory.createBean(user));
+
+		form.setAddress(user.getMainAddress());
+		form.setCreditCard(user.getMainCreditCard());
 		model.addAttribute("totalPrice", totalPrice);
 
 		return "order/form";
 	}
     
-	private User getUser(HttpSession session)
+	private User getUser()
 	{
 		var user = (UserBean) session.getAttribute("user");
 	

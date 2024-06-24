@@ -16,7 +16,8 @@ public class UserBean implements Serializable
 	private String password;
 	private List<AddressBean> addresses;
 	private List<CreditCardBean> creditCards;
-	private Integer mainAddress;
+	private AddressBean mainAddress;
+	private CreditCardBean mainCreditCard;
 	private String email;
 	private List<ItemBean> favorites;
 	private List<ReviewBean> reviews;
@@ -112,12 +113,20 @@ public class UserBean implements Serializable
 		this.creditCards = creditCards;
 	}
 
-	public Integer getMainAddress() {
+	public AddressBean getMainAddress() {
 		return mainAddress;
 	}
 
-	public void setMainAddress(Integer mainAddress) {
+	public void setMainAddress(AddressBean mainAddress) {
 		this.mainAddress = mainAddress;
+	}
+
+	public CreditCardBean getMainCreditCard() {
+		return mainCreditCard;
+	}
+
+	public void setMainCreditCard(CreditCardBean mainCreditCard) {
+		this.mainCreditCard = mainCreditCard;
 	}
 
 	public String getEmail() {

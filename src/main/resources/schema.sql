@@ -33,10 +33,24 @@ CREATE TABLE address_profile (
 
 CREATE SEQUENCE address_seq NOCACHE;
 
+-- クレカ情報の登録
+CREATE TABLE credit_card (
+	id INTEGER PRIMARY KEY,
+	owner INTEGER REFERENCES customer(id) NOT NULL,
+	name VARCHAR2(32 CHAR) NOT NULL,
+	holder_name VARCHAR2(64) NOT NULL,
+	no VARCHAR2(16) NOT NULL,
+	cvc VARCHAR2(3) NOT NULL,
+	date_created DATE NOT NULL
+);
+
+CREATE SEQUENCE credit_card_seq NOCACHE;
+
 -- 会員の標準宛先
 -- address_profileが存在しないままでは作れないので、
 -- その作成後に外部参照を追加
 ALTER TABLE customer ADD main_address INTEGER DEFAULT NULL REFERENCES address_profile(id);
+ALTER TABLE customer ADD main_credit_card INTEGER DEFAULT NULL REFERENCES credit_card(id);
 
 -- パン生地の種類
 CREATE TABLE bread (
@@ -109,19 +123,6 @@ CREATE TABLE favorite (
 	item INTEGER REFERENCES item(id),
 	CONSTRAINT pk_fav PRIMARY KEY (owner, item)
 );
-
--- クレカ情報の登録
-CREATE TABLE credit_card (
-	id INTEGER PRIMARY KEY,
-	owner INTEGER REFERENCES customer(id) NOT NULL,
-	name VARCHAR2(32 CHAR) NOT NULL,
-	holder_name VARCHAR2(64) NOT NULL,
-	no VARCHAR2(16) NOT NULL,
-	cvc VARCHAR2(3) NOT NULL,
-	date_created DATE NOT NULL
-);
-
-CREATE SEQUENCE credit_card_seq NOCACHE;
 
 -- 注文
 CREATE TABLE product_order (

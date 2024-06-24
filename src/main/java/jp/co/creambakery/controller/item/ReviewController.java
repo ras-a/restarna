@@ -75,15 +75,16 @@ public class ReviewController {
 	@PostMapping("/add/{itemId}")
 	public String add(@PathVariable Integer itemId, Integer score, String description, Model model) {
 		var userBean = (UserBean)session.getAttribute("user");
-
+		var factory = new BeanFactory();
 		
 		var poster = userRepository.getReferenceById(userBean.getId());
 		var item = itemRepository.getReferenceById(itemId);
 
 		if (reviewRepository.existsById(new ReviewKey(poster, item)))
 		{
-			model.addAttribute("errMsg", "この商品のレビューにはもう既に口コミを投稿されています。");
-			return "/item/%d".formatted(item.getId());
+			model.addAttribute("errMsg", "この商品にはもう既に口コミを投稿されています。");
+			model.addAttribute("item", factory.createBean(item));
+			return "item/details";
 		}
 			
 		var review = new Review(item, poster, score, description);

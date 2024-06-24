@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.util.*;
 import jakarta.persistence.*;
 import jp.co.creambakery.form.*;
 
@@ -39,7 +40,12 @@ public class CreditCard
 	@Column(nullable = false)
 	private String cvc;
 
-	public CreditCard() {}
+	@Column(nullable = false)
+	private Date dateCreated;
+
+	public CreditCard() {
+		dateCreated = new Date();
+	}
 
 	public CreditCard (User owner, CreditCardForm form)
 	{
@@ -98,6 +104,14 @@ public class CreditCard
 
 	public void setCvc(String cvc) {
 		this.cvc = cvc;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 }

@@ -12,6 +12,9 @@ public class BeanFactory
 	private Map<Integer, ItemBean> items = new HashMap<>();
 	public ItemBean createBean(Item entity)
 	{
+		if (entity == null)
+			return null;
+		
 		ItemBean bean;
 
 		bean = items.get(entity.getId());
@@ -59,6 +62,9 @@ public class BeanFactory
 	private Map<Integer, BreadBean> breads = new HashMap<>();
 	public BreadBean createBean(Bread entity)
 	{
+		if (entity == null)
+			return null;
+
 		BreadBean bean = breads.get(entity.getId());
 		if (bean == null)
 		{
@@ -84,6 +90,9 @@ public class BeanFactory
 	private Map<Integer, CreamBean> creams = new HashMap<>();
 	public CreamBean createBean(Cream entity)
 	{
+		if (entity == null)
+			return null;
+
 		CreamBean bean = creams.get(entity.getId());
 		if (bean == null)
 		{
@@ -110,13 +119,18 @@ public class BeanFactory
 	private Map<Integer, UserBean> users = new HashMap<>();
 	public UserBean createBean(User entity)
 	{
+		if (entity == null)
+			return null;
+
 		var bean = users.get(entity.getId());
 		if (bean == null)
 		{
 			bean = new UserBean(entity);
 			users.put(bean.getId(), bean);
 			bean.setAddresses(createAddressList(entity.getAddresses()));
+			bean.setMainAddress(createBean(entity.getMainAddress()));
 			bean.setCreditCards(createCreditCardList(entity.getCreditCards()));
+			bean.setMainCreditCard(createBean(entity.getMainCreditCard()));
 			bean.setFavorites(createItemList(entity.getFavorites()));
 			bean.setReviews(createReviewList(entity.getReviews()));
 			bean.setCart(createCartList(entity.getCart()));
@@ -147,6 +161,8 @@ public class BeanFactory
 	private Map<Integer, AddressBean> addressProfiles = new HashMap<>();
 	public AddressBean createBean(AddressProfile entity)
 	{
+		if (entity == null)
+			return null;
 		var bean = addressProfiles.get(entity.getId());
 		if (bean == null)
 		{
@@ -172,6 +188,9 @@ public class BeanFactory
 	private Map<Long, ReviewBean> reviews = new HashMap<>();
 	public ReviewBean createBean(Review entity)
 	{
+		if (entity == null)
+			return null;
+
 		long key = entity.getPoster().getId()<< 32 + entity.getItem().getId();
 
 		var bean = reviews.get(key);
@@ -199,12 +218,18 @@ public class BeanFactory
 	
 	public AdminBean createBean(Admin entity)
 	{
+		if (entity == null)
+			return null;
+
 		return new AdminBean(entity);
 	}
 
 	private Map<Integer, CreditCardBean> creditCards = new HashMap<>();
 	public CreditCardBean createBean(CreditCard entity)
 	{
+		if (entity == null)
+			return null;
+
 		var bean = creditCards.get(entity.getId());
 		if (bean == null)
 		{
@@ -230,6 +255,9 @@ public class BeanFactory
 	private Map<Long, CartBean> cart = new HashMap<>();
 	public CartBean createBean(Cart entity)
 	{
+		if (entity == null)
+			return null;
+
 		long key = entity.getUser().getId()<< 32 + entity.getItem().getId();
 
 		var bean = cart.get(key);
@@ -258,6 +286,9 @@ public class BeanFactory
 	private Map<Integer, OrderBean> orders = new HashMap<>();
 	public OrderBean createBean(ProductOrder entity)
 	{
+		if (entity == null)
+			return null;
+
 		var bean = orders.get(entity.getId());
 		if (bean == null)
 		{

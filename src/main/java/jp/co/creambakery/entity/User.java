@@ -41,15 +41,19 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<AddressProfile> addresses;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<CreditCard> creditCards;
-
-    @OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
-    private List<CustomItem> createdItems;
-
     @OneToOne
     @JoinColumn(name = "main_address", referencedColumnName = "id")
     private AddressProfile mainAddress;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<CreditCard> creditCards;
+
+    @OneToOne
+    @JoinColumn(name = "main_credit_card", referencedColumnName = "id")
+    private CreditCard mainCreditCard;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.PERSIST)
+    private List<CustomItem> createdItems;
 
     @Column(nullable = false)
     private String email;
@@ -225,6 +229,14 @@ public class User {
 
     public void setCreatedItems(List<CustomItem> createdItems) {
         this.createdItems = createdItems;
+    }
+
+    public CreditCard getMainCreditCard() {
+        return mainCreditCard;
+    }
+
+    public void setMainCreditCard(CreditCard mainCreditCard) {
+        this.mainCreditCard = mainCreditCard;
     }
 
 }

@@ -1,6 +1,7 @@
 package jp.co.creambakery.bean;
 
 import java.io.*;
+import java.util.*;
 
 import jp.co.creambakery.entity.*;
 
@@ -15,9 +16,16 @@ public class CreditCardBean implements Serializable
 	private String holderName;
 	private String number;
 	private String cvc;
+	private Date dateCreated;
+
+	CreditCardBean()
+	{
+		dateCreated = new Date();
+	}
 
 	CreditCardBean(CreditCard entity)
 	{
+		this();
 		id = entity.getId();
 		name = entity.getName();
 		holderName = entity.getHolderName();
@@ -71,5 +79,13 @@ public class CreditCardBean implements Serializable
 
 	public void setCvc(String cvc) {
 		this.cvc = cvc;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 }

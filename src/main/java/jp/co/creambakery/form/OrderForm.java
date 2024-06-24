@@ -1,10 +1,12 @@
 package jp.co.creambakery.form;
 
+import jp.co.creambakery.entity.*;
+
 public class OrderForm {
     
     private Integer paymentMethod;
-    private Integer creditCard;
-    private Integer address;
+    private CreditCard creditCard;
+    private AddressProfile address;
     private String optionalDetails;
     public Integer getPaymentMethod() {
         return paymentMethod;
@@ -12,16 +14,16 @@ public class OrderForm {
     public void setPaymentMethod(Integer paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-    public Integer getCreditCard() {
+    public CreditCard getCreditCard() {
         return creditCard;
     }
-    public void setCreditCard(Integer creditCard) {
+    public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
     }
-    public Integer getAddress() {
+    public AddressProfile getAddress() {
         return address;
     }
-    public void setAddress(Integer address) {
+    public void setAddress(AddressProfile address) {
         this.address = address;
     }
     public String getOptionalDetails() {

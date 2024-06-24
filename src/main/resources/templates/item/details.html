@@ -40,6 +40,7 @@
 	<div th:each="review : *{reviews}">
 		<h4>[[${review.poster.name}]]</h4>
 		<span th:each="i: ${#numbers.sequence(1,5,1)}" th:classappend="${i <= review.score}? yellow" class="star">★</span>
+		<p>[[${#strings.arraySplit(review.description, '&:10;')[0]}]]</p>
 	</div>
 
 	<form th:action="|@{/item/review/add/}*{id}|" method="post">
@@ -69,6 +70,12 @@
 				}
 			}
 		</style>
+		
+		<div>
+			<p style="color: red;">
+				[[${errMsg}]]
+			</p>
+		</div>
 		<div class="score_input">
 			<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
 				<input 

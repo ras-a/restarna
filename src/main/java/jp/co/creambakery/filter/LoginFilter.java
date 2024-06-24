@@ -1,30 +1,83 @@
-// package jp.co.creambakery.filter;
+package jp.co.creambakery.filter;
 
-// import java.io.*;
+import java.io.*;
+import org.springframework.stereotype.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
-// import org.springframework.beans.factory.annotation.*;
-// import org.springframework.stereotype.*;
+@Component
+public class LoginFilter extends HttpFilter {
 
-// import jakarta.servlet.*;
-// import jakarta.servlet.http.*;
-// import jp.co.creambakery.repository.*;
-// import jp.co.creambakery.bean.*;
+	/** 必ず通したいリクエスト */
+	private static final String[] whiteList = {
+		"/static/.*",
+		".*/css/.*",
+	};
 
-// // @Component
-// public class LoginFilter extends HttpFilter {
+	/** 管理者からアクセスできないリソース */
+	private static final String[] adminIllegal = {
+		"/user/.*",
+	};
+	
+	/** 管理者からアクセスできないリソース */
+	private static final String[] userIllegal = {
+		"/admin/.*",
+	};
 
-// 	@Override
-// 	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-// 			throws IOException, ServletException {
-// 		var session = request.getSession();
+	/** 管理者からアクセスできないリソース */
+	private static final String[] publicIllegal = {
+		"/admin/.*",
+		"/user(/(?!login).*)?",
+		"/item/review/add/?.*",
+	};
 
-// 		var user = session.getAttribute("user");
+	@Override
+	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		var session = request.getSession();
+		var uri = request.getRequestURI();
+		
+		System.out.println(uri);
+		System.out.printf("~~~~~%b~~~~~\n", uri.matches("/user(/(?!login).*)?"));
+		System.out.printf("~~~~~%b~~~~~\n", triggers(uri, publicIllegal));
+		if (!triggers(uri, whiteList))
+		{
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			if (session.getAttribute("admin") != null)
+			{
+				if (triggers(uri, adminIllegal))
+				{
+					response.sendRedirect("/admin/home");
+					return;
+				}
+			}
+			else if (session.getAttribute("user") != null)
+			{
+				if (triggers(uri, userIllegal))
+				{
+					response.sendRedirect("/user/home");
+					return;
+				}
+			}
+			else if (triggers(uri, publicIllegal))
+			{
+				response.sendRedirect("/user/login");
+				return;
+			}
+		}
+		chain.doFilter(request, response);
+	}
 
-// 		var factory = new BeanFactory();
+	private boolean triggers (String uri, String[] filters)
+	{
+		for (var filter: filters)
+		{
+			if (uri.matches(filter))
+			{
+				return true;
+			}
+		}
 
-// 		if (user == null)
-// 			session.setAttribute("user", factory.createBean(repository.getReferenceById(1)));
-
-// 		chain.doFilter(request, response);
-// 	}
-// }
+		return false;
+	}
+}
