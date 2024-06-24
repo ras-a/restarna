@@ -1,7 +1,5 @@
 package jp.co.creambakery.controller.item;
 
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
@@ -52,30 +50,25 @@ public class CartController
      * @param model モデル
      * @return
      */
-    @PostMapping(path = "/list/{id}")
-    public String cartDetail(@PathVariable Integer id, @RequestParam Integer quantity, HttpSession session, Model model) {
+    @PostMapping(path = "/add/{itemId}")
+    public String cartDetail(@PathVariable Integer itemId, @RequestParam Integer quantity, HttpSession session, Model model) {
+        var factory = new BeanFactory();
 
-        // アイテムIDを取得
-        Integer itemId = id;
+        session.setAttribute("user", factory.createBean(userRepository.getReferenceById(1)));
 
-        // テスト用ユーザIDを設定
-        session.setAttribute("id", 1);
-
-        // セッションから顧客IDを取得（仮にIntegerとして扱う例）
-        Integer customerId = (Integer) session.getAttribute("id");
+        var bean = (UserBean) session.getAttribute("user");
 
         // 顧客IDを使ってカートを取得する
-        List<Cart> cart = cartRepository.findAllByUserId(customerId);   
+        var user = userRepository.getReferenceById(bean.getId());   
 
         // カートの中にそのアイテムがあるかどうかの判定結果を保存する
         boolean itemFound = false;
 
         // カートの中からitemIdと同じIDを持つカートアイテムを探す
-        for (Cart cartItem : cart) {
-            if (itemId.equals(cartItem.getItem().getId())) {
+        for (var item : user.getCart()) {
+            if (item.getItem().getId().equals(itemId) ) {
                 // 同じIDのアイテムが見つかった場合、数量をインクリメントする
-                cartItem.setQuantity(cartItem.getQuantity() + quantity);
-                cartRepository.save(cartItem); // 変更をデータベースに保存する
+                item.setQuantity(item.getQuantity() + quantity);
                 itemFound = true;
                 break;
             }
@@ -83,15 +76,16 @@ public class CartController
     
         // itemIdに対応するカートアイテムが見つからなかった場合、新しいカートアイテムを作成する
         if (!itemFound) {
-            Cart newCartItem = new Cart();
-            newCartItem.setItem(itemRepository.getReferenceById(itemId));
-            newCartItem.setQuantity(quantity);
-            cartRepository.save(newCartItem);
-            cart.add(newCartItem); // 新しいカートアイテムをカートリストに追加する
+            var cartItem = new Cart();
+            cartItem.setUser(userRepository.getReferenceById(user.getId()));
+            cartItem.setItem(itemRepository.getReferenceById(itemId));
+            cartItem.setQuantity(quantity);
+            user.getCart().add(cartItem); // 新しいカートアイテムをカートリストに追加する
         }
 
-        BeanFactory factory = new BeanFactory();
-        model.addAttribute("cart", factory.createCartList(cart));
+        user = userRepository.save(user);
+
+        session.setAttribute("user", factory.createBean(user));
 
         return "order/cartList";
     }

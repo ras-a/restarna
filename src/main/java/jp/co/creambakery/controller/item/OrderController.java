@@ -12,6 +12,9 @@ import jp.co.creambakery.bean.*;
 import jp.co.creambakery.entity.*;
 import jp.co.creambakery.form.*;
 import jp.co.creambakery.repository.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 /**
@@ -32,9 +35,7 @@ public class OrderController
 	@GetMapping("/list")
 	public String order(Model model)
 	{
-		var user = new User();
-		user.setId(getUser().getId());
-		var orders = orderRepository.findAllByUser(user);
+		var orders = orderRepository.findAllByUser(getUser());
 
 		model.addAttribute("orders", orders);
 		return "order/list";
@@ -49,16 +50,20 @@ public class OrderController
 		return "order/details";
 	}
 
-	@PostMapping("/confirm")
-	public String confirm(@Valid OrderForm form, BindingResult result, Model model)
+	@GetMapping("/form")
+	public String getMethodName(@ModelAttribute("form") OrderForm form) {
+		return "order/form";
+	}
+	
+
+	@PostMapping("/complete")
+	public String complete(@Valid OrderForm form, BindingResult result, Model model)
 	{
 		if (result.hasErrors())
 			;
 		
 		var factory = new BeanFactory();
-
-		var user = userRepository.getReferenceById(getUser().getId());
-
+		var user = getUser();
 		var order = new ProductOrder(user, form);
 
 		if (form.getPaymentMethod() == 0)
@@ -91,17 +96,17 @@ public class OrderController
 		model.addAttribute("order", factory.createBean(order));
 		session.setAttribute("user", factory.createBean(user));
 
-		return "order/details";
+		return "order/complete";
 	}
 
-	private UserBean getUser()
+	private User getUser()
 	{
 		var user = (UserBean) session.getAttribute("user");
 
 		if (user == null)
 			throw new IllegalStateException("ログインされていない");
 
-		return user;
+		return userRepository.getReferenceById(user.getId());
 	}
 }
 
