@@ -9,7 +9,7 @@ import jp.co.creambakery.entity.*;
  */
 public class BeanFactory
 {
-	private HashMap<Integer, ItemBean> items = new HashMap<>();
+	private Map<Integer, ItemBean> items = new HashMap<>();
 	public ItemBean createBean(Item entity)
 	{
 		ItemBean bean;
@@ -56,7 +56,7 @@ public class BeanFactory
 		return list;
 	}
 
-	private HashMap<Integer, BreadBean> breads = new HashMap<>();
+	private Map<Integer, BreadBean> breads = new HashMap<>();
 	public BreadBean createBean(Bread entity)
 	{
 		BreadBean bean = breads.get(entity.getId());
@@ -81,7 +81,7 @@ public class BeanFactory
 		return list;
 	}
 
-	private HashMap<Integer, CreamBean> creams = new HashMap<>();
+	private Map<Integer, CreamBean> creams = new HashMap<>();
 	public CreamBean createBean(Cream entity)
 	{
 		CreamBean bean = creams.get(entity.getId());
@@ -104,11 +104,10 @@ public class BeanFactory
 			list.add(createBean(entity));
 		}
 
-		System.out.println(list);
 		return list;
 	}
 
-	private HashMap<Integer, UserBean> users = new HashMap<>();
+	private Map<Integer, UserBean> users = new HashMap<>();
 	public UserBean createBean(User entity)
 	{
 		var bean = users.get(entity.getId());
@@ -145,7 +144,7 @@ public class BeanFactory
 		return list;
 	}
 
-	private HashMap<Integer, AddressBean> addressProfiles = new HashMap<>();
+	private Map<Integer, AddressBean> addressProfiles = new HashMap<>();
 	public AddressBean createBean(AddressProfile entity)
 	{
 		var bean = addressProfiles.get(entity.getId());
@@ -170,7 +169,7 @@ public class BeanFactory
 		return list;
 	}
 
-	private HashMap<Long, ReviewBean> reviews = new HashMap<>();
+	private Map<Long, ReviewBean> reviews = new HashMap<>();
 	public ReviewBean createBean(Review entity)
 	{
 		long key = entity.getPoster().getId()<< 32 + entity.getItem().getId();
@@ -203,7 +202,7 @@ public class BeanFactory
 		return new AdminBean(entity);
 	}
 
-	private HashMap<Integer, CreditCardBean> creditCards = new HashMap<>();
+	private Map<Integer, CreditCardBean> creditCards = new HashMap<>();
 	public CreditCardBean createBean(CreditCard entity)
 	{
 		var bean = creditCards.get(entity.getId());
@@ -228,7 +227,7 @@ public class BeanFactory
 		return list;
 	}
 
-	private HashMap<Long, CartBean> cart = new HashMap<>();
+	private Map<Long, CartBean> cart = new HashMap<>();
 	public CartBean createBean(Cart entity)
 	{
 		long key = entity.getUser().getId()<< 32 + entity.getItem().getId();
@@ -256,7 +255,7 @@ public class BeanFactory
 		return list;
 	}
 	
-	private HashMap<Integer, OrderBean> orders = new HashMap<>();
+	private Map<Integer, OrderBean> orders = new HashMap<>();
 	public OrderBean createBean(ProductOrder entity)
 	{
 		var bean = orders.get(entity.getId());

@@ -1,6 +1,7 @@
 package jp.co.creambakery.entity;
 
-import java.util.Date;
+import java.io.*;
+import java.util.*;
 
 import jakarta.persistence.*;
 
@@ -21,7 +22,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cream")
-public class Cream
+public class Cream implements Serializable
 {
 
     @Id
