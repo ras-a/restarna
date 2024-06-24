@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>カート編集</title>
+</head>
+
+<body>
+    <div id="cart" th:object="${item}">
+        <p>商品の個数編集</p>
+        <p th:text="'商品名：'+*{name}"></p>
+        <p th:text="'値段：'+*{price}+'円'"></p>
+        <form th:action="|@{/item/cart/edit/complete/}*{id}|" method="post">
+            <!-- 個数を選択するドロップダウンリストを追加 -->
+            <p><label for="quantity">個数：</label>
+                <select id="quantity" name="quantity">
+                    <option th:each="i : ${#numbers.sequence(0, 100)}" th:value="${i}" th:text="${i}" th:selected="${i == quantity}"></option>
+                </select>
+                <button type="submit">確定</button>
+            </p>
+        </form>
+        <a th:href="@{/item/cart/list}">戻る</a>
+    </div>
+</body>
+
+</html>

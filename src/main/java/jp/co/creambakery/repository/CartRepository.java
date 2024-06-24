@@ -10,4 +10,5 @@ import jp.co.creambakery.entity.keys.*;
 public interface CartRepository extends JpaRepository<Cart, CartKey>
 {
     List<Cart>findAllByUserId(Integer id);
+    Cart findByUserAndItem(User User, Item item);
 }

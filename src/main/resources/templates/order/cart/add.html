@@ -9,7 +9,8 @@
 <body>
     <div id="cart" th:object="${item}">
         <p>カートに追加</p>
-        <p th:text="*{name}"></p>
+        <p th:text="'商品名：'+*{name}"></p>
+        <p th:text="'値段：'+*{price}+'円'"></p>
         <form th:action="|@{/item/cart/add/}*{id}|" method="post">
             <!-- 個数を選択するドロップダウンリストを追加 -->
             <p><label for="quantity">個数：</label>
@@ -21,7 +22,9 @@
                 <button type="submit">追加</button>
             </p>
         </form>
-        <a th:href="|@{/item/detail/}*{id}|">戻る</a>
+        <p><a th:href="|@{/item/detail/}*{id}|">
+                <button type="button">戻る</button>
+            </a></p>
     </div>
 </body>
 
