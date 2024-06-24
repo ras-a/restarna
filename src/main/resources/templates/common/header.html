@@ -13,7 +13,7 @@
 		</div>
 		<div class="2">
 		| <a th:href="@{/user/favorite}">favorite</a>
-		| <a href="@{'/item/custom/' + ${session.user.id}}">MyCustom</a>
+		| <a th:href="@{'/item/custom/' + ${session.user.id}}">MyCustom</a>
 		| <a th:href="@{/user/logout}" >Logout</a>
 		</div>
 	</div>
@@ -24,7 +24,7 @@
 	<h1 ><a th:href="@{/user/home}"><img th:src="@{/static/img/view/title.png}" alt="" width="300px"></a></h1>
 	<div class="user_info">
 		<a th:href="@{/user/login}" >ログイン</a>
-        <a th:href="@{/client/user/regist/input/init}">新規登録</a>
+        <a th:href="@{/user/input}">新規登録</a>
 	</div>
 	</div>
 </th:block>

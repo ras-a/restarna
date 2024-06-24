@@ -56,6 +56,6 @@ public class LoginController
 	public String logout()
 	{
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/user/login";
 	}
 }

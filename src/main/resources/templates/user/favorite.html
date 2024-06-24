@@ -12,10 +12,10 @@
             <th>商品名</th>
         </tr>
         <tr th:each="favorite : ${session.user.favorites}">
-            <td th:text="${favorite.item.name}"></td>
+            <td th:text="${favorite.name}"></td>
         </tr>
     </table>
-    <a th:href="@{/homepage}">戻る</a>
+    <a th:href="@{/user/home}">戻る</a>
 
 </body>
 </html>

@@ -1,13 +1,13 @@
 package jp.co.creambakery.controller.user;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
-import jp.co.creambakery.repository.*;
+
 import jakarta.servlet.http.*;
 import jp.co.creambakery.bean.*;
+import jp.co.creambakery.repository.*;
 
 @Controller
 public class FavoriteController
@@ -30,6 +30,6 @@ public class FavoriteController
     {
         var customer = (UserBean) session.getAttribute("user");
         model.addAttribute("favorites", repository.findAllByOwnerId(customer.getId()));
-        return "client/favorite";
+        return "user/favorite";
     }
 }
