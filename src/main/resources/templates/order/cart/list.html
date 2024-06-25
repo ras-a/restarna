@@ -21,7 +21,7 @@ th:replace="~{/common/layout :: sidebar(title='カート内容', body=~{::body/c
             </tr>
             </thead>
             <tbody>
-            <tr th:each="c : ${session.user.cart}">
+            <tr th:each="c : ${session.user.cart}" th:if="${c.quantity > 0}">
                 <td th:text="${c.item.id}"></td>
                 <td th:text="${c.item.name}"></td>
                 <td th:text="${c.item.price}"></td>
