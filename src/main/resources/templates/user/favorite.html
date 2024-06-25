@@ -10,10 +10,14 @@ th:replace="~{/common/layout :: sidebar(title='お気に入り', body=~{::body/c
 
     <table border="1">
         <tr>
+            <th>商品id</th>
             <th>商品名</th>
+            <th>価格</th>
         </tr>
         <tr th:each="favorite : ${session.user.favorites}">
+            <td th:text="${favorite.id}"></td>
             <td th:text="${favorite.name}"></td>
+            <td th:text="${favorite.price}"></td>
         </tr>
     </table>
     <a th:href="@{/user/home}">戻る</a>
