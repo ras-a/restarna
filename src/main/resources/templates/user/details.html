@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: sidebar(title='ユーザ情報', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cartList.css}" />
+</head>
+
+<body>
+    <div id="cart">
+        <h1>ユーザ情報</h1>
+        <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>読み方</th>
+                    <th>パスワード</th>
+                    <th>住所</th>
+                    <th>よくつかう住所</th>
+                    <th>クレジットカード</th>
+                    <th>メールアドレス</th>
+                    <th>作成日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u : ${session.user}">
+                    <td th:text="${u.id}"></td>
+                    <td th:text="${u.name}"></td>
+                    <td th:text="${u.reading}"></td>
+                    <td>***</td>
+                    <td>
+                        <ol>
+                            <li th:each="address : ${u.addresses}" th:text="${address.name}"></li>
+                        </ol>
+                    </td>
+                    <td th:text="${u.mainAddress}"></td>
+                    <td>
+                        <ol>
+                            <li th:each="card : ${u.creditCards}"
+                                th:text="${'・・・'+ card.number.substring(card.number.length() - 4)}"></li>
+                        </ol>
+                    </td>
+                    <td th:text="${u.email}"></td>
+                    <td th:text="${#dates.format(u.dateCreated, 'yyyy/MM/dd')}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="orderCheck">
+            <a th:href="@{/user/edit}">
+                <button type="button">編集</button>
+            </a>
+            <a th:href="@{/user/delete}">
+                <button type="button">退会する</button>
+            </a>
+            <a th:href="@{/user/home}">
+                <button type="button">戻る</button>
+            </a>
+        </div>
+
+    </div>
+</body>
+
+</html>

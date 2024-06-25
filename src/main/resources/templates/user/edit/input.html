@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: sidebar(title='ユーザ情報編集', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cartList.css}" />
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>編集</h2>
+        <form th:action="@{edit}" method="post" th:object="${form}">
+            名前:<input type="text" th:field="*{name}">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></span><br>
+            よみがな:<input type="text" th:field="*{reading}">
+            <span th:if="${#fields.hasErrors('reading')}" th:errors="*{reading}" class="error-message"></span><br>
+            パスワード:<input type="password" th:field="*{password}">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span><br>
+            メールアドレス:<input type="email" th:field="*{email}">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></span><br>
+            <input type="submit" value="登録">
+        </form>
+        <a th:href="@{/user/details}">
+            <button type="button">戻る</button>
+        </a>
+    </div>
+</body>
+
+</html>

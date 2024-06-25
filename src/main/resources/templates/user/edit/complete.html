@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: sidebar(title='編集完了', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cartList.css}" />
+</head>
+
+<body>
+    <div>
+    <h2>編集は完了しました。</h2>
+    <p><a th:href="@{/user/details}">
+        <button type="button">ユーザ情報へ</button>
+    </a></p>
+    </div>
+</body>
+
+</html>
