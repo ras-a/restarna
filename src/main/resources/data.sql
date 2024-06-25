@@ -121,6 +121,11 @@ INSERT INTO credit_card(
 	'2022-04-08'
 );
 
+UPDATE customer SET
+		main_address = 1,
+		main_credit_card = 1
+	WHERE id = 1;
+
 INSERT INTO product_order(
 	id,
 	customer,

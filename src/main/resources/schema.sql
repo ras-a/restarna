@@ -129,7 +129,7 @@ CREATE TABLE product_order (
 	id INTEGER PRIMARY KEY,
 	customer INTEGER REFERENCES customer(id),
 	payment_method NUMBER(1) NOT NULL CHECK (payment_method BETWEEN 0 AND 4),
-	credit_card INTEGER CHECK ((payment_method = 0 AND credit_card IS NOT NULL) OR payment_method <> 0) REFERENCES credit_card(id),
+	credit_card INTEGER REFERENCES credit_card(id),
 	date_created DATE NOT NULL,
 	cancelled NUMBER(1) DEFAULT 0,
 	address INTEGER REFERENCES address_profile(id) NOT NULL,
@@ -141,8 +141,8 @@ CREATE SEQUENCE order_seq NOCACHE;
 
 -- 注文の商品項目
 CREATE TABLE product_order_item (
-	product_order INTEGER NOT NULL REFERENCES product_order(id) NOT NULL,
-	item INTEGER NOT NULL REFERENCES item(id) NOT NULL,
+	product_order INTEGER NOT NULL REFERENCES product_order(id),
+	item INTEGER NOT NULL REFERENCES item(id),
 	amount INTEGER NOT NULL CHECK (amount > 0),
 	CONSTRAINT pk_oi PRIMARY KEY (product_order, item)
 );
@@ -152,7 +152,7 @@ CREATE TABLE review (
 	poster INTEGER NOT NULL REFERENCES customer(id),
 	item INTEGER NOT NULL REFERENCES item(id),
 	description VARCHAR2(1024),
-	score INTEGER CHECK score BETWEEN 1 AND 5,
+	score INTEGER CHECK (score BETWEEN 1 AND 5),
 	deleted NUMBER(1) DEFAULT 0,
 	date_created DATE NOT NULL,
 	CONSTRAINT pk_review PRIMARY KEY (poster, item)
