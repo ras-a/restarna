@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.Date;
 
 import jakarta.persistence.*;
@@ -26,7 +27,7 @@ import jp.co.creambakery.form.*;
 
 @Entity
 @Table(name = "address_profile")
-public class AddressProfile
+public class AddressProfile implements Serializable
 {
 
 	@Id
@@ -169,5 +170,10 @@ public class AddressProfile
 
 	public void setDeleted(Integer deleted) {
 		this.deleted = deleted;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof AddressProfile && id == ((AddressProfile)obj).getId();
 	}
 }

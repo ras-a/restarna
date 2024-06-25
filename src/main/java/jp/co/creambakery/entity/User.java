@@ -1,6 +1,9 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.*;
+
+import org.eclipse.persistence.annotations.*;
 
 import jakarta.persistence.*;
 
@@ -22,8 +25,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "customer")
-public class User {
-
+public class User implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_gen")
     @SequenceGenerator(name = "customer_gen", sequenceName = "customer_seq", allocationSize = 1)
@@ -71,7 +74,8 @@ public class User {
     @Column(columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer deleted;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrivateOwned
     private List<Cart> cart;
 
     @OneToMany(mappedBy = "user")
@@ -239,4 +243,8 @@ public class User {
         this.mainCreditCard = mainCreditCard;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof User && id == ((User)obj).getId();
+	}
 }

@@ -1,5 +1,7 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
+
 import jakarta.persistence.*;
 
 /**
@@ -14,7 +16,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "custom_item")
-public class CustomItem
+public class CustomItem implements Serializable
 {
     @Id
     @OneToOne(cascade = CascadeType.ALL)
@@ -61,4 +63,8 @@ public class CustomItem
         this.isPublic = isPublic;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof CustomItem && item == ((CustomItem)obj).getItem();
+	}
 }

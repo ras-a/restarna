@@ -177,6 +177,15 @@ public class UserBean implements Serializable
 		this.cart = cart;
 	}
 
+	public Integer getCartTotal() {
+		Integer total = 0;
+		for (var item: cart)
+		{
+			total += item.getPrice();
+		}
+		return total;
+	}
+
 	public List<OrderBean> getOrders() {
 		return orders;
 	}

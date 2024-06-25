@@ -7,5 +7,5 @@
 			★
 		</span>
 	</div>
-	<img th:fragment="img(src, alt)" th:src="|@{/static/img/}${src}|" th:alt="${alt}"/>
+	<img th:fragment="img(src, alt)" th:src="|@{/static/img/}${src}|" th:alt="${alt}" th:class="${class}"/>
 </html>

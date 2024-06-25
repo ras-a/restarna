@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.*;
 
 import jakarta.persistence.*;
@@ -20,7 +21,7 @@ import jp.co.creambakery.form.*;
 
 @Entity
 @Table(name = "item")
-public class Item
+public class Item implements Serializable
 {
 
     @Id
@@ -165,4 +166,9 @@ public class Item
     public void setCustom(CustomItem customItem) {
         custom = customItem;
     }
+    
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Item && id == ((Item)obj).getId();
+	}
 }

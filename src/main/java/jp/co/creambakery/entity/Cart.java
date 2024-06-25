@@ -46,4 +46,8 @@ public class Cart
         this.quantity = quantity;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Cart && user == ((Cart)obj).getUser() && item == ((Cart)obj).getItem();
+	}
 }

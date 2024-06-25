@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.Date;
 
 import jakarta.persistence.*;
@@ -20,7 +21,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "bread")
-public class Bread 
+public class Bread implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "seq_bread_gen")
@@ -129,4 +130,9 @@ public class Bread
     {
         this.deleted = deleted;
     }
+    
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Bread && id == ((Bread)obj).getId();
+	}
 }

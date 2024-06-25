@@ -20,11 +20,11 @@
         </thead>
         <tbody>
             <tr th:each="item: ${items}">
-                    <td th:text="${item.id}"></td>
-                    <td><a th:href="@{'/admin/store/' + ${item.id}}" th:text="${item.name}"></a></td>
-                    <td th:text="${item.price}"></td>
-                    <td th:text="${item.description}"></td>
-                    <td th:text="${#dates.format(item.bread.dateCreated, 'yyyy/MM/dd')}"></td>
+                    <td>[[${item.id}]]</td>
+                    <td><a th:href="|@{/admin/store/}${item.id}|" >[[${item.name}]]</a></td>
+                    <td>[[${item.price}]]</td>
+                    <td>[[${item.description}]]</td>
+                    <td>[[${#dates.format(item.bread.dateCreated, 'yyyy/MM/dd')}]]</td>
             </tr>
         <tbody>
     </table>

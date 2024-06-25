@@ -15,7 +15,7 @@ public class AddressForm {
 	@NotBlank
 	private String address;
 
-	@Pattern(regexp = "\\d{3}[- ]?\\d{4}[- ]?\\d{4}")
+	@Pattern(regexp = "^\\d{3}[- ]?\\d{4}[- ]?\\d{4}$")
 	private String phoneNumber;
 
 	@Email
@@ -25,7 +25,7 @@ public class AddressForm {
 	private String addresseeName;
 
 	@NotBlank
-	@Pattern(regexp = "[ア-ン]+")
+	@Pattern(regexp = "[ア-ンー]+", message = "全角カタカナで入力ください")
 	private String addresseeReading;
 
 	public void populateWith(AddressBean bean)

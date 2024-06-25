@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import jp.co.creambakery.bean.*;
 import jp.co.creambakery.form.*;
 import jp.co.creambakery.repository.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
+@RequestMapping("/list")
 public class ListController {
 	@Autowired
 	ItemRepository itemRepository;
@@ -17,26 +21,34 @@ public class ListController {
 	@Autowired
 	BreadRepository breadRepository;
 
-	@GetMapping("/list")
+	@GetMapping
 	public String list(Model model) {
 		BeanFactory factory = new BeanFactory();
-		model.addAttribute("items", factory.createItemList(itemRepository.findAllNotDeletedByStoreIsNotNull()));
+		model.addAttribute("items", factory.createItemList(itemRepository.findAllStoreItems()));
 		return "item/list";
 	}
 
-	@GetMapping("/cream/list")
+	@GetMapping("/cream")
 	public String cream(Model model) {
 		BeanFactory factory = new BeanFactory();
 		model.addAttribute("creams", factory.createCreamList(creamRepository.findAll()));
 		return "item/creamList";
 	}
 
-	@GetMapping("/bread/list")
+	@GetMapping("/bread")
 	public String breadList(Model model) {
 		BeanFactory factory = new BeanFactory();
 		model.addAttribute("breads", factory.createBreadList(breadRepository.findAll()));
 		return "item/breadList";
 	}
+
+	@GetMapping("/custom")
+	public String custom(Model model) {
+		var factory = new BeanFactory();
+		model.addAttribute("items", factory.createItemList(itemRepository.findAllCustomItems()));
+		return "item/list";
+	}
+	
 
 	// 絞り込み画面
 	@GetMapping("/filter")

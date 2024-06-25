@@ -1,12 +1,18 @@
 package jp.co.creambakery.form;
 
+import jakarta.validation.constraints.*;
 import jp.co.creambakery.entity.*;
 
 public class OrderForm {
-    
+    @NotNull
+    @Min(0)
+    @Max(4)
     private Integer paymentMethod;
+    @NotNull
     private CreditCard creditCard;
+    @NotNull
     private AddressProfile address;
+
     private String optionalDetails;
     public Integer getPaymentMethod() {
         return paymentMethod;

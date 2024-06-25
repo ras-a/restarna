@@ -1,7 +1,9 @@
 package jp.co.creambakery.filter;
 
-import java.io.*;
-import org.springframework.stereotype.*;
+import java.io.IOException;
+
+import org.springframework.stereotype.Component;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
@@ -26,9 +28,11 @@ public class LoginFilter extends HttpFilter {
 
 	/** 管理者からアクセスできないリソース */
 	private static final String[] publicIllegal = {
-		"/admin/.*",
-		"/user(/(?!login).*)?",
+		"/admin/(?!login).*",
+		"/user/(?!login|register).*",
 		"/item/review/add/?.*",
+		"/item/order.*",
+		"/item/cart.*",
 	};
 
 	@Override
@@ -38,7 +42,6 @@ public class LoginFilter extends HttpFilter {
 		var uri = request.getRequestURI();
 		
 		System.out.println(uri);
-		System.out.printf("~~~~~%b~~~~~\n", uri.matches("/user(/(?!login).*)?"));
 		System.out.printf("~~~~~%b~~~~~\n", triggers(uri, publicIllegal));
 		if (!triggers(uri, whiteList))
 		{

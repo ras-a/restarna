@@ -1,17 +1,17 @@
 package jp.co.creambakery.controller.item;
 
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.validation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import jp.co.creambakery.form.*;
-import jp.co.creambakery.repository.*;
 import jakarta.servlet.http.*;
 import jakarta.validation.*;
 import jp.co.creambakery.bean.*;
 import jp.co.creambakery.entity.*;
+import jp.co.creambakery.form.*;
+import jp.co.creambakery.repository.*;
 
 /**
  *注文情報入力＆完了コントローラー 
@@ -48,10 +48,10 @@ public class OrderController
 	}
 
 	@PostMapping("/complete")
-	public String complete(HttpSession session, @Valid OrderForm form, BindingResult result, Model model)
+	public String complete(HttpSession session, @Valid @ModelAttribute("form") OrderForm form, BindingResult result, Model model)
 	{
 		if (result.hasErrors())
-			;
+			return "order/form";
 			
 		var factory = new BeanFactory();
 		var user = getUser();
@@ -59,30 +59,31 @@ public class OrderController
 
 		if (form.getPaymentMethod() == 0)
 		{
-			for (var card: user.getCreditCards())
-			{
-				if (card == form.getCreditCard())
-					order.setCreditCard(card);
-			}
-			if (order.getCreditCard() == null)
-			throw new IllegalStateException("クレジットカードが存在しない");
+			var card = form.getCreditCard();
+			if (user.getCreditCard(card.getId()) == null)
+				throw new IllegalStateException("クレジットカードが存在しない");
+			
+			order.setCreditCard(card);
 		}
 		
-		for (var address: user.getAddresses())
-		{
-			if (address == form.getAddress())
-				order.setAddress(address);
-		}
-		if (order.getAddress() == null)
+		var address = form.getAddress();
+		if (user.getAddress(address.getId()) == null)
 			throw new IllegalStateException("住所プロフィールが存在しない");
 
-			for (var cartItem: user.getCart())
-			{
-				var entry = new ProductOrderItem(order, cartItem);
+		order.setAddress(address);
+
+		for (var cartItem: user.getCart())
+		{
+			var entry = new ProductOrderItem(order, cartItem);
 			order.getItems().add(entry);
 		}
 
 		order = orderRepository.save(order);
+
+		user.getCart().clear();
+		System.out.println(user.getCart());
+		user = userRepository.save(user);
+		System.out.println(user.getCart());
 
 		model.addAttribute("order", factory.createBean(order));
 		session.setAttribute("user", factory.createBean(user));
@@ -92,17 +93,10 @@ public class OrderController
 	
 	@GetMapping("/form")
 	public String getMethodName(@ModelAttribute("form") OrderForm form, Model model) {
-		var factory = new BeanFactory();
 		var user = getUser();
-	
-		Integer totalPrice = 0;
-		for (var item : factory.createBean(user).getCart()) {
-			totalPrice = totalPrice + item.getItem().getPrice() * item.getQuantity();
-		}
 
 		form.setAddress(user.getMainAddress());
 		form.setCreditCard(user.getMainCreditCard());
-		model.addAttribute("totalPrice", totalPrice);
 
 		return "order/form";
 	}

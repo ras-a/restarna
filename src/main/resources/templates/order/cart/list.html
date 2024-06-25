@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="~{/common/layout :: sidebar(title='カート内容', body=~{::body/content()}, head=~{:: head/content()})}">
+th:replace="~{common/layout :: sidebar(title='カート内容', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,39 +8,53 @@ th:replace="~{/common/layout :: sidebar(title='カート内容', body=~{::body/c
 </head>
 
 <body>
-    <div id="cart">
-        <h1>カート内容</h1>
-        <table  id="keywords" cellspacing="0" cellpadding="0">
-            <thead>
-            <tr>
-                <th>商品番号</th>
-                <th>商品名</th>
-                <th>価格</th>
-                <th>個数</th>
-                <th>編集    </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="c : ${session.user.cart}" th:if="${c.quantity > 0}">
-                <td th:text="${c.item.id}"></td>
-                <td th:text="${c.item.name}"></td>
-                <td th:text="${c.item.price}"></td>
-                <td th:text="${c.quantity}"></td>
-                <td><a th:href="|@{/item/cart/edit/}${c.item.id}|">
-                    <button type="button">編集</button>
-                </a></td>
-            </tr>
-            </tbody>
-        </table>
+    <th:block th:unless="${#lists.isEmpty(session.user.cart)}">
+        <div id="cart">
+            <h1>カート内容</h1>
+            <table  id="keywords" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th>商品番号</th>
+                    <th>商品名</th>
+                    <th>価格</th>
+                    <th>個数</th>
+                    <th>編集</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${session.user.cart}">
+                    <td th:text="${c.item.id}"></td>
+                    <td th:text="${c.item.name}"></td>
+                    <td th:text="${c.item.price}"></td>
+                    <td th:text="${c.quantity}"></td>
+                    <td><a th:href="|@{/item/cart/edit/}${c.item.id}|">
+                        <button type="button">編集</button>
+                    </a></td>
+                </tr>
+                </tbody>
+            </table>
+    
+            <p th:text="|合計金額：${session.user.cartTotal}円|"></p>
+            <p><a th:href="@{/item/order/form}" method="get">
+                <button type="submit">注文画面へ</button>
+            </a></p>
+            <p><a th:href="@{/item/list}">
+                <button type="button">戻る</button>
 
-        <p th:text="'合計金額：'+${totalPrice}+'円'"></p>
-        <p><a th:href="@{/item/order/form}" method="get">
-            <button type="submit">注文画面へ</button>
-        </a></p>
-        <p><a th:href="@{/item/list}">
-            <button type="button">戻る</button>
-        </a></p>
-    </div>
+            </a></p>
+        </div>
+    </th:block>
+    <th:block th:if="${#lists.isEmpty(session.user.cart)}">
+        <div id="cart">
+            <h1>カートは空です</h1>
+            
+            <a th:href="@{/item/list}">
+                <button>
+                    商品一覧画面へ
+                </button>
+            </a>
+        </div>
+    </th:block>
 </body>
 
 </html>

@@ -9,7 +9,9 @@ public interface ItemRepository extends JpaRepository<Item, Integer>
 {
 
 	@Query("SELECT i FROM Item i WHERE i.deleted = 0 AND i.store IS NOT NULL")
-	List<Item> findAllNotDeletedByStoreIsNotNull();
+	List<Item> findAllStoreItems();
+	@Query("SELECT i FROM Item i WHERE i.deleted = 0 AND i.custom IS NOT NULL")
+	List<Item> findAllCustomItems();
 
 	@Query("SELECT i FROM Item i JOIN i.creams c GROUP BY i ORDER BY SUM(c.price) + i.bread.price")
     List<Item>findAllByOrderByPrice();

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{/common/layout :: slideShow(title='クリームパン屋ちょいかわ', body=~{::body/content()}, head=~{:: head/content()})}">
+    th:replace="~{common/layout :: slideShow(title='クリームパン屋ちょいかわ', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head th:fragment="head">
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}" />
@@ -9,10 +9,10 @@
 <body>
     <div id="home">
         <p>モドリッチのクリームパン屋</p>
-        <a th:href="@{/item/cream/list}">クリーム一覧</a>
-        <a th:href="@{/item/bread/list}">パン一覧</a>
-        <a th:href="@{/item/list}">カスタムパン一覧</a>
-        <a th:href="@{/item/item/list}">カスタムパン一覧</a>
+        <a th:href="@{/item/list/cream}">クリーム一覧</a>
+        <a th:href="@{/item/list/bread}">生地一覧</a>
+        <a th:href="@{/item/list/custom}">カスタムパン一覧</a>
+        <a th:href="@{/item/list}">パン一覧</a>
         <a th:href="@{/user/favorite}">お気に入り</a>
         <a th:href="@{/item/custom/input}">カスタム追加</a>
         <a th:href="@{'/item/custom/' + ${session.user.id}}">マイカスタム</a>

@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.*;
 
 import jakarta.persistence.*;
@@ -17,7 +18,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "admin")
-public class Admin 
+public class Admin  implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "seq_admin_gen")
@@ -87,4 +88,8 @@ public class Admin
         this.system = system;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Admin && id == ((Admin)obj).getId();
+	}
 }

@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.*;
 
 import jakarta.persistence.*;
@@ -25,8 +26,8 @@ import jp.co.creambakery.form.*;
 
 @Entity
 @Table(name = "product_order")
-public class ProductOrder {
-
+public class ProductOrder implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_gen")
     @SequenceGenerator(name = "order_gen", sequenceName = "order_seq", allocationSize = 1)
@@ -159,4 +160,8 @@ public class ProductOrder {
         this.items = items;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof ProductOrder && id == ((ProductOrder)obj).getId();
+	}
 }

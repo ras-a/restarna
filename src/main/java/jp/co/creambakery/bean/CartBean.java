@@ -30,4 +30,8 @@ public class CartBean {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+	public Integer getPrice() {
+		return item.getPrice() * quantity;
+	}
 }

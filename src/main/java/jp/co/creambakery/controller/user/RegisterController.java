@@ -1,25 +1,25 @@
 package jp.co.creambakery.controller.user;
 
-import java.util.*;
+import java.util.Date;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.ui.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.*;
-import jakarta.validation.*;
-import jp.co.creambakery.bean.*;
-import jp.co.creambakery.entity.*;
-import jp.co.creambakery.form.*;
-import jp.co.creambakery.repository.*;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import jp.co.creambakery.bean.BeanFactory;
+import jp.co.creambakery.entity.User;
+import jp.co.creambakery.form.RegisterForm;
+import jp.co.creambakery.repository.UserRepository;
 
 
 /**
  * ユーザ登録するためのコントローラー
  */
 @Controller
-@RequestMapping
+@RequestMapping("/register")
 public class RegisterController 
 {
 
@@ -33,7 +33,7 @@ public class RegisterController
      * @param form
      * @return "input"
      */
-    @GetMapping(path = "/input")
+    @GetMapping("/input")
     public String input(@Valid @ModelAttribute RegisterForm form) {
         return "user/register/input";
     }
@@ -44,7 +44,7 @@ public class RegisterController
      * @param model
      * @return "complete"
      */
-    @PostMapping(path = "/register")
+    @PostMapping("/complete")
     public String register(@Valid @ModelAttribute RegisterForm form, Model model) {
         User user = new User();
         user.setName(form.getName());

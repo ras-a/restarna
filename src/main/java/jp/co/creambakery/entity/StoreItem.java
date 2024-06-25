@@ -1,5 +1,7 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
+
 import jakarta.persistence.*;
 
 /** 
@@ -12,7 +14,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "store_item")
-public class StoreItem 
+public class StoreItem implements Serializable
 {
     @Id
     @OneToOne
@@ -39,4 +41,8 @@ public class StoreItem
         this.image = image;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof StoreItem && item == ((StoreItem)obj).getItem();
+	}
 }

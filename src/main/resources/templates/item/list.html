@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+	th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head th:fragment="head">
 	<link rel="stylesheet" type="text/css" th:href="@{/static/css/item/list.css}" />
@@ -13,22 +13,19 @@
 		<table >
 			<thead>
 			<tr >
-				<th ></th>
+				<th></th>
 				<th>商品名</th>
 				<th>値段</th>
 				<th>追加日</th>
 			</tr>
 			</thead>
 			<tbody>
-			<tr th:each="item:${items}">
-				
-				<td><img  th:src="@{'/static/img/' + ${item.image}}" class="icon"></td>
-				<td ><a th:href="@{'/item/'+${item.id}}" th:text="${item.name}"></a></td>
-				<td th:text="${item.price}"></td>
-				<!-- <td th:text="${dateCreated}"></td> -->
-				<td></td>
-				
-			</tr>
+			<tr th:each="item : ${items}"><a th:href="@{'/item/'+${item.id}}">
+				<td><img th:replace="~{common/util::img(src=${item.image}, alt=${item.name}, class='icon')}" ></td>
+				<td>[[${item.name}]]</td>
+				<td>[[${item.price}]]</td>
+				<td>[[${#dates.format(item.dateCreated, 'yyyy年MM月dd日')}]]</td>
+			</a></tr>
 			</tbody>
 		</table>
 	</div>

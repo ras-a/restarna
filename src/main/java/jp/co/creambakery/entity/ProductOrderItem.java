@@ -1,5 +1,7 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
+
 import jakarta.persistence.*;
 import jp.co.creambakery.entity.keys.ProductOrderItemKey;
 
@@ -15,7 +17,7 @@ import jp.co.creambakery.entity.keys.ProductOrderItemKey;
 @Entity
 @IdClass(ProductOrderItemKey.class)
 @Table(name = "product_order_item")
-public class ProductOrderItem 
+public class ProductOrderItem implements Serializable
 {
     @Id
     @ManyToOne
@@ -63,4 +65,8 @@ public class ProductOrderItem
         this.amount = amount;
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof ProductOrderItem && productOrder == ((ProductOrderItem)obj).getProductOrder() && item == ((ProductOrderItem)obj).getItem();
+	}
 }

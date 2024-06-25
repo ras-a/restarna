@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.*;
 import jakarta.persistence.*;
 import jp.co.creambakery.form.*;
@@ -17,7 +18,7 @@ import jp.co.creambakery.form.*;
 
 @Entity
 @Table(name = "credit_card")
-public class CreditCard 
+public class CreditCard implements Serializable
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "credit_card_gen")
@@ -114,4 +115,8 @@ public class CreditCard
 		this.dateCreated = dateCreated;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof CreditCard && id == ((CreditCard)obj).getId();
+	}
 }

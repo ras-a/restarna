@@ -18,6 +18,9 @@ import jp.co.creambakery.repository.*;
 public class CartController {
 
     @Autowired
+    HttpSession session;
+
+    @Autowired
     ItemRepository itemRepository;
 
     @Autowired
@@ -50,14 +53,14 @@ public class CartController {
      * @return "order/cart/list"
      */
     @PostMapping(path = "/add/{itemId}")
-    public String cartAdd(@PathVariable Integer itemId, @RequestParam Integer quantity, HttpSession session,
+    public String cartAdd(@PathVariable Integer itemId, @RequestParam Integer quantity,
             Model model) {
         {
         var factory = new BeanFactory();
         session.setAttribute("user", factory.createBean(userRepository.getReferenceById(1)));
         }
         var factory = new BeanFactory();
-        var bean = getUser(session);
+        var bean = getUser();
         var user = userRepository.getReferenceById(bean.getId());
 
         Boolean itemFound = false;
@@ -83,13 +86,7 @@ public class CartController {
             user = userRepository.save(user);
         }
 
-        Integer totalPrice = 0;
-        for (var item : factory.createBean(user).getCart()) {
-            totalPrice = totalPrice + item.getItem().getPrice() * item.getQuantity();
-        }
-
         session.setAttribute("user", factory.createBean(user));
-        model.addAttribute("totalPrice", totalPrice);
 
         return "order/cart/list";
     }
@@ -101,24 +98,8 @@ public class CartController {
      * @param model モデル
      * @return "order/cart/list"
      */
-    @GetMapping(path = "/list")
-    public String cartList(HttpSession session, Model model) {
-        {
-        var factory = new BeanFactory();
-        session.setAttribute("user", factory.createBean(userRepository.getReferenceById(1)));
-        }
-        var factory = new BeanFactory();
-        var bean = getUser(session);
-        var user = userRepository.getReferenceById(bean.getId());
-        user = userRepository.save(user);
-
-        Integer totalPrice = 0;
-        for (var item : factory.createBean(user).getCart()) {
-            totalPrice = totalPrice + item.getItem().getPrice() * item.getQuantity();
-        }
-
-        session.setAttribute("user", factory.createBean(user));
-        model.addAttribute("totalPrice", totalPrice);
+    @GetMapping("/list")
+    public String cartList(Model model) {
         return "order/cart/list";
     }
 
@@ -130,13 +111,10 @@ public class CartController {
      * @return
      */
     @GetMapping(path = "/edit/{itemId}")
-    public String edit(HttpSession session, @PathVariable Integer itemId, Model model) {
-        {
+    public String edit(@PathVariable Integer itemId, Model model) {
+
         var factory = new BeanFactory();
-        session.setAttribute("user", factory.createBean(userRepository.getReferenceById(1)));
-        }
-        var factory = new BeanFactory();
-        var bean = getUser(session);
+        var bean = getUser();
         var user = userRepository.getReferenceById(bean.getId());
 
         Item item = itemRepository.getReferenceById(itemId);
@@ -157,15 +135,11 @@ public class CartController {
      * @return
      */
     @PostMapping("/edit/complete/{itemId}")
-    public String editComplete(HttpSession session, @PathVariable Integer itemId, @RequestParam Integer quantity,
-            Model model) {
+    public String editComplete(@PathVariable Integer itemId,
+                @RequestParam Integer quantity, Model model) {
 
-        {
         var factory = new BeanFactory();
-        session.setAttribute("user", factory.createBean(userRepository.getReferenceById(1)));
-        }
-        var factory = new BeanFactory();
-        var bean = getUser(session);
+        var bean = getUser();
         var user = userRepository.getReferenceById(bean.getId());
 
         // カートの中からitemIdと同じIDを持つカートアイテムを探す
@@ -177,20 +151,14 @@ public class CartController {
             }
         }
 
-        Integer totalPrice = 0;
-        for (var item : factory.createBean(user).getCart()) {
-            totalPrice = totalPrice + item.getItem().getPrice() * item.getQuantity();
-        }
-
         user = userRepository.save(user);
 
         session.setAttribute("user", factory.createBean(user));
-        model.addAttribute("totalPrice", totalPrice);
 
         return "order/cart/list";
     }
 
-    private UserBean getUser(HttpSession session) {
+    private UserBean getUser() {
         var user = (UserBean) session.getAttribute("user");
 
         if (user == null)

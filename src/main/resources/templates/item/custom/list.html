@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
-th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +12,22 @@ th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, 
     <table>
         <thead>
             <tr>
-                <th>商品ID</th>
                 <th>商品名</th>
+                <th>生地</th>
+                <th>中身</th>
                 <th>値段</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="item: ${session.user.createdItems}">
-                <td th:text="${item.id}"></td>
-                <td th:text="${item.name}"></td>
-                <td th:text="${item.price}"></td>
+                <td>[[${item.name}]]</td>
+                <td>[[${item.bread.name}]]</td>
+                <td><span th:each="cream : ${item.creams}">
+                    [[${cream.name}]]
+                </span></td>
+                <td>[[${item.price}]]</td>
             </tr>
-        <tbody>
+        </tbody>
     </table>
     <a th:href="@{/user/home}">戻る</a>
     </div>

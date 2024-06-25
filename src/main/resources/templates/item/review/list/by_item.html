@@ -15,12 +15,12 @@
 </head>
 <body>
 	<h2>[[${item.name}]]ゑのロコミ</h2>
-	<img th:replace="~{/common/util::img(*{item.image}, *{item.name})}">
+	<img th:replace="~{common/util::img(*{item.image}, *{item.name})}">
 	<h3>口コミ</h3>
 	<div th:each="review : ${item.reviews}" th:object="${review}" style="display: flex; flex-flow: row nowrap;">
 		<div style="display: flex; flex-flow: column nowrap;">
 			<h4>[[*{poster.name}]]</h4>
-			<div th:replace="~{/common/util::stars(*{score})}"/>
+			<div th:replace="~{common/util::stars(*{score})}"/>
 			<p>[[*{#strings.substringBefore(description, '&#10;')}]]</p>
 		</div>
 	</div>

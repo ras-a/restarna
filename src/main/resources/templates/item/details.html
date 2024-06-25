@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
 <head th:fragment="head">
 	<style>
 		.yellow {
@@ -43,12 +43,12 @@ th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, 
 			<td>
 				<a th:href="|@{/item/cart/add/}${item.id}|">カートに入れる</a>
 			</td>
-			</tr>
-		</table>
+		</tr>
+	</table>
 	<p id="reviewTitle">レビュー</p>
 	<div class="review">
 
-		<form th:action="|@{/item/review/add/}*{id}|" method="post">
+		<form th:if="${session.user}" th:action="|@{/item/review/add/}*{id}|" method="post">
 			<style>
 				:where(.score_input) {
 					display: flex;
@@ -102,7 +102,7 @@ th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, 
 		
 	</div>
 		</div>
-		<div class="reviewRight"><img th:replace="~{/common/util::img(*{image}, *{name})}"/></div>
+		<div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}"/></div>
 	</div>
 </body>
 

@@ -1,5 +1,6 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
 import java.util.*;
 
 import jakarta.persistence.*;
@@ -8,7 +9,7 @@ import jp.co.creambakery.entity.keys.*;
 @Entity
 @IdClass(ReviewKey.class)
 @Table(name = "review")
-public class Review
+public class Review implements Serializable
 {
 	@Id
 	@ManyToOne
@@ -78,5 +79,10 @@ public class Review
 	}
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Review && poster == ((Review)obj).getPoster() && item == ((Review)obj).getItem();
 	}
 }

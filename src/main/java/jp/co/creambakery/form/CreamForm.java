@@ -1,8 +1,6 @@
 package jp.co.creambakery.form;
 
 public class CreamForm {
-    
-    private Integer id;
 
     private String name;
     
@@ -13,11 +11,6 @@ public class CreamForm {
     private String description;
 
     private Boolean deleted;
-
-    public Integer getId() 
-    {
-        return id;
-    }
 
     public String getName() 
     {
@@ -42,11 +35,6 @@ public class CreamForm {
     public Boolean getDeleted() 
     {
         return deleted;
-    }
-
-    public void setId(Integer id) 
-    {
-        this.id = id;
     }
 
     public void setName(String name) 

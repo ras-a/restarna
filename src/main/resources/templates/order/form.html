@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head>
   <meta charset="UTF-8">
@@ -53,20 +53,30 @@ th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, 
         <tr id="credit-card-row">
           <th>クレジットカード情報</th>
           <td>
-            <label class="card" th:each="card : ${session.user.creditCards}" th:for="|creditCard${card.id}|">
-              <input type="radio" th:field="*{creditCard}" th:value="${card.id}">
+            <label class="card" th:each="card : ${session.user.creditCards}" th:for="${#ids.next('creditCard')}">
+              <input type="radio" th:field="*{creditCard.id}" th:value="${card.id}">
               [[${card.name}]]<br>
               <span>...[[${#strings.substring(card.number, 12)}]]</span>
             </label>
           </td>
         </tr>
+        <tr th:if="${#fields.hasErrors('creditCard')}">
+          <td colspan="2">
+            <span class="error" th:errors="*{creditCard}"></span>
+          </td>
+        </tr>
         <tr>
           <th>住所</th>
           <td>
-            <label class="address" th:each="address : ${session.user.addresses}" th:for="|address${address.id}|">
-              <input type="radio" th:field="*{address}" th:value="${address.id}">
+            <label class="address" th:each="address : ${session.user.addresses}" th:for="${#ids.next('address')}">
+              <input type="radio" th:field="*{address.id}" th:value="${address.id}">
               [[${address.name}]]
             </label>
+          </td>
+        </tr>
+        <tr th:if="${#fields.hasErrors('address')}">
+          <td colspan="2">
+            <span class="error" th:errors="*{address}"></span>
           </td>
         </tr>
         <tr>
@@ -102,14 +112,14 @@ th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, 
       <th>価格</th>
       <th>個数</th>
     </tr>
-    <tr th:each="c : ${session.user.cart}">
-      <td th:text="${c.item.id}"></td>
-      <td th:text="${c.item.name}"></td>
-      <td th:text="${c.item.price}"></td>
-      <td th:text="${c.quantity}"></td>
+    <tr th:each="entry : ${session.user.cart}">
+      <td th:text="${entry.item.id}"></td>
+      <td th:text="${entry.item.name}"></td>
+      <td th:text="${entry.item.price}"></td>
+      <td th:text="${entry.quantity}"></td>
     </tr>
   </table>
-  <p th:text="'合計金額：'+${totalPrice}+'円'"></p>
+  <p th:text="|合計金額：${session.user.cartTotal}円|"></p>
 </body>
 
 </html>

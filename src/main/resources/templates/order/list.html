@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<body>
+	<h2>注文履歴</h2>
+	<div>
+	<ol>
+		<li th:each="order : ${session.user.orders}">
+			[[${order.price}]]
+			<ul>
+				<li th.each="entry : order.items">
+					[[${entry.item.name}]] [[${entry.count}]]
+				</li>
+			</ul>
+		</li>
+	</ol>
+	</div>
+</body>
+
+</html>

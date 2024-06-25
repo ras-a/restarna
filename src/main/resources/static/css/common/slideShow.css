@@ -48,11 +48,12 @@
     display: flex;
     width: 100%;
     overflow: hidden;
-opacity: 0.7;
+    opacity: 0.7;
     ul {
         padding: 0;
-        width: 100vw;
+        width: 100dvw;
         display: flex;
+        justify-content: space-around;
         flex-shrink: 0;
         margin: 0;
 
@@ -65,17 +66,16 @@ opacity: 0.7;
 
         li {
             display: inline-block;
-            width: 100%;
+            width: fit-content;
             min-width: 150px;
-            margin-right: 20px;
             list-style: none;
             text-align: center;
 
             img {
                 display: block;
-                width: 100%;
-                height: auto;
-                margin-top: 30px;
+                height: 200px;
+                margin: 10px 0;
+                margin-left: 0;
             }
         }
     }

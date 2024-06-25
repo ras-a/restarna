@@ -1,12 +1,15 @@
 package jp.co.creambakery.entity;
 
+import java.io.*;
+
 import jakarta.persistence.*;
 import jp.co.creambakery.entity.keys.*;
 
 @Entity
 @IdClass(FavoriteKey.class)
 @Table(name = "favorite")
-public class Favorite {
+public class Favorite implements Serializable
+{
 
     @Id
 	@ManyToOne
@@ -36,6 +39,8 @@ public class Favorite {
     }
     
 
-
-    
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Favorite && owner == ((Favorite)obj).getOwner() && item == ((Favorite)obj).getItem();
+	}
 }

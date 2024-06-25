@@ -114,4 +114,9 @@ public class Cream implements Serializable
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Cream && id == ((Cream)obj).getId();
+	}
 }
