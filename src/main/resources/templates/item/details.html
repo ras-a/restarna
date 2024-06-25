@@ -1,99 +1,109 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
-<head>
-	<title>商品詳細画面</title>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{/common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+<head th:fragment="head">
 	<style>
 		.yellow {
 			color: goldenrod;
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/item/details.css}" />
 </head>
-<body th:object="${item}">
-	<table>
-		<tr>
-			<th>商品名</th>
-			<td>[[*{name}]]</td>
-		</tr>
-		<tr>
-			<th>パン生地</th>
-			<td>[[*{bread.name}]]</td>
-		</tr>
-		<tr>
-			<th>発売日</th>
-			<td>[[*{dateCreated}]]</td>
-		</tr>
-		<tr>
-			<th>中身</th>
-			<td th:each="cream : *{creams}">
-				[[${cream.name}]]
-			</td>
-		</tr>
-		<tr>
-			<th>価格</th>
+<body>
+	
+	<div th:object="${item}" class="reviewHome">
+		<div class="reviewLeft">
+		<table>
+			<tr>
+				<th></th>
+				<td id="detailTitle">[[*{name}]]</td>
+			</tr>
+			<tr>
+				<th>パン生地</th>
+				<td id="detailInfo">[[*{bread.name}]]</td>
+			</tr>
+			<tr>
+				<th>中身</th>
+				<td th:each="cream : *{creams}" id="detailInfo">
+					[[${cream.name}]]
+				</td>
+			</tr>
+			<tr>
+				<th>発売日</th>
+				<td>[[*{dateCreated}]]</td>
+			</tr>
+			<tr>
+				<th>価格</th>
+				<td>
+					[[*{price}]]円
+				</td>
+			</tr>
+			<tr>
+				<th></th>
 			<td>
-				[[*{price}]]円
+				<a th:href="|@{/item/cart/add/}${item.id}|">カートに入れる</a>
 			</td>
-		</tr>
-	</table>
-	<img th:replace="~{/common/util::img(*{image}, *{name})}"/>
+			</tr>
+		</table>
+	<p id="reviewTitle">レビュー</p>
+	<div class="review">
 
-	<div th:each="review : *{reviews}">
-		<h4>[[${review.poster.name}]]</h4>
-		<span th:each="i: ${#numbers.sequence(1,5,1)}" th:classappend="${i <= review.score}? yellow" class="star">★</span>
-		<p>[[${#strings.arraySplit(review.description, '&:10;')[0]}]]</p>
-	</div>
-
-	<form th:action="|@{/item/review/add/}*{id}|" method="post">
-		<style>
-			:where(.score_input) {
-				display: flex;
-				flex-flow: row-reverse nowrap;
-				justify-content: start;
-
-				label {
-					color: gray;
-				}
-				:where(&:has(input:checked)) {
+		<form th:action="|@{/item/review/add/}*{id}|" method="post">
+			<style>
+				:where(.score_input) {
+					display: flex;
+					flex-flow: row-reverse nowrap;
+					justify-content: start;
+	
 					label {
-						color: black;
+						color: gray;
+					}
+					:where(&:has(input:checked)) {
+						label {
+							color: black;
+						}
 					}
 				}
-			}
-			:where(.elem:hover) {
-				label, ~.elem label {
-					color: color-mix(in oklab, goldenrod 50%, grey);
+				:where(.elem:hover) {
+					label, ~.elem label {
+						color: color-mix(in oklab, goldenrod 50%, grey);
+					}
 				}
-			}
-			.elem:has(:checked) {
-				& label, &~ .elem label {
-					color: goldenrod;
+				.elem:has(:checked) {
+					& label, &~ .elem label {
+						color: goldenrod;
+					}
 				}
-			}
-		</style>
-		
-		<div>
-			<p style="color: red;">
-				[[${errMsg}]]
-			</p>
-		</div>
-		<div class="score_input">
-			<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
-				<input 
-					type="radio"
-					th:id="|score${i}|"
-					name="score"
-					th:value="${i}"
-					hidden
-					/>
-				<label th:for="|score${i}|">
-					★
-				</label>
+			</style>
+
+
+			<div class="score_input">
+				<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
+					<input 
+						type="radio"
+						th:id="|score${i}|"
+						name="score"
+						th:value="${i}"
+						hidden
+						/>
+					<label th:for="|score${i}|">
+						★
+					</label>
+				</div>
 			</div>
+			<textarea name="description" ></textarea>
+			<input type="submit" value="登録">
+		</form>
+		
+		<div th:each="review : *{reviews}" id="userReview">
+			<h4>[[${review.poster.name}]]</h4>
+			<span th:each="i: ${#numbers.sequence(1,5,1)}" th:classappend="${i <= review.score}? yellow" class="star">★</span>
 		</div>
-		<textarea name="description" ></textarea>
-		<input type="submit" value="登録">
-	</form>
-	
+		
+	</div>
+		</div>
+		<div class="reviewRight"><img th:replace="~{/common/util::img(*{image}, *{name})}"/></div>
+	</div>
 </body>
 
 </html>

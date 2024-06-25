@@ -20,11 +20,14 @@
 </tr>
 	</thead>
 	<tbody>
-<tr th:each="cream:${creams}">
-	<td ><img th:src="@{'/static/img/' + ${cream.image}}" class="icon"></td>
-	<td th:text="${cream.name}"></td>
-	<td th:text="${cream.price}"></td>
-	<td></td>
+<tr th:each="cream:${creams}" onclick="this.children[0].submit()">
+	<form th:action="@{/item/filter}" method="post">
+		<input type="hidden" name="creams" th:value="${cream.id}">
+		<td ><img th:src="@{'/static/img/' + ${cream.image}}" class="icon"></td>
+		<td th:text="${cream.name}"></td>
+		<td th:text="${cream.price}"></td>
+		<td></td>
+	</form>
 </tr>
 	</tbody>
 </table>

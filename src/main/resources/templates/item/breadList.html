@@ -16,16 +16,20 @@
 				<th></th>
 				<th>商品名</th>
 				<th>値段</th>
-				<th>画像</th>
+				<th>追加日</th>
 			</tr>
 			</thead>
 			<tbody>
-			<tr th:each="bread:${breads}">
-				<td ><img th:src="@{'/static/img/' + ${bread.image}}" class="icon"></td>
-				<td th:text="${bread.name}"></td>
-				<td th:text="${bread.price}"></td>
-				<td></td>
-			</tr>
+				
+				<tr th:each="bread:${breads}" onclick="this.children[0].submit()">
+					<form th:action="@{/item/filter}" method="post">
+						<input type="hidden" name="bread" th:value="${bread.id}">
+						<td ><img th:src="|@{/static/img/}${bread.image}|" class="icon"></td>
+						<td th:text="${bread.name}"></td>
+						<td th:text="${bread.price}"></td>
+						<td></td>
+					</form>
+				</tr>
 			</tbody>
 		</table>
 	</div>

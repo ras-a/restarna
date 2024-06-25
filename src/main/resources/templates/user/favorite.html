@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{/common/layout :: sidebar(title='お気に入り', body=~{::body/content()}, head=~{:: head/content()})}">
 <head>
     <meta charset="UTF-8">
-    <title>お気に入り</title>
 </head>
 <body>
+    <div>
     <h2>あなたのお気に入り商品</h2>
 
     <table border="1">
@@ -16,6 +17,6 @@
         </tr>
     </table>
     <a th:href="@{/user/home}">戻る</a>
-
+</div>
 </body>
 </html>

@@ -23,7 +23,7 @@
 			<tr th:each="item:${items}">
 				
 				<td><img  th:src="@{'/static/img/' + ${item.image}}" class="icon"></td>
-				<td><a th:href="@{/user/home}" th:text="${item.name}"></a></td>
+				<td ><a th:href="@{'/item/'+${item.id}}" th:text="${item.name}"></a></td>
 				<td th:text="${item.price}"></td>
 				<!-- <td th:text="${dateCreated}"></td> -->
 				<td></td>
