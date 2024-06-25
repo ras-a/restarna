@@ -68,6 +68,48 @@ INSERT INTO customer(
 	'2022-04-08'
 );
 
+INSERT INTO customer(
+	id,
+	name,
+	reading,
+	password,
+	email,
+	date_created
+) VALUES (
+	customer_seq.nextval,
+	'次郎',
+	'じろう',
+	'zhioo',
+	'z@mail.com',
+	'2022-04-09'
+);
+
+INSERT INTO customer(
+	id,
+	name,
+	reading,
+	password,
+	email,
+	date_created
+) VALUES (
+	customer_seq.nextval,
+	'三郎',
+	'さぶろう',
+	'saburo',
+	'3@mail.com',
+	'2022-03-03'
+);
+INSERT INTO item(id, name, reading, bread, description, date_created) VALUES (item_seq.nextval, '抹茶クロワッサン', 'まっちゃくろわっさん', (SELECT id FROM bread WHERE name = 'クロワッサン生地'), 'クロワッサンの中に抹茶をぶちこみました', '2024-05-13');
+INSERT INTO item_cream VALUES (6, 5);
+INSERT INTO custom_item VALUES (6, 2, 0);
+
+INSERT INTO item(id, name, reading, bread, description, date_created) VALUES (item_seq.nextval, '高カロリー食パン', 'こうかろりーしょくぱん', (SELECT id FROM bread WHERE name = '食パン生地'), '太りたいかたにオススメ', '2022-05-13');
+INSERT INTO item_cream VALUES (7, 1);
+INSERT INTO item_cream VALUES (7, 4);
+INSERT INTO item_cream VALUES (7, 6);
+INSERT INTO custom_item VALUES (7, 2, 0);
+
+
 INSERT INTO review(
 	poster,
 	item,
