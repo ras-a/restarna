@@ -12,6 +12,13 @@
         <a th:href="@{/item/cream/list}">クリーム一覧</a>
         <a th:href="@{/item/bread/list}">パン一覧</a>
         <a th:href="@{/item/list}">カスタムパン一覧</a>
+        <a th:href="@{/item/item/list}">カスタムパン一覧</a>
+        <a th:href="@{/user/favorite}">お気に入り</a>
+        <a th:href="@{/item/custom/input}">カスタム追加</a>
+        <a th:href="@{'/item/custom/' + ${session.user.id}}">マイカスタム</a>
+        <a th:href="@{/item/cart/list}">カート一覧</a>
+        <a th:href="@{/item/order/form}">注文画面へ</a>
+        <a th:href="@{/user/details}">ユーザ情報へ</a>
     </div>
 </body>
 

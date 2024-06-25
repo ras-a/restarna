@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: sidebar(title='退会', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cartList.css}" />
+</head>
+
+<body>
+    <h1 style="color:black">退会手続きは完了しました。ご利用ありがとうございました。</h1>
+    <p><a th:href="@{/user/login}">
+        <button type="button">ログイン画面へ</button>
+    </a></p>
+</body>
+
+</html>

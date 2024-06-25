@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: sidebar(title='退会', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cartList.css}" />
+</head>
+
+<body>
+    <h1 style="color:red">本当に退会しますか？</h1>
+    <p><a th:href="@{/user/delete/complete}">
+        <button type="button">する</button>
+    </a></p>
+    <p><a th:href="@{/user/home}">
+        <button type="button">しない</button>
+    </a></p>
+</body>
+
+</html>
