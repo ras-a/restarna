@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{common/layout :: minimal(title='ログイン', body=~{::body/content()}, head=~{:: head/content()})}"
-	>
+	th:replace="~{common/layout :: minimal(title='ログイン', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head>
 	<link rel="stylesheet" type="text/css" th:href="@{/static/css/login.css}" />
@@ -10,42 +9,41 @@
 <body class="user_login">
 	<div class="user_container">
 		<h2 th:class="page_title">ログイン</h2>
-		<!-- メールアドレスとパスワードを入力してください<br> -->
-			
-			<form th:action="@{login}" method="post" class="login_form" th:object="${form}">
-				<!-- <th:block th:if="${#fields.hasErrors()}">
-				<div class="error_list">
-					<ul>
-						<li th:each="err:${#fields.detailedErrors()}" th:text="${err.message}"></li>
-					</ul>
-					<br />v class="login_content">
-			
-				</div>
-				</th:block> -->
-				<table>
-					<tbody>
-						<tr>
-							<th th:class="label" >メールアドレス</th>
-							<td class="input"><input type="text" th:field="*{email}"/></td>
-						</tr>
-						<tr>
-							<th th:class="label" >パスワード</th>
-							<td class="input"><input type="password" th:field="*{password}"/></td>
-						</tr>
-						<tr>
-							<th class="label"></th>
-							<td class="inputButton"><input type="submit" th:value="ログイン" /></td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
-
-		</div>
-	
-	<!-- <p class="complete_link">
-		<a th:href="@{/}" >トップへ戻る</a>
-	</p> -->
-
+		<form th:action="@{login}" method="post" class="login_form" th:object="${form}">
+			<!-- <p style="color: red;" class="loginError" th:text="${errMessage}"></p>	 -->
+			<table>
+				<tbody>
+					<tr>
+						<td colspan="2">
+							<p style="color:red" class="loginError" th:text="${errMessage}"></p>
+						</td>
+					</tr>
+					<tr>
+						<th th:class="label">メールアドレス</th>
+						<td class="input"><input type="text" th:field="*{email}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p style="color:red" class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+						</td>
+					</tr>
+					<tr>
+						<th th:class="label">パスワード</th>
+						<td class="input"><input type="password" th:field="*{password}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p style="color:red" class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+						</td>
+					</tr>
+					<tr>
+						<th class="label"></th>
+						<td class="inputButton"><input type="submit" th:value="ログイン" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
 </body>
 
 </html>
