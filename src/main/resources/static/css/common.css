@@ -51,7 +51,7 @@ body {
 
 div{
     color: rgb(0, 0, 0);
-    height: 100%;
+    height: auto;
     width: 100%;
 }
 

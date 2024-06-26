@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+th:replace="~{common/layout :: sidebar(title='カート追加', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head>
     <meta charset="UTF-8">
-    <title>カート追加</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cart/add.css}" />
 </head>
 
 <body>
-    <div id="cart" th:object="${item}">
-        <p>カートに追加</p>
+    <div id="cart-add" th:object="${item}">
+        <p class="add-title">カートに追加</p>
+
+<div class="add-body">
         <p th:text="'商品名：'+*{name}"></p>
         <p th:text="'値段：'+*{price}+'円'"></p>
         <form th:action="|@{/item/cart/add/}*{id}|" method="post">
@@ -20,12 +22,16 @@ th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, h
                         <option th:value="${i}" th:text="${i}"></option>
                     </th:block>
                 </select>
+                <dir class="add-button">
                 <button type="submit">追加</button>
             </p>
         </form>
-        <p><a th:href="|@{/item/detail/}*{id}|">
+        <a th:href="|@{/item/}*{id}|">
                 <button type="button">戻る</button>
-            </a></p>
+            </a>
+</div>
+</div>
+
     </div>
 </body>
 

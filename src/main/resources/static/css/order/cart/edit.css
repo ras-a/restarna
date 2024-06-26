@@ -1,0 +1,21 @@
+.cart-info{
+    background-color: rgb(214, 223, 227);
+    padding-top: 30px;
+    padding-left: 20px;
+}
+.edit-title{
+    font-size: 36px;
+margin-bottom: 17px;
+}
+.edit-body{
+    text-align: center;
+    font-family: 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', '游明朝','Yu Mincho', '游明朝体', 'YuMincho','ＭＳ Ｐ明朝', 'MS PMincho', serif;
+    font-size: 20px;
+}
+.edit-button{
+    width: 100%;
+    text-align: center;
+}
+.edit-button button{
+    text-align: center;
+}
