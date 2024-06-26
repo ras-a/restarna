@@ -16,7 +16,9 @@
 <body>
 	<h2>[[${poster.name}]]さんのロコミ</h2>
 	<div th:each="review : ${poster.reviews}" th:object="${review}" style="display: flex; flex-flow: row nowrap;">
-		<img th:replace="~{common/util::img(*{item})}">
+		<th:block th:if="${#strings.contains(item.getClass(),'StoreItemBean')}">
+			<img th:replace="~{common/util::img(*{item})}">
+		</th:block>
 		<div style="display: flex; flex-flow: column nowrap;">
 			<h4>[[*{item.name}]]</h4>
 			<div th:replace="~{common/util::stars(*{score})}"/>

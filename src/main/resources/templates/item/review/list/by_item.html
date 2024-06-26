@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"
-th:replace="~{/common/layout :: sidebar(title='口コミ', body=~{::body/content()}, head=~{:: head/content()})}">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<title>口コミ</title>
 	
 	<style>
 		img {
@@ -15,7 +15,9 @@ th:replace="~{/common/layout :: sidebar(title='口コミ', body=~{::body/content
 </head>
 <body>
 	<h2>[[${item.name}]]ゑのロコミ</h2>
-	<img th:replace="~{common/util::img(*{item.image}, *{item.name})}">
+	<th:block th:if="${#strings.contains(item.getClass(),'StoreItemBean')}">		
+		<img th:replace="~{common/util::img(*{item})}">
+	</th:block>
 	<h3>口コミ</h3>
 	<div th:each="review : ${item.reviews}" th:object="${review}" style="display: flex; flex-flow: row nowrap;">
 		<div style="display: flex; flex-flow: column nowrap;">

@@ -8,6 +8,7 @@ th:replace="~{common/layout :: sidebar(title='Document', body=~{::body/content()
 </head>
 <body>
     <div id="customList">
+    <th:block th:unless="${#lists.isEmpty(session.user.createdItems)}">
     <h1>[[${session.user.name}]]さんのカスタム商品</h1>
     <table>
         <thead>
@@ -16,6 +17,7 @@ th:replace="~{common/layout :: sidebar(title='Document', body=~{::body/content()
                 <th>生地</th>
                 <th>中身</th>
                 <th>値段</th>
+                <th>編集</th>
             </tr>
         </thead>
         <tbody>
@@ -26,10 +28,31 @@ th:replace="~{common/layout :: sidebar(title='Document', body=~{::body/content()
                     [[${cream.name}]]
                 </span></td>
                 <td>[[${item.price}]]</td>
+                <td>    
+                    <a th:href="@{'/item/custom/edit/'+ ${item.id}}">編集</a>
+                </td>
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/user/home}">戻る</a>
+    <div id="cart">
+        <a th:href="@{/item/custom/input}">
+            <button>
+                カスタム追加
+            </button>
+        </a>
+    </div>
+</th:block>
+    <th:block th:if="${#lists.isEmpty(session.user.createdItems)}">
+        <div id="cart">
+            <h1>カスタムはありません</h1>
+            
+            <a th:href="@{/item/custom/input}">
+                <button>
+                    カスタム追加
+                </button>
+            </a>
+        </div>
+    </th:block>
     </div>
 </body>
 </html>

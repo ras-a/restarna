@@ -22,10 +22,14 @@
 			</thead>
 			<tbody>
 			<tr th:each="item : ${items}">
-				<td><img th:replace="~{common/util::img(item=${item}, class='icon')}" ></td>
+				<td>
+					<th:block th:if="${#strings.contains(item.getClass(),'StoreItemBean')}">
+						<img th:replace="~{common/util::img(item=${item}, class='icon')}"/>
+					</th:block>
+				</td>
 				<td><a th:href="@{'/item/'+${item.id}}">[[${item.name}]]</a></td>
 				<td>[[${item.price}]]</td>
-				<td>
+				<td th:if="${session.user}">
 					<a th:if="${#lists.contains(session.user?.favorites.![id], item.id)}" style="color: pink;"
 						th:href="@{'/user/favorite/cancel/list/'+${item.id}}">♥</a>
 					<a th:unless="${#lists.contains(session.user?.favorites.![id], item.id)}"
