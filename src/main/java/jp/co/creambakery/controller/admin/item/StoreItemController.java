@@ -22,7 +22,7 @@ public class StoreItemController {
     public String getStoreItemList(Model model)
     {
         BeanFactory factory = new BeanFactory();
-        var entity = repository.findAllNotDeletedByStoreIsNotNull();
+        var entity = repository.findAllStoreItems();
         var items = factory.createItemList(entity);
         model.addAttribute("items", items);
         return "admin/item/storeItem/list";
