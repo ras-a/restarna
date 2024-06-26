@@ -11,12 +11,12 @@
     border-collapse: collapse;
     margin: 0 auto;
     padding: 0;
-    width: 940px;
+    width: 750px;
         box-shadow: 0 0 15px -6px #00000073;
     margin-bottom: 40px;
 
     tr {
-      font-size: 20px;
+      font-size: 30px;
     }
 
     thead {
@@ -55,7 +55,7 @@
 
     th,
     td {
-      padding: 12px 5px 12px 5px;
+      padding: .15em 1em;
     }
     tr {
       border-bottom: 1px solid #eee;

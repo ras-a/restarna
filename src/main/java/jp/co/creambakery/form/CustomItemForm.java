@@ -1,14 +1,45 @@
 package jp.co.creambakery.form;
 
 import java.util.*;
-
 import jp.co.creambakery.entity.*;
+
 public class CustomItemForm {
     private String name;
     private String reading;
     private String description;
     private Bread bread;
     private List<Cream> creams;
+
+    public void populateWith(CustomItem entity)
+    {
+        populateWith(entity.getItem());
+    }
+
+    public void populateWith(Item entity)
+    {
+        name = entity.getName();
+        reading = entity.getReading();
+        description = entity.getDescription();
+        bread = entity.getBread();
+        creams = entity.getCreams();
+    }
+
+    public void populate(CustomItem entity)
+    {
+        populate(entity.getItem());
+    }
+    
+	public void populate(Item entity)
+	{
+		if (name != null)
+			entity.setName(name);
+		if (reading != null)
+			entity.setReading(reading);
+		if (bread != null)
+			entity.setBread(bread);
+		if (creams != null)
+			entity.setCreams(creams);
+	}
 
     public String getName() {
         return name;

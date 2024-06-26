@@ -8,8 +8,6 @@ import jp.co.creambakery.bean.*;
 import jp.co.creambakery.form.*;
 import jp.co.creambakery.repository.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 @RequestMapping("/list")
@@ -24,7 +22,7 @@ public class ListController {
 	@GetMapping
 	public String list(Model model) {
 		BeanFactory factory = new BeanFactory();
-		model.addAttribute("items", factory.createItemList(itemRepository.findAllStoreItems()));
+		model.addAttribute("items", factory.createItemList(itemRepository.findAll()));
 		return "item/list";
 	}
 
