@@ -14,7 +14,7 @@ th:replace="~{common/layout :: sidebar(title='カート内容', body=~{::body/co
             <table  id="keywords" cellspacing="0" cellpadding="0">
                 <thead>
                 <tr>
-                    <th>商品番号</th>
+                    <th></th>
                     <th>商品名</th>
                     <th>価格</th>
                     <th>個数</th>
@@ -22,8 +22,8 @@ th:replace="~{common/layout :: sidebar(title='カート内容', body=~{::body/co
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="c : ${session.user.cart}">
-                    <td th:text="${c.item.id}"></td>
+                <tr th:each="c : ${session.user.cart}" th:if="${c.quantity > 0}">
+                    <td><img th:replace="~{common/util::img(src=${c.item.image}, alt=${c.item.name}, class='icon')}" ></td>
                     <td th:text="${c.item.name}"></td>
                     <td th:text="${c.item.price}"></td>
                     <td th:text="${c.quantity}"></td>
