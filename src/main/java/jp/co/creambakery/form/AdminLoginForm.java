@@ -1,10 +1,9 @@
 package jp.co.creambakery.form;
 
 import jakarta.validation.constraints.*;
-public class AdminLoginForm
-{
-	private String name;
-	@Pattern(regexp = "^[0-9a-zA-Z]+$", message = "")
+public class AdminLoginForm {
+    private String name;
+	@Pattern(regexp = "^[0-9a-zA-Z]+$")
 	@Size(max = 16)
 	private String password;
 

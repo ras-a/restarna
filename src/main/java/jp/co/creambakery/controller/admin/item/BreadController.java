@@ -31,7 +31,8 @@ public class BreadController
     }
 
     @GetMapping("/update/{id}")
-	public String getBreadupdate(@PathVariable Integer id, Model model)
+	public String getBreadupdate(@PathVariable Integer id, Model model, @ModelAttribute
+    BreadForm form)
     {
         BeanFactory factory = new BeanFactory();
         var entity = repository.getReferenceById(id);
@@ -41,8 +42,7 @@ public class BreadController
 	}
 
     @PostMapping("/update")
-    public String postBreadUpdate(Integer id, @Valid @ModelAttribute
-                                BreadForm form,BindingResult result)
+    public String postBreadUpdate(Integer id, @Valid @ModelAttribute BreadForm form,BindingResult result)
     {
         Bread bread = repository.getReferenceById(id);
         BeanUtils.copyProperties(form, bread, "id", "deleted");

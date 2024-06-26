@@ -1,10 +1,18 @@
 package jp.co.creambakery.form;
 
-public class ItemForm {
+import jakarta.validation.constraints.*;
 
+public class ItemForm {
+    @NotBlank
+    @Size(max = 100)
     private String name;
+    @NotBlank
+    @Size(max = 100)
     private String reading;
+    @NotBlank
+    @Size(max = 400)
     private String description;
+    @NotNull
     private Integer price;
     public String getName() {
         return name;

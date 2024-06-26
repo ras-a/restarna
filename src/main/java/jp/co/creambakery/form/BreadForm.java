@@ -1,23 +1,21 @@
 package jp.co.creambakery.form;
 
+import jakarta.validation.constraints.*;
+
 public class BreadForm {
-
-    private Integer id;
-
+    @NotBlank
+    @Size(max = 100)
     private String name;
-    
+    @NotBlank
+    @Size(max = 100)
     private String reading;
-
+    @NotNull
     private Integer price;
-
+    @NotBlank
+    @Size(max = 400)
     private String description;
 
     private Boolean deleted;
-
-    public Integer getId() 
-    {
-        return id;
-    }
 
     public String getName() 
     {
@@ -42,12 +40,6 @@ public class BreadForm {
     public Boolean getDeleted() 
     {
         return deleted;
-    }
-
-    
-    public void setId(Integer id) 
-    {
-        this.id = id;
     }
 
     public void setName(String name) 
