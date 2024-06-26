@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="~{common/layout :: sidebar(title='お気に入り', body=~{::body/content()}, head=~{:: head/content()})}">
+    th:replace="~{common/layout :: sidebar(title='お気に入り', body=~{::body/content()}, head=~{:: head/content()})}">
 <head>
     <meta charset="UTF-8">
 </head>
-<body>
-    <div>
-    <h2>あなたのお気に入り商品</h2>
 
-    <table border="1">
-        <tr>
-            <th>商品id</th>
-            <th>商品名</th>
-            <th>価格</th>
-        </tr>
-        <tr th:each="favorite : ${session.user.favorites}">
-            <td th:text="${favorite.id}"></td>
-            <td th:text="${favorite.name}"></td>
-            <td th:text="${favorite.price}"></td>
-        </tr>
-    </table>
-    <a th:href="@{/user/home}">戻る</a>
-</div>
+<body class="list">
+    <div id="itemTable">
+        <h1>お気に入り商品</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>商品名</th>
+                    <th>価格</th>
+                    <th>お気に入り解除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="favorite : ${session.user.favorites}">
+                    <td><img th:src="@{'/static/img/' + ${favorite.image}}" class="icon"></td>
+                    <td th:text="${favorite.name}"></td>
+                    <td th:text="${favorite.price}"></td>
+                    <td><a th:href="@{'/user/favorite/cancel/'+${favorite.id}}" style="color:pink">♥</a></td>
+                </tr>
+        </table>
+        </tbody>
+        <p>※画像はイメージです。実際の商品とは異なる場合がございます。</p>
+        <a th:href="@{/user/home}">
+            <button type="button">トップへ</button>
+        </a>
+    </div>
 </body>
+
 </html>
