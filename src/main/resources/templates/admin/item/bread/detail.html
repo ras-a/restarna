@@ -14,7 +14,7 @@
 
 <div>
     <h1 th:text="${bread.name}"></h1>
-    <div th:if="${session.admin.system == 1}">
+    <div th:if="${session.admin.system}">
     <a th:href="@{/admin/bread/update/} + ${bread.id}">更新する</a>
     <form th:action="@{/admin/bread/delete}" method="post">
         <input type="hidden" th:value="${bread.id}" th:name="id">
