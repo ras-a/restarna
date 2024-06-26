@@ -138,6 +138,8 @@ public class UserBean implements Serializable
 	}
 
 	public List<ItemBean> getFavorites() {
+		if (favorites == null)
+			favorites = new ArrayList<>();
 		return favorites;
 	}
 

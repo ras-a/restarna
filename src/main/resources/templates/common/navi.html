@@ -10,7 +10,7 @@
 		<li><a th:href="@{/item/list/filter}" th:text="検索"></a></li>
 		<li><a th:href="@{/item/cart/list}" th:text="買い物かご"></a></li>
 		<li><a th:href="@{/item/custom/input }" th:text="カスタム追加"></a></li>
-		<li><a th:href="@{'/item/custom/' + ${session.user.id}}" th:text="マイカスタム"></a></li>
+		<li th:if="${session.user}"><a th:href="@{'/item/custom/' + ${session.user.id}}" th:text="マイカスタム"></a></li>
 	</ul>
 </body>
 
