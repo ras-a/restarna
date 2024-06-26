@@ -47,8 +47,6 @@ public class LoginController
 		Admin admin = repository.findByNameAndPassword(name, password);
 		if (admin != null) 
 		{
-			session.setAttribute("adminId", admin.getId());
-			session.setAttribute("system", admin.getSystem());
 			session.setAttribute("admin", factory.createBean(admin));
 			return "redirect:/admin/";
 		}else
