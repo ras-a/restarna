@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/adminlayout :: minimal(title='既存商品更新', body=~{::body/content()}, head=~{:: head/content()})}"
+    >
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +10,7 @@
 </head>
 
 <body>
+    <div>
     <h1>既存商品変更</h1>
     <form th:action="@{/admin/store/update}" method="post" >
 
@@ -28,4 +31,5 @@
         </div>
         
     </form>
+</div>
 </body>

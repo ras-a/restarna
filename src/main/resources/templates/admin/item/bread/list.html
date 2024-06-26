@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<ht xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/adminlayout :: minimal(title='生地一覧', body=~{::body/content()}, head=~{:: head/content()})}"
+    >
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +9,8 @@
     <title>生地一覧</title>
 </head>
 
-<body>
+<body class="breadList">
+	<div id="itemTable">
     <table>
         <thead>
             <tr>
@@ -31,6 +34,7 @@
             </tr>
         <tbody>
     </table>
+</div>
 
 
 </body>

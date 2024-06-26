@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/adminlayout :: minimal(title='会員変更完了', body=~{::body/content()}, head=~{:: head/content()})}"
+    >
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>会員変更完了</title>
 </head>
+
 <body>
-    <h1>処理が完了しました。</h1>
-    <a href="/admin/user/list">一覧へ戻る</a>
+    <div>
+        <h1>処理が完了しました。</h1>
+        <a href="/admin/user/list">一覧へ戻る</a>
+    </div>
 </body>
+
 </html>

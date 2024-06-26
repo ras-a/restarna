@@ -1,0 +1,35 @@
+<!-- アドミン用 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="minimal(title,body)">
+
+<head>
+    <meta th:replace="~{common/footer::head}" />
+    <meta th:replace="~{common/adminHeader::head}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
+    <title th:text="${title}"></title>
+    <th:block th:if="${head}" th:replace="${head}" />
+</head>
+
+
+
+
+<body th:classappend="${session.admin} ? non-user">
+    <!--/* ヘッダー */-->
+    <header>
+        <div th:replace="~{common/adminHeader ::  ${session.admin}? user: non-user}"></div>
+    </header>
+
+    <!--/* メイン */-->
+    <article class="main">
+        <div th:replace="${body}"></div>
+    </article>
+
+    <!--/* フッター */-->
+    <footer>
+        <div th:replace="~{common/footer :: footer}"></div>
+    </footer>
+</body>
+
+</html>

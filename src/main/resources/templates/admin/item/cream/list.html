@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/adminlayout :: minimal(title='クリーム一覧', body=~{::body/content()}, head=~{:: head/content()})}"
+    >
+
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +11,7 @@
 </head>
 
 <body>
+    <div>
     <table>
         <thead>
             <tr>
@@ -26,6 +30,7 @@
             </tr>
         <tbody>
     </table>
+</div>
 </body>
 
 </html>

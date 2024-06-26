@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/common/adminHeader.css}" />
+</head>
+
+<body>
+    <th:block th:if="${session.admin != null}" th:fragment="user">
+        <div class="horizontal">
+            <h1><a th:href="@{/user/home}"><img th:src="@{/static/img/view/title.png}" alt="" width="300px"></a></h1>
+            <div class="user_info">
+                <a th:href="@{/admin}">ホーム</a>
+                | <a th:href="@{/admin/user/list}">会員一覧</a>
+                | <a th:href="@{/admin/bread/list}">生地一覧</a>
+                | <a th:href="@{/admin/store/list}">既存商品一覧</a>
+                | <a th:href="@{/admin/cream/list}">クリーム一覧</a>
+                | <a th:href="@{/admin/login/logout}">ログアウト</a>
+
+            </div>
+        </div>
+    </th:block>
+    <th:block th:if="${session.admin == null}" th:fragment="non-user">
+        <div class="horizontal">
+            <h1><a th:href="@{/user/home}"><img th:src="@{/static/img/view/title.png}" alt="" width="300px"></a></h1>
+            <div class="user_info">
+                <a th:href="@{/admin/login}">ログイン</a>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+</html>
