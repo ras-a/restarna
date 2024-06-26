@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+th:replace="~{common/layout :: sidebar(title='カスタム追加', body=~{::body/content()}, head=~{:: head/content()})}">
 <head>
-  <title>カスタム追加</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/item/custom/input.css}" />
 </head>
 <body>
+  <div class="customBody">
+
+    <h1>カスタム追加</h1>
+
   <form th:action="@{/item/custom/input}" method="post" th:object="${customItemForm}">
     パンを選んでください<br>
     <select th:field="*{bread}">
       <option th:each="bread: ${breads}" th:value="${bread.id}" th:text="${bread.name}"></option>
     </select><br>
 クリームを選んでください<br>
-<div th:each="cream : ${creams}">
+
+<div class="customInput">
+<th:block th:each="cream : ${creams}" class="customList">
   <input type="checkbox" th:value="${cream.id}" th:field="*{creams}">
-  <label th:for="|creams${cream.id}|">[[${cream.name}]]</label><br/>
+  <label th:for="|creams${cream.id}|">[[${cream.name}]]</label>
+  </th:block><br>
 </div>
+
 名前<br>
 <input type="text" maxlength="10" placeholder="１０文字以内で入力" th:field="*{name}"><br>
 読み<br>
@@ -23,6 +31,6 @@ th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, h
 <input type="text" maxlength="10" placeholder="１０文字以内で入力" th:field="*{description}"><br>
 <input type="submit" value="登録">
   </form>
- 
+  </div>
 </body>
 </html>

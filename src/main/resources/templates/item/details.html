@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+
 <head th:fragment="head">
 	<style>
 		.yellow {
@@ -9,100 +10,104 @@ th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, h
 	</style>
 	<link rel="stylesheet" type="text/css" th:href="@{/static/css/item/details.css}" />
 </head>
+
 <body>
-	
+
 	<div th:object="${item}" class="reviewHome">
 		<div class="reviewLeft">
-		<table>
-			<tr>
-				<th></th>
-				<td id="detailTitle">[[*{name}]]</td>
-			</tr>
-			<tr>
-				<th>パン生地</th>
-				<td id="detailInfo">[[*{bread.name}]]</td>
-			</tr>
-			<tr>
-				<th>中身</th>
-				<td th:each="cream : *{creams}" id="detailInfo">
-					[[${cream.name}]]
-				</td>
-			</tr>
-			<tr>
-				<th>発売日</th>
-				<td>[[*{dateCreated}]]</td>
-			</tr>
-			<tr>
-				<th>価格</th>
-				<td>
-					[[*{price}]]円
-				</td>
-			</tr>
-			<tr>
-				<th></th>
-			<td>
-				<a th:href="|@{/item/cart/add/}${item.id}|">カートに入れる</a>
-			</td>
-		</tr>
-	</table>
-	<p id="reviewTitle">レビュー</p>
-	<div class="review">
+			<table>
+				<tr>
+					<th></th>
+					<td id="detailTitle">[[*{name}]]</td>
+				</tr>
+				<tr>
+					<th>パン生地</th>
+					<td id="detailInfo">[[*{bread.name}]]</td>
+				</tr>
+				<tr>
+					<th>中身</th>
+					<td th:each="cream : *{creams}" id="detailInfo">
+						[[${cream.name}]]
+					</td>
+				</tr>
+				<tr>
+					<th>発売日</th>
+					<td>[[*{dateCreated}]]</td>
+				</tr>
+				<tr>
+					<th>価格</th>
+					<td>
+						[[*{price}]]円
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						<a th:href="|@{/item/cart/add/}${item.id}|">カートに入れる</a>
+						<a href=""></a>
+					</td>
+				</tr>
+			</table>
+			<p id="reviewTitle">レビュー</p>
+			<div class="review">
 
-		<form th:if="${session.user}" th:action="|@{/item/review/add/}*{id}|" method="post">
-			<style>
-				:where(.score_input) {
-					display: flex;
-					flex-flow: row-reverse nowrap;
-					justify-content: start;
-	
-					label {
-						color: gray;
-					}
-					:where(&:has(input:checked)) {
-						label {
-							color: black;
+				<form th:if="${session.user}" th:action="|@{/item/review/add/}*{id}|" method="post">
+					<style>
+						:where(.score_input) {
+							display: flex;
+							flex-flow: row-reverse nowrap;
+							justify-content: start;
+
+							label {
+								color: gray;
+							}
+
+							:where(&:has(input:checked)) {
+								label {
+									color: black;
+								}
+							}
 						}
-					}
-				}
-				:where(.elem:hover) {
-					label, ~.elem label {
-						color: color-mix(in oklab, goldenrod 50%, grey);
-					}
-				}
-				.elem:has(:checked) {
-					& label, &~ .elem label {
-						color: goldenrod;
-					}
-				}
-			</style>
+
+						:where(.elem:hover) {
+
+							label,
+							~.elem label {
+								color: color-mix(in oklab, goldenrod 50%, grey);
+							}
+						}
+
+						.elem:has(:checked) {
+
+							& label,
+							&~.elem label {
+								color: goldenrod;
+							}
+						}
+					</style>
 
 
-			<div class="score_input">
-				<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
-					<input 
-						type="radio"
-						th:id="|score${i}|"
-						name="score"
-						th:value="${i}"
-						hidden
-						/>
-					<label th:for="|score${i}|">
-						★
-					</label>
+					<div class="score_input">
+						<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
+							<input type="radio" th:id="|score${i}|" name="score" th:value="${i}" hidden />
+							<label th:for="|score${i}|">
+								★
+							</label>
+						</div>
+					</div>
+					<textarea name="description"></textarea>
+					<input type="submit" value="登録">
+				</form>
+
+				<div th:each="review : *{reviews}" id="userReview">
+					<h4>[[${review.poster.name}]]</h4>
+					<span th:each="i: ${#numbers.sequence(1,5,1)}" th:classappend="${i <= review.score}? yellow"
+						class="star">★</span>
 				</div>
+
 			</div>
-			<textarea name="description" ></textarea>
-			<input type="submit" value="登録">
-		</form>
-		
-		<div th:each="review : *{reviews}" id="userReview">
-			<h4>[[${review.poster.name}]]</h4>
-			<span th:each="i: ${#numbers.sequence(1,5,1)}" th:classappend="${i <= review.score}? yellow" class="star">★</span>
 		</div>
-		
-	</div>
-		</div>
-		<div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}"/></div>
+		<div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}" /></div>
 	</div>
 </body>
 

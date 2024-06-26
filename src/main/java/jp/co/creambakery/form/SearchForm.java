@@ -9,6 +9,13 @@ public class SearchForm {
 	private List<Cream> creams;
 	private Integer sortBy;
 	private Boolean asc;
+
+	public SearchForm()
+	{
+		creams = new ArrayList<>();
+		sortBy = 0;
+	}
+
 	public String getName() {
 		return name;
 	}

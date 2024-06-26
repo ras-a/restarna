@@ -22,7 +22,7 @@
 			<tbody>
 				
 				<tr th:each="bread:${breads}" onclick="this.children[0].submit()">
-					<form th:action="@{/item/filter}" method="post">
+					<form th:action="@{/item/list/filter}" method="post">
 						<input type="hidden" name="bread" th:value="${bread.id}">
 						<td ><img th:src="|@{/static/img/}${bread.image}|" class="icon"></td>
 						<td th:text="${bread.name}"></td>

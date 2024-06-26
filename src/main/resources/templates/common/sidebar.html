@@ -32,36 +32,15 @@
 		</div>
 		<div class="offcanvas-body">
 			<div>
-				
+				<p id="sideList"><a th:href="@{/user/favorite}" >お気に入り</a></p>
+				<p id="sideList"><a th:href="@{/item/list}">商品一覧</a></p>
 				<p id="sideList"><a th:href="@{/item/list/cream}">クリーム一覧</a></p>
 				<p id="sideList"><a th:href="@{/item/list/bread}">生地一覧</a></p>
 				<p id="sideList"><a th:href="@{/item/list/custom}">カスタム一覧</a></p>
-
 			</div>
 		</div>
 	</div>
 
-	<!--/* メニュー(運用管理者、及びシステム管理者用) */-->
-    
-	<!--/* <div th:if="${session.user != null and session.user.authority != 2}">
-
-		<h2 th:class="title" th:text="#{admin.menu}"></h2>
-		<ul class="menu">
-			<li>
-				<a th:href="@{/admin/user/list}" th:class="display_list" th:text="#{admin.menu.user.list}"></a>
-			</li>
-			<li th:if="${session.user.authority == 1}">
-				<a th:href="@{/admin/order/list}" th:class="display_list" th:text="#{admin.menu.order.list}"></a>
-			</li>
-			<li th:if="${session.user.authority == 1}">
-				<a th:href="@{/admin/item/list}" th:class="display_list" th:text="#{admin.menu.item.list}"></a>
-			</li>
-			<li th:if="${session.user.authority == 1}">
-				<a th:href="@{/admin/category/list}" th:class="display_list" th:text="#{admin.menu.category.list}"></a>
-			</li>
-		</ul>
-	</div>
- */-->
 </aside>
 </body>
 </html>

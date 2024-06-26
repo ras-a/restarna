@@ -7,10 +7,10 @@
 
 <body>
 	<ul th:fragment="bar" th:class="navi_menu">
-		<li><a th:href="@{/user/home}" th:text="トップ"></a></li>
-		<li><a th:href="@{/item/list}" th:text="商品一覧"></a></li>
+		<li><a th:href="@{/item/list/filter}" th:text="検索"></a></li>
 		<li><a th:href="@{/item/cart/list}" th:text="買い物かご"></a></li>
-		<li><a th:href="@{/item/filter}" th:text="検索"></a></li>
+		<li><a th:href="@{/item/custom/input }" th:text="カスタム追加"></a></li>
+		<li><a th:href="@{'/item/custom/' + ${session.user.id}}" th:text="マイカスタム"></a></li>
 	</ul>
 </body>
 

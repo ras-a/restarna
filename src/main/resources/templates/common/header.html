@@ -9,13 +9,10 @@
 <h1 ><a th:href="@{/user/home}"><img th:src="@{/static/img/view/title.png}" alt="" width="300px"></a></h1>
 	<div class="user_info">
 		<div class="name">
-		<a th:href="@{/client/user/detail}" th:text="${session.user.name}"></a>さん 
+		<a th:href="@{/user/details}" th:text="${session.user.name}"></a>さん 
 		</div>
 		<div class="2">
-		| <a th:href="@{/item/custom/input}">カスタム追加</a>
-		| <a th:href="@{/user/favorite}">お気に入り</a>
-		| <a th:href="|@{/item/custom/}${session.user.id}|">マイカスタム</a>
-		| <a th:href="@{/user/logout}" >Logout</a>
+		|<a th:href="@{/user/logout}" >ログアウト</a>
 		</div>
 	</div>
 </div>

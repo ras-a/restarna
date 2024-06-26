@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{/common/layout :: sidebar(title='カスタム登録完了', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カスタム登録完了</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/item/custom/complete.css}" />
 </head>
 
 <body>
-    <h1>カスタム登録完了</h1>
-    <p th:text="'生地：' +${item.bread.name}"></p>
-    クリーム：
-    <span th:each="cream:${item.creams}">
-        <p th:text="${cream.name}"></p>
-    </span>
-    <p th:text="'商品名：' + ${item.name}"></p>
-    <p th:text="'読み仮名：' + ${item.reading}"></p>
-    <p th:text="'説明：' + ${item.description}"></p>
-    <a th:href="@{/user/home}">ホームに戻る</a>
+    <div class="customComp">
+        <h1>カスタム登録完了</h1>
+        <div class="customBody">
+            <div id="customInfo"><span id="customTable">生地：</span><span th:text="${item.bread.name}"></span></div>
+        <div class="customCream">
+            <div id="customInfo"><span id="customTable">クリーム：</span>
+            <span th:each="cream:${item.creams}">
+                <span th:text="${cream.name}"></span>
+            </span></div>
+        </div>
+        <div id="customInfo"><span id="customTable">商品名：</span><span th:text="${item.name}"></span></div>
+        <div id="customInfo"><span id="customTable">読み仮名：</span><span th:text="${item.reading}"></span></div>
+        <div id="customInfo"><span id="customTable">説明：</span><span th:text="${item.description}"></span></div>
+        <div id="customInfo"><a th:href="@{/user/home}">ホームに戻る</a></div>
+    </div>
+    </div>
 </body>
 
 </html>

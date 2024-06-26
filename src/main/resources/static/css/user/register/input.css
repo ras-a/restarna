@@ -1,0 +1,15 @@
+.registerInput{
+    flex-direction: column;
+}
+
+.Inputform{
+    text-align: center;
+}
+
+.Inputform input{
+    margin-top: 5px;
+}
+.formInput{
+    margin-top: 25px;
+    text-align: center;
+}

@@ -21,9 +21,9 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr th:each="item : ${items}"><a th:href="@{'/item/'+${item.id}}">
+			<tr th:each="item : ${items}">
 				<td><img th:replace="~{common/util::img(src=${item.image}, alt=${item.name}, class='icon')}" ></td>
-				<td>[[${item.name}]]</td>
+				<td><a th:href="@{'/item/'+${item.id}}">[[${item.name}]]</a></td>
 				<td>[[${item.price}]]</td>
 				<td>
 					<a th:if="${#lists.contains(session.user?.favorites.![id], item.id)}" style="color: pink;"
@@ -32,7 +32,7 @@
 						th:href="@{'/user/favorite/add/'+${item.id}}">♥</a>
 				</td>
 				<td>[[${#dates.format(item.dateCreated, 'yyyy年MM月dd日')}]]</td>
-			</a></tr>
+			</tr>
 			</tbody>
 		</table>
 	</div>

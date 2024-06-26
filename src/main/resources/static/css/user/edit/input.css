@@ -1,0 +1,17 @@
+.edit{
+    background-color: rgb(214, 223, 227);
+    padding-top: 30px;
+}
+.editLeft{
+    height: auto;
+    width: auto;
+    margin-left: 20px;
+}
+.editRight{
+    margin-top: 40px;
+    text-align: center;
+}
+
+#edit-form{
+    padding-bottom: 15px;
+}

@@ -28,11 +28,13 @@ public class ReviewController {
 	public String details(@PathVariable Integer userId, @PathVariable Integer itemId, Model model) {
 		var factory = new BeanFactory();
 		var user = userRepository.getReferenceById(userId);
+
 		for (var entity: user.getReviews())
 		{
 			if (entity.getItem().getId() == itemId)
 			{
 				model.addAttribute("review", factory.createBean(entity));
+				break;
 			}
 		}
 
@@ -89,7 +91,11 @@ public class ReviewController {
 			
 		var review = new Review(item, poster, score, description);
 
-		reviewRepository.save(review);
+		poster.getReviews().add(review);
+
+		poster = userRepository.save(poster);
+
+		session.setAttribute("user", factory.createBean(poster));
 
 		return "redirect:/item/review/own/%d".formatted(item.getId(), itemId);
 	}

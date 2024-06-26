@@ -46,7 +46,7 @@ public class ListController {
 	public String custom(Model model) {
 		var factory = new BeanFactory();
 		model.addAttribute("items", factory.createItemList(itemRepository.findAllCustomItems()));
-		return "item/list";
+		return "item/customList";
 	}
 	
 
@@ -66,7 +66,8 @@ public class ListController {
 	public String breadsq(Model model, @ModelAttribute("form") SearchForm form) {
 		BeanFactory factory = new BeanFactory();
 
-		System.out.println(form.getName().length());
+		if (form.getSortBy() == null)
+			form.setSortBy(0);
 
 		var items = factory.createItemList(switch (form.getSortBy()) {
 			case 0 ->

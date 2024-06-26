@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" 
+th:replace="~{/common/layout :: sidebar(title='Document', body=~{::body/content()}, head=~{:: head/content()})}">
 <head th:fragment="head">
 	<meta charset="UTF-8">
-	<title>Document</title>
 	<style>
 		img {
 			width: 300px;

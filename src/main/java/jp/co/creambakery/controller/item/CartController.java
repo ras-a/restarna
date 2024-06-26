@@ -24,10 +24,10 @@ public class CartController {
     ItemRepository itemRepository;
 
     @Autowired
-    CartRepository cartRepository;
+    UserRepository userRepository;
 
     @Autowired
-    UserRepository userRepository;
+    CartRepository cartRepository;
 
     /**
      * 商品を選択後、選んだ商品を表示し、カートに追加または戻る
@@ -166,4 +166,5 @@ public class CartController {
 
         return user;
     }
+
 }

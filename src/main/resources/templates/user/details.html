@@ -4,60 +4,69 @@
 
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/order/cartList.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
 
 <body>
-    <div id="cart">
+    <div class="userDetails">
+        <div class="detailsInfo">
         <h1>ユーザ情報</h1>
-        <table id="keywords" cellspacing="0" cellpadding="0">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>名前</th>
-                    <th>読み方</th>
-                    <th>パスワード</th>
-                    <th>住所</th>
-                    <th>よくつかう住所</th>
-                    <th>クレジットカード</th>
-                    <th>メールアドレス</th>
-                    <th>作成日</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="orderCheck">
+            <div id="detailsButton">
+            <a th:href="@{/user/edit}">編集</a>
+            </div>
+            <div id="detailsButton">
+            <a th:href="@{/user/delete}">退会する</a>
+            </div>
+            <div id="detailsButton">
+            <a th:href="@{/user/home}">戻る</a>
+            </div>
+        </div>
+        </div>
+
+ <table id="keywords" cellspacing="0" cellpadding="0" class="detailsTable">
+            
                 <tr th:each="u : ${session.user}">
-                    <td th:text="${u.id}"></td>
-                    <td th:text="${u.name}"></td>
-                    <td th:text="${u.reading}"></td>
-                    <td>***</td>
+                    <th>ユーザーID</th> <td th:text="${u.id}"></td>
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>名前</th><td th:text="${u.name}"></td>
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>読み方</th><td th:text="${u.reading}"></td>
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>パスワード</th><td>***</td>
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>住所</th>
                     <td>
-                        <ol>
-                            <li th:each="address : ${u.addresses}" th:text="${address.name}"></li>
-                        </ol>
+                        <ol><li th:each="address : ${u.addresses}" th:text="${address.name}"></li></ol>
                     </td>
-                    <td th:text="${u.mainAddress}"></td>
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>よくつかう住所</th><td>aaa</td>
+                    <!-- <td th:text="${u.mainAddress}"></td> -->
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>クレジットカード</th>
                     <td>
                         <ol>
                             <li th:each="card : ${u.creditCards}"
-                                th:text="${'・・・'+ card.number.substring(card.number.length() - 4)}"></li>
+                                th:text="${' ・・・'+ card.number.substring(card.number.length() - 4)}"></li>
                         </ol>
                     </td>
-                    <td th:text="${u.email}"></td>
-                    <td th:text="${#dates.format(u.dateCreated, 'yyyy/MM/dd')}"></td>
                 </tr>
-            </tbody>
+                <tr th:each="u : ${session.user}">
+                    <th>メールアドレス</th><td th:text="${u.email}"></td>
+                </tr>
+                <tr th:each="u : ${session.user}">
+                    <th>作成日</th><td th:text="${#dates.format(u.dateCreated, 'yyyy/MM/dd')}"></td>
+                </tr>    
         </table>
-        <div class="orderCheck">
-            <a th:href="@{/user/edit}">
-                <button type="button">編集</button>
-            </a>
-            <a th:href="@{/user/delete}">
-                <button type="button">退会する</button>
-            </a>
-            <a th:href="@{/user/home}">
-                <button type="button">戻る</button>
-            </a>
-        </div>
+
+
+       
 
     </div>
 </body>

@@ -1,0 +1,26 @@
+.delete{
+    background-color: rgb(214, 223, 227);
+    padding-top: 30px;
+}
+
+.delete h1{
+    font-size: 60px;
+    text-align: center;
+}
+
+#yes button{
+    height: 50px;
+    width: 150px;
+}
+
+#no button{
+    height: 50px;
+    width: 150px;
+}
+
+.delete-button{
+    padding-top: 30px;
+    width: auto;
+    text-align: center;
+    height: auto;
+}

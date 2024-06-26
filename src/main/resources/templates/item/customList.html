@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout :: sidebar(title='menu', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/item/list.css}" />
+</head>
+
+<body class="list">
+	<div id="itemTable">
+		<h1>カスタム商品一覧</h1>
+		<table >
+			<thead>
+			<tr>
+				<th>商品名</th>
+				<th>中身</th>
+				<th>生地</th>
+				<th>値段</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="item : ${items}"><a th:href="@{'/item/'+${item.id}}">
+				<td>[[${item.name}]]</td>
+				<td><span th:each="cream : ${item.creams}">[[${cream.name}]]</span></td>
+				<td>[[${item.bread.name}]]</td>
+				<td>[[${item.price}]]円</td>
+				<td>[[${#dates.format(item.dateCreated, 'yyyy年MM月dd日')}]]</td>
+			</a></tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
