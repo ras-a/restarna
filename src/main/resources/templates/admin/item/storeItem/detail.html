@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{/common/adminlayout :: minimal(title='既存商品詳細', body=~{::body/content()}, head=~{:: head/content()})}"
-    >
+    th:replace="~{/common/adminlayout :: minimal(title='既存商品詳細', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/admin.css}" />
+
     <title>既存商品詳細</title>
 </head>
 
 <body>
-    <div>
-    <h1 th:text="${item.name}"></h1>
-    <div th:if="${session.admin.system}">
-        <a th:href="@{/admin/store/update/} + ${item.id}">更新する</a>
-        <form th:action="@{/admin/store/delete}" method="post">
-            <input type="hidden" th:value="${item.id}" th:name="id">
-            <input type="submit" value="削除する">
-        </form>
+    <div th:object="${item}" class="reviewHome">
+        <div class="reviewLeft">
+            <table>
+                <tr>
+                    <th></th>
+                    <td id="detailTitle">[[*{name}]]</td>
+                </tr>
+                <tr>
+                    <th>パン生地</th>
+                    <td id="detailInfo">[[*{bread.name}]]</td>
+                </tr>
+                <tr>
+                    <th>中身</th>
+                    <td th:each="cream : *{creams}" id="detailInfo">
+                        [[${cream.name}]]
+                    </td>
+                </tr>
+                <tr>
+                    <th>説明</th>
+                    <td id="detailInfo">[[*{description}]]</td>
+                </tr>
+                <tr>
+                    <th>発売日</th>
+                    <td id="detailInfo" th:text="${#dates.format(item.dateCreated, 'yyyy/MM/dd')}"></td>
+                </tr>
+                <tr>
+                    <th>価格</th>
+                    <td id="detailInfo">
+                        [[*{price}]]円
+                    </td>
+                </tr>
+            </table>
+            <span th:if="${session.admin.system}">
+                <form th:action="@{/admin/store/update/} + ${item.id}" method="get">
+                    <input class="btnUpdate" type="submit" value="更新する">
+                </form>
+                <form th:action="@{/admin/store/delete}" method="post">
+                    <input type="hidden" th:value="${item.id}" th:name="id">
+                    <input class="btnDelete" type="submit" value="削除する">
+                </form>
+            </span>
+        </div>
+        <div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}" /></div>
     </div>
-</div>
 </body>
-
 </html>

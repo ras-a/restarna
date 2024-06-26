@@ -6,24 +6,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/login.css}" />
     <title>管理者ログイン</title>
 </head>
 
 <body>
-    <div>
-        <h1>admin login</h1>
-        <h2>名前とパスワードを入力してください。</h2>
-        <p th:text="${errMessage}"></p>
+    <div class="user_container">
+        <h1>管理者ログイン</h1>
+        <p style="color:red" th:text="${errMessage}"></p>
         <form th:action="@{/admin/login}" method="post" th:object="${form}">
-            <div>
-                名前:<input type="text" th:field="*{name}"><br>
-            </div>
-            <div>
-                パスワード:<input type="password" th:field="*{password}"><br>
-            </div>
-            <div>
-                <input type="submit" value="ログイン">
-            </div>
+            <table>
+				<tbody>
+					<tr>
+						<td colspan="2">
+							<p style="color:red" class="loginError" th:text="${errMessage}"></p>
+						</td>
+					</tr>
+					<tr>
+						<th th:class="label">名前</th>
+						<td class="input"><input type="text" th:field="*{name}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p style="color:red" class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+						</td>
+					</tr>
+					<tr>
+						<th th:class="label">パスワード</th>
+						<td class="input"><input type="password" th:field="*{password}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p style="color:red" class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+						</td>
+					</tr>
+					<tr>
+						<th class="label"></th>
+						<td class="inputButton"><input type="submit" th:value="ログイン" /></td>
+					</tr>
+				</tbody>
+			</table>
         </form>
     </div>
 </body>

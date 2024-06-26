@@ -6,11 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/admin.css}" />
     <title>生地一覧</title>
 </head>
 
-<body class="breadList">
-	<div id="itemTable">
+<body class="list">
+	<div id="adminItemTable">
+        <h1>生地一覧</h1>
     <table>
         <thead>
             <tr>
@@ -18,12 +20,10 @@
                 <th>名前</th>
                 <th>値段</th>
                 <th>作成日</th>
-            
             </tr>
         </thead>
         <tbody>
             <tr th:each="bread: ${breads}">
-              
                     <td th:text="${bread.id}"></td>
                     <td><a th:href="@{'/admin/bread/' + ${bread.id}}" th:text="${bread.name}"></a></td>
                     <td th:text="${bread.price}"></td>

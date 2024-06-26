@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/admin.css}" />
     <title>クリーム変更</title>
 </head>
 
 <body>
-    <div>
+    <div class="adminBody">
     <h1>クリーム変更</h1>
     <form th:action="@{/admin/cream/update}" method="post" >
 
@@ -21,16 +22,16 @@
             名前:<input type="text" th:value="${cream.name}" name="name"><br>
         </div>
         <div>
-            名前:<input type="text" th:value="${cream.reading}" name="reading"><br>
+            読み仮名:<input type="text" th:value="${cream.reading}" name="reading"><br>
         </div>
         <div>
-            読み仮名:<input type="number" th:value="${cream.price}" name="price"><br>
+            値段:<input type="number" th:value="${cream.price}" name="price"><br>
         </div>
         <div>
             説明:<input type="text" th:value="${cream.description}" name="description"><br>
         </div>
         <div>
-            <input type="submit" value="変更">
+            <input class="btnUpdate" type="submit" value="変更">
         </div>
         
     </form>

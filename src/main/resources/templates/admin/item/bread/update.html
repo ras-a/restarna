@@ -5,13 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/admin.css}" />
     <title>生地変更</title>
 </head>
 
 <body>
-    <div>
+    <div class="adminBody">
         <h1>生地変更</h1>
-        <form th:action="@{/admin/bread/update}" method="post" th:object="${breadForm}">
+        <form class="customInput" th:action="@{/admin/bread/update}" method="post" th:object="${breadForm}">
             <input type="hidden" th:value="${bread.id}" name="id">
             <input type="hidden" th:value="${bread.deleted}" name="deleted">
             <p th:errors="*{name}" class="Error"></p>
@@ -31,7 +32,7 @@
                 説明:<input type="text" th:value="${bread.description}" name="description"><br>
             </div>
             <div>
-                <input type="submit" value="変更">
+                <input class="btnUpdate" type="submit" value="変更">
             </div>
 
         </form>

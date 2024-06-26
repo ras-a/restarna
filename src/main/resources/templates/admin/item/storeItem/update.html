@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/admin.css}" />
     <title>既存商品変更</title>
 </head>
 
 <body>
-    <div>
+    <div class="adminBody">
     <h1>既存商品変更</h1>
     <form th:action="@{/admin/store/update}" method="post" >
 
@@ -27,7 +28,7 @@
             説明:<input type="text" th:value="${item.description}" name="description" required><br>
         </div>
         <div>
-            <input type="submit" value="変更">
+            <input class="btnUpdate" type="submit" value="変更">
         </div>
         
     </form>
