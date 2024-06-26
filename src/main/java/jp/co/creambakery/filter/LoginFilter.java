@@ -19,6 +19,8 @@ public class LoginFilter extends HttpFilter {
 	/** 管理者からアクセスできないリソース */
 	private static final String[] adminIllegal = {
 		"/user/.*",
+		"/item/cart/?.*",
+		"/item/order.*",
 	};
 	
 	/** 管理者からアクセスできないリソース */
@@ -31,8 +33,8 @@ public class LoginFilter extends HttpFilter {
 		"/admin/(?!login).*",
 		"/user/(?!login|register).*",
 		"/item/review/add/?.*",
+		"/item/cart/?.*",
 		"/item/order.*",
-		"/item/cart.*",
 	};
 
 	@Override
@@ -50,7 +52,7 @@ public class LoginFilter extends HttpFilter {
 			{
 				if (triggers(uri, adminIllegal))
 				{
-					response.sendRedirect("/admin/home");
+					response.sendRedirect("/admin/");
 					return;
 				}
 			}

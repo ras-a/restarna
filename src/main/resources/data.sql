@@ -1,5 +1,5 @@
 INSERT INTO admin VALUES (admin_seq.nextval,'sysadmin','himitsu',CURRENT_DATE,1);
-INSERT INTO admin VALUES (admin_seq.nextval,'sysadmin2','himitsu',CURRENT_DATE,0);
+INSERT INTO admin VALUES (admin_seq.nextval,'admin','himitsu',CURRENT_DATE,0);
 
 
 INSERT INTO bread(id, name, reading, price, description, image,date_created) VALUES (bread_seq.nextval, 'フランスパン生地', 'ふらんすぱんきじ', 150, '香ばしくてパリパリした食感が特徴です', 'France.jpg','1908-02-03');

@@ -36,7 +36,6 @@ public class LoginController
 							BindingResult result, HttpSession session, Model model) 
 	{
 		var factory = new BeanFactory();
-
 		if(result.hasErrors()) 
 		{
 			return "admin/login";

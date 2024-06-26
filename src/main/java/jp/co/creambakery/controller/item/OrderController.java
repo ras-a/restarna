@@ -81,9 +81,7 @@ public class OrderController
 		order = orderRepository.save(order);
 
 		user.getCart().clear();
-		System.out.println(user.getCart());
 		user = userRepository.save(user);
-		System.out.println(user.getCart());
 
 		model.addAttribute("order", factory.createBean(order));
 		session.setAttribute("user", factory.createBean(user));
