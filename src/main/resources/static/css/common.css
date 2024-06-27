@@ -24,13 +24,10 @@ body {
 }
 
 .main{
-	display: flex;
-	flex-flow: row nowrap;
-
+	padding: 10px;
 	background-color: rgb(234, 233, 230);
 	width: 100%;
 	min-height: 438px;
-	display: flex;
 	height: auto;
 }
 

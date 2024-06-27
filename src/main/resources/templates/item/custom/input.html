@@ -5,7 +5,7 @@ th:replace="~{common/layout :: sidebar(title='カスタム追加', body=~{::body
   <link rel="stylesheet" type="text/css" th:href="@{/static/css/item/custom/input.css}" />
 </head>
 <body>
-  <div class="customBody">
+  <div class="customBody main">
 
     <h1>カスタム追加</h1>
 
@@ -19,7 +19,7 @@ th:replace="~{common/layout :: sidebar(title='カスタム追加', body=~{::body
 <div class="customInput">
 <th:block th:each="cream : ${creams}" class="customList">
   <input type="checkbox" th:value="${cream.id}" th:field="*{creams}">
-  <label th:for="${#ids.prev(creams)}">[[${cream.name}]]</label>
+  <label th:for="${#ids.prev('creams')}">[[${cream.name}]]</label>
   </th:block><br>
 </div>
 
