@@ -7,45 +7,43 @@ th:replace="~{common/layout :: sidebar(title='Document', body=~{::body/content()
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/item/custom/list.css}" />
 </head>
 <body>
-    <div id="customList">
     <th:block th:unless="${#lists.isEmpty(session.user.createdItems)}">
-    <h1>[[${session.user.name}]]さんのカスタム商品</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>商品名</th>
-                <th>生地</th>
-                <th>中身</th>
-                <th>値段</th>
-                <th>編集</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="item: ${session.user.createdItems}">
-                <td><a th:href="@{|/item/${item.id}|}">[[${item.name}]]</a></td>
-                <td>[[${item.bread.name}]]</td>
-                <td><span th:each="cream : ${item.creams}">
-                    [[${cream.name}]]
-                </span></td>
-                <td>[[${item.price}]]</td>
-                <td>    
-                    <a th:href="@{'/item/custom/edit/'+ ${item.id}}">編集</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div id="cart">
+        <div id="customList">
+        <h1>[[${session.user.name}]]さんのカスタム商品</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>商品名</th>
+                    <th>生地</th>
+                    <th>中身</th>
+                    <th>値段</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item: ${session.user.createdItems}">
+                    <td><a th:href="@{|/item/${item.id}|}">[[${item.name}]]</a></td>
+                    <td>[[${item.bread.name}]]</td>
+                    <td><span th:each="cream : ${item.creams}">
+                        [[${cream.name}]]
+                    </span></td>
+                    <td>[[${item.price}]]</td>
+                    <td>
+                        <a th:href="@{'/item/custom/edit/'+ ${item.id}}">編集</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <a th:href="@{/item/custom/input}">
             <button>
                 カスタム追加
             </button>
         </a>
-    </div>
-</th:block>
+        </div>
+    </th:block>
     <th:block th:if="${#lists.isEmpty(session.user.createdItems)}">
-        <div id="cart">
+        <div class="cart">
             <h1>カスタムはありません</h1>
-            
+
             <a th:href="@{/item/custom/input}">
                 <button>
                     カスタム追加
@@ -53,6 +51,5 @@ th:replace="~{common/layout :: sidebar(title='Document', body=~{::body/content()
             </a>
         </div>
     </th:block>
-    </div>
 </body>
 </html>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import jp.co.creambakery.bean.*;
 import jp.co.creambakery.form.*;
 import jp.co.creambakery.repository.*;
-import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 @RequestMapping("/list")
