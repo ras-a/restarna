@@ -2,67 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org"
     th:replace="~{common/layout :: sidebar(title='ユーザ情報', body=~{::body/content()}, head=~{:: head/content()})}">
 
-<head th:fragment="head">
-    <meta charset="UTF-8">
+<head>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
 
 <body>
     <div class="userDetails">
         <div class="detailsInfo">
-        <h1>ユーザ情報</h1>
-        <div class="orderCheck">
-            <div id="detailsButton">
-            <a th:href="@{/user/edit}">編集</a>
-            </div>
-            <div id="detailsButton">
-            <a th:href="@{/user/delete}">退会する</a>
-            </div>
-            <div id="detailsButton">
-            <a th:href="@{/user/home}">戻る</a>
-            </div>
-        </div>
+            <h1>ユーザ情報</h1>
+            <a th:href="@{home}"><button>戻る</button></a>
+            <a th:href="@{edit}"><button>編集</button></a>
         </div>
 
- <table id="keywords" cellspacing="0" cellpadding="0" class="detailsTable">
-            
-                <tr th:each="u : ${session.user}">
-                    <th>ユーザーID</th> <td th:text="${u.id}"></td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>名前</th><td th:text="${u.name}"></td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>読み方</th><td th:text="${u.reading}"></td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>パスワード</th><td>***</td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>住所</th>
-                    <td>
-                        <ol><li th:each="address : ${u.addresses}" th:text="${address.name}"></li></ol>
-                    </td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>よくつかう住所</th><td>aaa</td>
-                    <!-- <td th:text="${u.mainAddress}"></td> -->
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>クレジットカード</th>
-                    <td>
-                        <ol>
-                            <li th:each="card : ${u.creditCards}"
-                                th:text="${' ・・・'+ card.number.substring(card.number.length() - 4)}"></li>
-                        </ol>
-                    </td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>メールアドレス</th><td th:text="${u.email}"></td>
-                </tr>
-                <tr th:each="u : ${session.user}">
-                    <th>作成日</th><td th:text="${#dates.format(u.dateCreated, 'yyyy/MM/dd')}"></td>
-                </tr>    
+        <table id="keywords" cellspacing="0" cellpadding="0" class="detailsTable">
+            <tr>
+                <th>ユーザーID</th> <td th:text="${session.user.id}"></td>
+            </tr>
+            <tr>
+                <th>名前</th><td>
+                    <ruby>
+                        <rb>[[${session.user.name}]]</rb>
+                        <rt>[[${session.user.reading}]]</rt>
+                    </ruby>
+                </td>
+            </tr>
+            <tr>
+                <th>パスワード</th><td>***</td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th><td th:text="${session.user.email}"></td>
+            </tr>
+            <tr>
+                <th>作成日</th><td th:text="${{session.user.dateCreated}}"></td>
+            </tr>
         </table>
 
 

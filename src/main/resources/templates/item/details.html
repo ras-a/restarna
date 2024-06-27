@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<th>発売日</th>
-					<td>[[*{dateCreated}]]</td>
+					<td>[[*{{dateCreated}}]]</td>
 				</tr>
 				<tr>
 					<th>価格</th>
@@ -40,11 +40,10 @@
 						[[*{price}]]円
 					</td>
 				</tr>
-				<tr>
+				<tr th:if="${session.user}">
 					<th></th>
 					<td>
-						<a th:href="|@{/item/cart/add/}${item.id}|">カートに入れる</a>
-						<a href=""></a>
+						<a th:href="|@{/item/cart/add/}${item.id}|"><button>カートに追加</button></a>
 					</td>
 				</tr>
 			</table>
@@ -52,41 +51,6 @@
 			<div class="review">
 
 				<form th:if="${session.user}" th:action="|@{/item/review/add/}*{id}|" method="post">
-					<style>
-						:where(.score_input) {
-							display: flex;
-							flex-flow: row-reverse nowrap;
-							justify-content: start;
-
-							label {
-								color: gray;
-							}
-
-							:where(&:has(input:checked)) {
-								label {
-									color: black;
-								}
-							}
-						}
-
-						:where(.elem:hover) {
-
-							label,
-							~.elem label {
-								color: color-mix(in oklab, goldenrod 50%, grey);
-							}
-						}
-
-						.elem:has(:checked) {
-
-							& label,
-							&~.elem label {
-								color: goldenrod;
-							}
-						}
-					</style>
-
-
 					<div class="score_input">
 						<div class="elem" th:each="i: ${#numbers.sequence(5,1,-1)}">
 							<input type="radio" th:id="|score${i}|" name="score" th:value="${i}" hidden />
@@ -108,7 +72,7 @@
 			</div>
 		</div>
 		<div class="reviewRight">
-			<th:block th:if="${#strings.contains(item.getClass(),'StoreItemBean')}">
+			<th:block th:if="${#strings.contains(item.getClass(), 'StoreItemBean')}">
 				<img th:replace="~{common/util::img(${item})}" />
 			</th:block>
 		</div>

@@ -55,7 +55,7 @@
             <th>クレジットカード情報</th>
             <td>
               <label class="card" th:each="card : ${session.user.creditCards}" th:for="${#ids.next('creditCard')}">
-                <input type="radio" th:field="*{creditCard.id}" th:value="${card.id}">
+                <input type="radio" th:field="*{creditCard}" th:value="${card.id}">
                 [[${card.name}]]<br>
                 <span>...[[${#strings.substring(card.number, 12)}]]</span>
               </label>
@@ -69,8 +69,8 @@
           <tr>
             <th>住所</th>
             <td>
-              <label class="address" th:each="address : ${session.user.addresses}" th:for="${#ids.next('address')}">
-                <input type="radio" th:field="*{address.id}" th:value="${address.id}">
+              <label class="address" th:each="address : ${addresses}" th:for="${#ids.next('address')}">
+                <input type="radio" th:field="*{address}" th:value="${address.id}">
                 [[${address.name}]]
               </label>
             </td>

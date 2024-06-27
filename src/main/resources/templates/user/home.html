@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{common/layout :: slideShow(title='クリームパン屋ちょいかわ', body=~{::body/content()}, head=~{:: head/content()})}">
+    th:replace="~{common/layout :: sidebar(title='クリームパン屋ちょいかわ', body=~{::body/content()}, head=~{:: head/content()})}">
 
 <head th:fragment="head">
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/home.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
 
 <body>
     <div id="home">
-       
-
-        へいらっしゃい
-        今月のおすすめ
-        酒
+        <h2>基本操作</h2>
+        <div class="orderCheck">
+            <div class="detailsButton">
+            <a th:href="@{/user/details}">基本情報</a>
+            </div>
+            <div class="detailsButton">
+            <a th:href="@{/user/delete}">退会</a>
+            </div>
+            <div class="detailsButton">
+            <a th:href="@{/user/address}">住所操作</a>
+            </div>
+            <div class="detailsButton">
+            <a th:href="@{/user/credit_card}">クレジットカード情報操作</a>
+            </div>
+        </div>
     </div>
 </body>
 

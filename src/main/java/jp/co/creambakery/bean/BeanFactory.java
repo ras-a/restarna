@@ -3,6 +3,7 @@ package jp.co.creambakery.bean;
 import java.util.*;
 
 import jp.co.creambakery.entity.*;
+import jp.co.creambakery.entity.keys.*;
 
 /**
  * ItemBeanFactory
@@ -297,6 +298,7 @@ public class BeanFactory
 			bean.setAddress(createBean(entity.getAddress()));
 			bean.setCreditCard(createBean(entity.getCreditCard()));
 			bean.setUser(createBean(entity.getUser()));
+			bean.setItems(createOrderItemList(entity.getItems()));
 		}
 
 		return bean;
@@ -306,6 +308,36 @@ public class BeanFactory
 		if (entities == null)
 			return new ArrayList<>();
 		List<OrderBean> list = new ArrayList<>(entities.size());
+
+		for (var entity : entities)
+			list.add(createBean(entity));
+
+		return list;
+	}
+	
+	private Map<ProductOrderItemKey, OrderItemBean> orderItems = new HashMap<>();
+	public OrderItemBean createBean(ProductOrderItem entity)
+	{
+		if (entity == null)
+			return null;
+
+		var key = new ProductOrderItemKey(entity.getProductOrder(), entity.getItem());
+
+		var bean = orderItems.get(key);
+		if (bean == null)
+		{
+			bean = new OrderItemBean(entity);
+			orderItems.put(key, bean);
+			bean.setItem(createBean(entity.getItem()));
+		}
+
+		return bean;
+	}
+	public List<OrderItemBean> createOrderItemList (List<ProductOrderItem> entities)
+	{
+		if (entities == null)
+			return new ArrayList<>();
+		List<OrderItemBean> list = new ArrayList<>(entities.size());
 
 		for (var entity : entities)
 			list.add(createBean(entity));

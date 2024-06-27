@@ -26,7 +26,7 @@
                     <td th:text="${cream.id}"></td>
                     <td><a th:href="@{'/admin/cream/' + ${cream.id}}" th:text="${cream.name}"></a></td>
                     <td th:text="${cream.price}"></td>
-                    <td th:text="${#dates.format(cream.dateCreated, 'yyyy/MM/dd')}"></td>
+                    <td th:text="${{cream.dateCreated}}"></td>
             </tr>
         <tbody>
     </table>

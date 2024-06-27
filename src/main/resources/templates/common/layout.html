@@ -9,7 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}"/>
 		<title th:text="${title}"></title>
-		<th:block th:if="${head}" th:replace="${head}"/>
+		<th:block th:if="${head}">
+			<th:block th:replace="${head}"/>
+		</th:block>
 	</head>
 	<body th:classappend="${session.user} ? non-user">
 		<!--/* ヘッダー */-->
@@ -39,7 +41,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
 		<title  th:text="${title}"></title>
-		<th:block th:if="${head}" th:replace="${head}"/>
+		<th:block th:if="${head}">
+			<th:block th:replace="${head}"/>
+		</th:block>
 		<meta th:replace="~{common/header::head}">
 		<meta th:replace="~{common/navi::head}">
 		<meta th:replace="~{common/footer::head}">
@@ -79,7 +83,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
 		<title  th:text="${title}"></title>
-		<th:block th:if="${head}" th:replace="${head}"/>
+		<th:block th:if="${false}">
+			<th:block th:replace="${head}"/>
+		</th:block>
 		<meta th:replace="~{common/header::head}">
 		<meta th:replace="~{common/navi::head}">
 		<meta th:replace="~{common/footer::head}">

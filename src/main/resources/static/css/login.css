@@ -1,15 +1,16 @@
 .user_container{
     background-color: aliceblue;
     height: auto;
+    width: 100%;
+    
+    table {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        text-align:end;
+    }
 }
 
-.user_container table{
-	display: flex;
-	justify-content: center;
-	position: relative;
-    text-align:end;
-
-}
 input{
     height: 25px;
     margin-top: 10px;

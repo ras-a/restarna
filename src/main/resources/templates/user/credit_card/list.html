@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout :: sidebar(title='クレジットカード一覧', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
 	<meta charset="UTF-8">
-	<title>カード一覧</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
+
 <body>
-	<table>
-		<a th:href="@{/user/credit_card/add}">追加</a>
-		<tr th:each="card : ${session.user.creditCards}">
-			<td>[[${card.name}]]</td>
-			<td>[[${card.holderName}]]</td>
-			<td>[[${card.number}]]</td>
-			<td>[[${card.cvc}]]</td>
-			<td><a th:href="|@{/user/credit_card/edit/}${card.id}|"></a></td>
-		</tr>
-	</table>
+	
+	<div>
+		<h2>クレジットカード一覧</h2>
+		<div th:each="card : ${session.user.creditCards}" class="horizontal centered listed spaced">
+			<div>
+				<h3>[[${card.name}]]</h3>
+				<span class="grayed">...[[${#strings.substring(card.number,12)}]]</span>
+			</div>
+
+			<a th:href="@{|/user/credit_card/edit/${card.id}|}"><button>編集</button></a>
+		</div>
+		<a th:href="@{/user/credit_card/add}"><button class="isolated add-button">追加</button></a>
+	</div>
+		
+		
+		
 </body>
 </html>

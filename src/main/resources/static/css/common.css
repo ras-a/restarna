@@ -24,7 +24,7 @@ body {
 }
 
 .main{
-    display: flex;
+	display: flex;
 	flex-flow: row nowrap;
 
 	background-color: rgb(234, 233, 230);
@@ -32,7 +32,6 @@ body {
 	min-height: 438px;
 	display: flex;
 	height: auto;
-	padding: 10px;
 }
 
 .user_info{
@@ -45,14 +44,45 @@ body {
 	display: flex;
 	flex-flow: row nowrap;
 	width: 100%;
-	color: aqua;
 	height: auto;
+
+	&.centered {
+		align-items: center;
+	}
+	
+	&.listed {
+		width: 150px;
+		border-radius: 5px;
+		background-color: blanchedalmond;
+		border: 1.5px solid slategray;
+		padding: 10px 12px;
+
+		h3 {
+			margin: 4px 0;
+		}
+		.grayed {
+			color: gray;
+		}
+	}
+	
+	&.spaced {
+		justify-content: space-around;
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
 }
 
+.isolated {
+	margin: 30px 40px;
+}
+.add-button {
+	border-radius: 3px;
+	padding: 5px 7px;
+}
+
+
 div{
-    color: rgb(0, 0, 0);
-    height: auto;
-    width: 100%;
+	color: rgb(0, 0, 0);
 }
 
 p{

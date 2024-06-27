@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="edit">
+    <div class="edit main">
         <div class="editLeft">
             <h2>編集</h2>
             
@@ -28,7 +28,7 @@
                 <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span></div>
                 <div id="edit-form">メールアドレス　<input type="email" th:field="*{email}">
                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></span></div>
-                <div id="edit-form"><input type="submit" value="登録">
+                <div id="edit-form"><input type="submit" value="確定">
             </form>
             <a th:href="@{/user/details}"><button type="button">戻る</button></a></div>
         </div>

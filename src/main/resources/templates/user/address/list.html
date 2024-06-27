@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>宛先一覧</title>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{common/layout :: sidebar(title='宛先一覧', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
+
 <body>
-	<a th:href="@{/user/address/add}">追加</a>
-	<p th:each="address : ${session.user.addresses}">
-		[[${address.name}]], [[${address.address}]] <br>
-		<a th:href="|@{/user/address/edit/}${address.id}|">編集</a>
-	</p>
+	<div>
+		<h2>住所一覧</h2>
+		<div class="horizontal centered spaced listed" th:each="address : ${session.user.addresses}">
+			<div>
+				<h3>[[${address.name}]]</h2>
+				<small>[[${address.address}]]</small>
+			</div>
+
+			<a th:href="@{|/user/address/edit/${address.id}|}">
+				<button>編集</button>
+			</a>
+		</div>
+
+		<a th:href="@{/user/address/add}"><button class="isolated add-button">追加</button></a>
+	</div>
 </body>
+
 </html>

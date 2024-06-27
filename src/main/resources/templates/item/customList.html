@@ -16,17 +16,17 @@
 				<th>中身</th>
 				<th>生地</th>
 				<th>値段</th>
-				<th></th>
+				<th>追加日</th>
 			</tr>
 			</thead>
 			<tbody>
-			<tr th:each="item : ${items}"><a th:href="@{'/item/'+${item.id}}">
+			<tr th:each="item : ${items}" th:onclick="|window.location.href ='/item/${item.id}'|">
 				<td>[[${item.name}]]</td>
 				<td><span th:each="cream : ${item.creams}">[[${cream.name}]]</span></td>
 				<td>[[${item.bread.name}]]</td>
 				<td>[[${item.price}]]円</td>
-				<td>[[${#dates.format(item.dateCreated, 'yyyy年MM月dd日')}]]</td>
-			</a></tr>
+				<td>[[${{item.dateCreated}}]]</td>
+			</tr>
 			</tbody>
 		</table>
 	</div>

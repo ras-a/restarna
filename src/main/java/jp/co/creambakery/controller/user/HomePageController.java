@@ -2,7 +2,6 @@ package jp.co.creambakery.controller.user;
 
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
-import jp.co.creambakery.entity.*;
 import jakarta.servlet.http.*;
 
 

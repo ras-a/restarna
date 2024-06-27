@@ -15,6 +15,7 @@ public class OrderBean implements Serializable
 	private Boolean cancelled;
 	private AddressBean address;
 	private String optionalDetails;
+	private List<OrderItemBean> items;
 	private Date completed;
 
 	public OrderBean() {}
@@ -99,5 +100,17 @@ public class OrderBean implements Serializable
 
 	public void setCompleted(Date completed) {
 		this.completed = completed;
+	}
+	
+	public Integer getPrice() {
+		return items.stream().reduce(0, (val, i) -> val + i.getPrice(), (a,b) -> a + b);
+	}
+
+	public List<OrderItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItemBean> items) {
+		this.items = items;
 	}
 }

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>宛先登録</title>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{common/layout :: sidebar(title='宛先登録', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
+
 <body>
 	<form th:object="${form}" method="post">
 		<table>
@@ -21,7 +23,7 @@
 					郵便番号
 				</th>
 				<td>
-					<input type="text" th:field="*{postCode}">
+					<input type="text" th:field="*{postCode}" placeholder="xxx-xxxx">
 				</td>
 			</tr>
 			<tr>
@@ -45,7 +47,7 @@
 					メールアドレス
 				</th>
 				<td>
-					<input type="email" th:field="*{email}">
+					<input type="email" th:field="*{email}" placeholder="taro@example.co.jp">
 				</td>
 			</tr>
 			<tr>
@@ -53,7 +55,7 @@
 					宛先名
 				</th>
 				<td>
-					<input type="text" th:field="*{addresseeName}">
+					<input type="text" th:field="*{addresseeName}" placeholder="山田太郎">
 				</td>
 			</tr>
 			<tr>
@@ -61,7 +63,7 @@
 					宛先フリガナ
 				</th>
 				<td>
-					<input type="text" th:field="*{addresseeReading}">
+					<input type="text" th:field="*{addresseeReading}" placeholder="ヤマダ　タロウ">
 				</td>
 			</tr>
 			<tr>
@@ -72,4 +74,5 @@
 		</table>
 	</form>
 </body>
+
 </html>

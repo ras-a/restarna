@@ -12,17 +12,17 @@
 </head>
 
 <body>
-<aside th:fragment="sidebar"  class="search">
+<aside th:fragment="sidebar">
 
 
 	<!--サイドバー-->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="col-12">
-			<button type="button" class="btn btn-light" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-				aria-controls="staticBackdrop" aria-expanded="false" aria-label="ナビゲーションの切替">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
+	<button type="button" class="btn btn-light" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+		aria-controls="staticBackdrop" aria-expanded="false" aria-label="ナビゲーションの切替">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!-- <div class="col-12">
+		</div> -->
 	</nav>
 	<div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
 		aria-labelledby="staticBackdropLabel">
@@ -37,6 +37,7 @@
 				<p id="sideList"><a th:href="@{/item/list/cream}">クリーム一覧</a></p>
 				<p id="sideList"><a th:href="@{/item/list/bread}">生地一覧</a></p>
 				<p id="sideList"><a th:href="@{/item/list/custom}">カスタム一覧</a></p>
+				<p id="sideList" th:if="${session.user}"><a th:href="@{|/item/review/form/${session.user.id}|}">レビュー一覧</a></p>
 			</div>
 		</div>
 	</div>

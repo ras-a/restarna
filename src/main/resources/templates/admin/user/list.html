@@ -25,7 +25,7 @@
                 <td><a th:href="@{'/admin/user/' + ${user.id}}" th:text="${user.name}"></a></td>
                 <td th:text="${user.password}"></td>
                 <td th:text="${user.email}"></td>
-                <td th:text="${#dates.format(user.dateCreated, 'yyyy/MM/dd')}"></td>         
+                <td th:text="${{user.dateCreated}}"></td>         
             </tr>
         <tbody>
     </table>

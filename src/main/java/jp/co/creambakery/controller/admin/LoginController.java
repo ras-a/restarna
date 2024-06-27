@@ -33,10 +33,10 @@ public class LoginController
 
 	@PostMapping
 	public String adminLogin(@Valid @ModelAttribute("form") AdminLoginForm form,
-							BindingResult result, HttpSession session, Model model) 
+	                         BindingResult result, HttpSession session, Model model) 
 	{
 		var factory = new BeanFactory();
-		if(result.hasErrors()) 
+		if(result.hasErrors())
 		{
 			return "admin/login";
 		}

@@ -1,44 +1,47 @@
 
-
-.search .search_area{
-	flex:1;
-	/* カラーは仮です。今後修正します。 */
-	background-color: rgb(214, 223, 227);
-
-	/* background-color: rgb(234, 233, 230); */
-	width: 100%;	
-	height:auto;
-	margin-top: 10px;
-	
-	padding-bottom: 20px;
-	border-radius: 10%;
-}
-
-
-
-aside.search{
-	width: 140px;
+aside {
+	width: 80px;
 	height:auto;
 	/* カラーは仮です。今後修正します。 */
 	background-color: rgb(234, 233, 230);
-	/* background-color: rgb(197, 207, 211); */
-	padding-left: 30px;
-	padding-top: 10px;
-	padding-right: 40px;
-}
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 15px;
+	
+	li{
+		height: 25px;
+		margin-top: 30px;
+		border-radius: 20%;
+		font-size: 27px;
+		&:hover{
+			font-size: 30px;
+		}
+	}
 
-.search li{
-	height: 25px;
-    margin-top: 30px;
-    border-radius: 20%;
-	font-size: 27px;
-}
+	.navbar {
+		--bs-navbar-padding-y: 0;
+		--bs-bg-opacity: 0;
+	}
+	
+	.btn {
+		aspect-ratio: 1;
+	}
 
-.search li:hover{
-	height: 25px;
-    margin-top: 30px;
-    border-radius: 20%;
-	font-size: 30px;
+	.search_area{
+		flex:1;
+		/* カラーは仮です。今後修正します。 */
+		background-color: rgb(214, 223, 227);
+	
+		/* background-color: rgb(234, 233, 230); */
+		width: 100%;	
+		height:auto;
+		margin-top: 10px;
+		
+		padding-bottom: 20px;
+		border-radius: 10%;
+	}
 }
 
 .offcanvas-header{

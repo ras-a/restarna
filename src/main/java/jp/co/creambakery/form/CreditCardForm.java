@@ -26,8 +26,7 @@ public class CreditCardForm
 	public void populateWith(CreditCardBean bean) {
 		name = bean.getName();
 		holderName = bean.getHolderName();
-		no = bean.getNumber();
-		cvc = bean.getCvc();
+		
 	}
 	
 	public void populate(CreditCard entity) {

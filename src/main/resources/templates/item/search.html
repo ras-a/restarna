@@ -11,16 +11,16 @@
 	<div class="search">
 
 		<h1>検索</h1>
-		<form th:action="@{/item/list/filter}" th:object="${form}" method="post">
+		<form th:object="${form}" th:action="@{/item/list/filter}" method="post">
 			<div class="searchInput"><input type="text" th:field="*{name}"></div>
 
 
 			<div class="creamListName">
 				<span class="selectCreamTitle">クリーム選択</span>
-				<th:block th:each="cream: ${creams}" class="selectCream">
+				<div th:each="cream: ${creams}" class="selectCream">
 					<input type="checkbox" th:field="*{creams}" th:value="${cream.id}">
 					<label th:for="${#ids.prev('creams')}">[[${cream.name}]]</label>
-				</th:block><br>
+				</div>
 			</div>
 
 			<div class="searchListBottom">

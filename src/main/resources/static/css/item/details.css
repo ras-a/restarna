@@ -46,4 +46,36 @@
 .review{
     margin-left: 70px;
     height: auto;
+
+    :where(.score_input) {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: start;
+
+        label {
+            color: gray;
+        }
+
+        :where(&:has(input:checked)) {
+            label {
+                color: black;
+            }
+        }
+    }
+
+    :where(.elem:hover) {
+
+        label,
+        ~.elem label {
+            color: color-mix(in oklab, goldenrod 50%, grey);
+        }
+    }
+
+    .elem:has(:checked) {
+
+        & label,
+        &~.elem label {
+            color: goldenrod;
+        }
+    }
 }

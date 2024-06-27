@@ -26,6 +26,7 @@ div #customList{
     margin-bottom: 40px;
   }
   #customList table tr {
+    cursor: pointer;
     background-color: #fff;
   }
   #customList table tbody tr:hover{

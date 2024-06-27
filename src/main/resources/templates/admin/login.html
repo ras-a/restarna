@@ -13,11 +13,13 @@
     <div>
         <h1>admin login</h1>
         <h2>名前とパスワードを入力してください。</h2>
-        <p th:text="${errMessage}"></p>
+        <p style="color:red" th:text="${errMessage}"></p>
         <form th:action="@{/admin/login}" method="post" th:object="${form}">
+            <p style="color:red" class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
             <div>
                 名前:<input type="text" th:field="*{name}"><br>
             </div>
+            <p style="color:red" class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
             <div>
                 パスワード:<input type="password" th:field="*{password}"><br>
             </div>

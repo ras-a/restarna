@@ -1,13 +1,12 @@
 package jp.co.creambakery.controller.item;
 
+import jakarta.servlet.http.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
-
-import jakarta.servlet.http.*;
-import jakarta.validation.*;
 import jp.co.creambakery.bean.*;
 import jp.co.creambakery.entity.*;
 import jp.co.creambakery.form.*;
@@ -30,7 +29,7 @@ public class OrderController
 	HttpSession session;
 
 	@GetMapping("/list")
-	public String order(HttpSession session, Model model)
+	public String order(Model model)
 	{
 		var orders = orderRepository.findAllByUser(getUser());
 
@@ -47,14 +46,31 @@ public class OrderController
 		return "order/details";
 	}
 
-	@PostMapping("/complete")
-	public String complete(HttpSession session, @Valid @ModelAttribute("form") OrderForm form, BindingResult result, Model model)
-	{
-		if (result.hasErrors())
-			return "order/form";
-			
-		var factory = new BeanFactory();
+	@GetMapping("/form")
+	public String form(@ModelAttribute("form") OrderForm form, Model model) {
 		var user = getUser();
+		var factory = new BeanFactory();
+
+		model.addAttribute("creditCards", factory.createCreditCardList(user.getCreditCards()));
+		model.addAttribute("addresses", factory.createAddressList(user.getAddresses()));
+		form.setAddress(user.getMainAddress());
+		form.setCreditCard(user.getMainCreditCard());
+
+		return "order/form";
+	}
+
+	@PostMapping("/complete")
+	public String complete(@ModelAttribute("form") OrderForm form, BindingResult result, Model model)
+	{
+		var user = getUser();
+		// if (result.hasErrors())
+		// {
+		// 	model.addAttribute("creditCards", user.getCreditCards());
+		// 	model.addAttribute("addresses", user.getAddresses());
+		// 	return "order/form";
+		// }
+
+		var factory = new BeanFactory();
 		var order = new ProductOrder(user, form);
 
 		if (form.getPaymentMethod() == 0)
@@ -72,13 +88,11 @@ public class OrderController
 
 		order.setAddress(address);
 
-		for (var cartItem: user.getCart())
-		{
-			var entry = new ProductOrderItem(order, cartItem);
-			order.getItems().add(entry);
-		}
+		order.setItems(user.getCart().stream().map(ci -> new ProductOrderItem(order, ci)).toList());
 
-		order = orderRepository.save(order);
+		orderRepository.save(order);
+
+		user.getOrders().add(order);
 
 		user.getCart().clear();
 		user = userRepository.save(user);
@@ -88,17 +102,7 @@ public class OrderController
 
 		return "order/complete";
 	}
-	
-	@GetMapping("/form")
-	public String getMethodName(@ModelAttribute("form") OrderForm form, Model model) {
-		var user = getUser();
 
-		form.setAddress(user.getMainAddress());
-		form.setCreditCard(user.getMainCreditCard());
-
-		return "order/form";
-	}
-    
 	private User getUser()
 	{
 		var user = (UserBean) session.getAttribute("user");

@@ -15,7 +15,7 @@ public class Cart
 	private User user;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "item", referencedColumnName = "id")
 	private Item item;
 
