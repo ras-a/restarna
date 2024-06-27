@@ -43,11 +43,8 @@ public class LoginFilter extends HttpFilter {
 		var session = request.getSession();
 		var uri = request.getRequestURI();
 		
-		System.out.println(uri);
-		System.out.printf("~~~~~%b~~~~~\n", triggers(uri, publicIllegal));
 		if (!triggers(uri, whiteList))
 		{
-			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			if (session.getAttribute("admin") != null)
 			{
 				if (triggers(uri, adminIllegal))
