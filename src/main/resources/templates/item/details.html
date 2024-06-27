@@ -107,7 +107,11 @@
 
 			</div>
 		</div>
-		<div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}" /></div>
+		<div class="reviewRight">
+			<th:block th:if="${#strings.contains(item.getClass(),'StoreItemBean')}">
+				<img th:replace="~{common/util::img(${item})}" />
+			</th:block>
+		</div>
 	</div>
 </body>
 

@@ -58,6 +58,45 @@ public class CustomItemController {
     public String complete() {
         return "item/custom/list";
     }
+
+    @GetMapping("/edit/{itemId}")
+    public String editInput(Model model, @ModelAttribute CustomItemForm form ,@PathVariable Integer itemId) {
+        var factory = new BeanFactory();
+        var creamEntity = creamRepository.findAll();
+        var breadEntity = breadRepository.findAll();
+        var bean = getUser();
+        var user = userRepository.getReferenceById(bean.getId());
+        var item = itemRepository.getReferenceById(itemId);
+        form.populateWith(item);
+        model.addAttribute("item", factory.createBean(item));
+        model.addAttribute("creams", factory.createCreamList(creamEntity));
+        model.addAttribute("breads", factory.createBreadList(breadEntity));
+        session.setAttribute("user", factory.createBean(user));
+        return "item/custom/edit";
+    }
+
+    @PostMapping("/edit/{itemId}")
+    public String editComplete(Model model, @ModelAttribute CustomItemForm form, @PathVariable Integer itemId) {
+        BeanFactory factory = new BeanFactory();
+        var userBean = (UserBean) session.getAttribute("user");
+        var user = userRepository.getReferenceById(userBean.getId());
+        var item = user.getCreatedItems().stream().filter(i -> i.getItem().getId() == itemId).findFirst().orElse(null).getItem();
+        form.populate(item);
+
+        user = userRepository.save(user);        
+        model.addAttribute("item", factory.createBean(item));
+        session.setAttribute("user", factory.createBean(user));
+        return "item/custom/list";
+    }
+
+    private UserBean getUser() {
+        var user = (UserBean) session.getAttribute("user");
+
+        if (user == null)
+            throw new IllegalStateException("ログインされていない");
+
+        return user;
+    }
 }
 
 
