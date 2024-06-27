@@ -22,7 +22,7 @@
         <div id="customInfo"><span id="customTable">商品名：</span><span th:text="${item.name}"></span></div>
         <div id="customInfo"><span id="customTable">読み仮名：</span><span th:text="${item.reading}"></span></div>
         <div id="customInfo"><span id="customTable">説明：</span><span th:text="${item.description}"></span></div>
-        <div id="customInfo"><a th:href="@{/user/home}">ホームに戻る</a></div>
+        <div id="customInfo"><a th:href="@{/user/home}" th:text="ホームに戻る"></a></div>
     </div>
     </div>
 </body>

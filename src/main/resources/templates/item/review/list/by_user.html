@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{common/layout :: sidebar(title='宛先登録', body=~{::body/content()}, head=~{:: head/content()})}">
 <head>
 	<meta charset="UTF-8">
 	<title>口コミ</title>
@@ -12,7 +13,9 @@
 			color: rgb(255, 146, 69);
 		}
 	</style>
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
+
 <body>
 	<h2>[[${poster.name}]]さんのロコミ</h2>
 	<div th:each="review : ${poster.reviews}" th:object="${review}" style="display: flex; flex-flow: row nowrap;">

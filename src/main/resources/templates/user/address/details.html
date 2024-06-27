@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>宛先詳細</title>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{common/layout :: sidebar(title='宛先詳細', body=~{::body/content()}, head=~{:: head/content()})}">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/user/details.css}" />
 </head>
 <body>
+	<div id ="cart">
 	<table th:object="${address}">
 		<tr>
 			<th>宛先プロフィール名</th>
@@ -36,5 +38,7 @@
 			<td>[[*{addresseeReading}]]</td>
 		</tr>
 	</table>
+	<a th:href="@{/user/home}"><button>戻る</button></a>
+	</div>
 </body>
 </html>

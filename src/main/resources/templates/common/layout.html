@@ -103,8 +103,7 @@
 		<!--/* ナビゲーションバー */-->
 		<div th:replace="~{common/navi :: bar}"></div>
 
-		<!--/* スライドショー */-->
-		<div th:replace="~{common/slideShow :: image}"></div>
+
 
 		<div class="horizontal">	
 		<!--/* サイドバー */-->
@@ -113,6 +112,10 @@
 			<article class="main">
 				<div th:replace="${body}"></div>
 			</article>
+
+<!--/* スライドショー */-->
+<div th:replace="~{common/slideShow :: image}"></div>
+
 		</div>
 		<!--/* フッター */-->
 		<footer>

@@ -85,3 +85,7 @@ div{
 p{
 	cursor: default;
 }
+
+a{
+	text-decoration: none;
+}

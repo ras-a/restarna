@@ -2,6 +2,7 @@ package jp.co.creambakery.controller.user.info;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -70,15 +71,18 @@ public class CreditCardController {
 	
 	@PostMapping("/edit/{cardId}")
 	public String edit(@Valid @ModelAttribute("form") CreditCardForm form,
-	                            BindingResult result, @PathVariable Integer cardId) {
+	                            BindingResult result, @PathVariable Integer cardId, Model model) {
 		var user = getUser();
+		var factory = new BeanFactory();
 
 		var card = user.getCreditCard(cardId);
 
 		form.populate(card);
 		
 		repository.save(user);
+
+		model.addAttribute("card", factory.createBean(card));
 		
-		return "user/address/edit/complete";
+		return "user/credit_card/details";
 	}
 }

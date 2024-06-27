@@ -19,8 +19,14 @@
 #customInfo{
     height: auto;
     margin-bottom: 16px;
+    color: black;
+    text-decoration: none;
 }
 .customBody{
     margin-top: 20px;
     font-size: 23px;
+}
+#customInfo a{
+        color: black;
+        text-decoration: none;
 }
