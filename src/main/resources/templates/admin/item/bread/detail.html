@@ -43,7 +43,7 @@
             </form>
         </span>
     </div>
-    <div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}" /></div>
+    <div class="reviewRight"><img th:src="@{'/img/' + ${bread.image}}"  /></div>
 </div>
 </body>
 

@@ -53,7 +53,7 @@
                 </form>
             </span>
         </div>
-        <div class="reviewRight"><img th:replace="~{common/util::img(*{image}, *{name})}" /></div>
+        <div class="reviewRight"><img th:src="@{'/static/img/' + ${item.image}}"  /></div>
     </div>
 </body>
 </html>
